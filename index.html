@@ -183,7 +183,7 @@
       cursor: pointer;
     }
 
-    /* ================= صفحة الـ CV ================= */
+    /* ================= صفحة الـ CV العامة ================= */
     .cv-page {
       max-width: 920px;
       margin: 0 auto;
@@ -191,27 +191,16 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       border-radius: 4px;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 280px 1fr;
       min-height: 1120px;
+      position: relative;
     }
 
     .lang-ar .cv-page { direction: rtl; text-align: right; }
     .lang-en .cv-page { direction: ltr; text-align: left; }
 
-    .cv-sidebar {
-      background: var(--sidebar-bg);
-      color: var(--sidebar-text);
-      padding: 30px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      transition: background 0.3s;
-    }
-
     .photo-wrapper {
       width: 100%;
-      height: 220px;
+      height: 200px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       overflow: hidden;
@@ -225,23 +214,6 @@
 
     .photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
     .photo-placeholder { color: #cbd5e1; text-align: center; font-size: 12px; padding: 10px; }
-
-    .cv-main {
-      padding: 35px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      background: #ffffff;
-    }
-
-    .header-banner {
-      background: var(--primary-light);
-      padding: 18px 20px;
-      border-radius: 8px;
-    }
-
-    .lang-ar .header-banner { border-right: 5px solid var(--primary); }
-    .lang-en .header-banner { border-left: 5px solid var(--primary); }
 
     .candidate-name {
       font-size: 26px;
@@ -297,7 +269,7 @@
     }
 
     .editable-block { outline: none; border-radius: 4px; padding: 1px 3px; }
-    .cv-main .editable-block:focus { background: #fef9c3; color: #0f172a !important; }
+    .editable-block:focus { background: #fef9c3; color: #0f172a !important; }
     .cv-sidebar .editable-block:focus { background: rgba(255, 255, 255, 0.2) !important; color: #ffffff !important; outline: 1px dashed #fff; }
 
     .experience-list, .skills-list { display: flex; flex-direction: column; gap: 12px; }
@@ -376,43 +348,156 @@
     .lang-ar .bullet-points { padding-right: 18px; }
     .lang-en .bullet-points { padding-left: 18px; }
 
-    /* ================= التصاميم ================= */
+    /* =========================================================================
+       1. EXECUTIVE DESIGN (كلاسيكي جانبي - Full Vertical Sidebar)
+       ========================================================================= */
+    .theme-executive .cv-page {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+    .theme-executive .cv-sidebar {
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      padding: 30px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    .theme-executive .cv-main {
+      padding: 35px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .theme-executive .header-banner {
+      background: var(--primary-light);
+      padding: 18px 20px;
+      border-radius: 8px;
+    }
+    .lang-ar.theme-executive .header-banner { border-right: 5px solid var(--primary); }
+    .lang-en.theme-executive .header-banner { border-left: 5px solid var(--primary); }
+    .theme-executive .inline-skills-section { display: none; }
 
-    /* 1. Executive (Default) */
-    .theme-executive .cv-page { grid-template-columns: 280px 1fr; }
+    /* =========================================================================
+       2. SILICON TECH DESIGN (هيدر علوي ممتد + شبكة عصرية بالكامل)
+       ========================================================================= */
+    .theme-tech .cv-page {
+      display: flex;
+      flex-direction: column;
+    }
+    .theme-tech .cv-sidebar {
+      order: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: var(--sidebar-bg);
+      color: #ffffff;
+      padding: 22px 30px;
+      gap: 25px;
+    }
+    .theme-tech .photo-wrapper {
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+    }
+    .theme-tech .cv-sidebar > div { display: none; } /* إخفاء القوائم الجانبية من الهيدر العلوي */
+    
+    .theme-tech .cv-main {
+      order: 2;
+      padding: 30px 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .theme-tech .header-banner {
+      background: transparent;
+      padding: 0 0 10px 0;
+      border: none;
+      border-bottom: 2px solid var(--primary);
+      border-radius: 0;
+    }
+    .theme-tech .inline-skills-section {
+      display: block;
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
 
-    /* 2. Silicon Tech (Compact Modern Header) */
-    .theme-tech .cv-page { display: grid; grid-template-columns: 270px 1fr; }
-    .theme-tech .cv-sidebar { padding: 25px 18px; background: #0f172a; }
-    .theme-tech .photo-wrapper { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto; }
-    .theme-tech .header-banner { background: transparent; border: none; padding: 0 0 10px 0; border-bottom: 2px solid var(--primary); border-radius: 0; }
-    .theme-tech .section-title { color: var(--primary); }
+    /* =========================================================================
+       3. MODERN CORPORATE DESIGN (تصميم الشركات - هيدر مقسم وبطاقات أنيقة)
+       ========================================================================= */
+    .theme-corporate .cv-page {
+      display: block;
+      padding: 0;
+      background: #ffffff;
+    }
+    .theme-corporate .cv-sidebar {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--sidebar-bg));
+      color: #ffffff;
+      padding: 25px 35px;
+      gap: 25px;
+    }
+    .theme-corporate .photo-wrapper {
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
+      border: 3px solid #ffffff;
+    }
+    .theme-corporate .cv-sidebar > div { display: none; }
+    .theme-corporate .cv-main {
+      padding: 30px 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .theme-corporate .header-banner {
+      background: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .theme-corporate .candidate-name { color: var(--primary); }
+    .theme-corporate .inline-skills-section {
+      display: block;
+      background: var(--primary-light);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
 
-    /* 3. Modern Corporate (Sleek Grid) */
-    .theme-corporate .cv-page { display: grid; grid-template-columns: 290px 1fr; }
-    .theme-corporate .cv-sidebar { background: var(--sidebar-bg); }
-    .theme-corporate .photo-wrapper { width: 140px; height: 140px; border-radius: 12px; margin: 0 auto; }
-    .theme-corporate .header-banner { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; }
-
-    /* 4. Dark Mode */
-    .theme-dark .cv-page { background: #0b1120; color: #cbd5e1; }
-    .theme-dark .cv-main { background: #0b1120; }
-    .theme-dark .header-banner { background: #1e293b; }
+    /* =========================================================================
+       4. DARK MODE DESIGN (الوضع الليلي الاحترافي)
+       ========================================================================= */
+    .theme-dark .cv-page {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      background: #0b1120;
+      color: #cbd5e1;
+    }
+    .theme-dark .cv-sidebar { background: #070c18; padding: 30px 22px; display: flex; flex-direction: column; gap: 25px; }
+    .theme-dark .cv-main { background: #0b1120; padding: 35px 32px; display: flex; flex-direction: column; gap: 22px; }
+    .theme-dark .header-banner { background: #1e293b; border-color: var(--primary); }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
     .theme-dark .editable-item:hover { background: #1e293b; }
+    .theme-dark .inline-skills-section { display: none; }
 
-    /* ================= تصاميم بدون صورة (No-Photo Designs) ================= */
-
-    /* 5. ATS Minimal (معتمد بدون صورة) */
+    /* =========================================================================
+       5. ATS CLEAN (معتمد دولياً - بدون صورة - Single Column)
+       ========================================================================= */
     .theme-ats .cv-page {
       display: block;
       padding: 40px 45px;
       background: #ffffff;
     }
     .theme-ats .cv-sidebar { display: none !important; }
-    .theme-ats .cv-main { padding: 0; }
+    .theme-ats .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
     .theme-ats .header-banner {
       background: transparent;
       border: none;
@@ -424,9 +509,12 @@
     .theme-ats .candidate-name { font-size: 30px; letter-spacing: 1px; color: #0f172a; }
     .theme-ats .candidate-title { font-size: 13.5px; color: var(--primary); margin-top: 4px; }
     .theme-ats .contact-info { justify-content: center; margin-top: 8px; font-size: 12.5px; }
-    .theme-ats .section-title { font-size: 14px; color: #0f172a; border-bottom: 1.5px solid #0f172a; margin-top: 15px; }
+    .theme-ats .section-title { font-size: 14px; color: #0f172a; border-bottom: 1.5px solid #0f172a; margin-top: 10px; }
+    .theme-ats .inline-skills-section { display: block; }
 
-    /* 6. Nordic Clean (اسكندنافي أنيق بدون صورة) */
+    /* =========================================================================
+       6. NORDIC MINIMAL (اسكندنافي أنيق - بدون صورة)
+       ========================================================================= */
     .theme-nordic .cv-page {
       display: block;
       padding: 35px 40px;
@@ -434,7 +522,7 @@
       border-top: 8px solid var(--primary);
     }
     .theme-nordic .cv-sidebar { display: none !important; }
-    .theme-nordic .cv-main { padding: 0; }
+    .theme-nordic .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
     .theme-nordic .header-banner {
       background: var(--primary-light);
       padding: 20px 24px;
@@ -444,8 +532,11 @@
     .theme-nordic .candidate-name { font-size: 28px; color: var(--primary); }
     .theme-nordic .candidate-title { color: #334155; font-weight: 700; }
     .theme-nordic .section-title { color: var(--primary); border-bottom: 2px dashed var(--primary); }
+    .theme-nordic .inline-skills-section { display: block; background: #f8fafc; padding: 14px 18px; border-radius: 8px; border: 1px solid #e2e8f0; }
 
-    /* 7. Harvard Classic (هارفارد التنفيذي بدون صورة) */
+    /* =========================================================================
+       7. HARVARD CLASSIC (هارفارد الأكاديمي التنفيذي - بدون صورة)
+       ========================================================================= */
     .theme-harvard .cv-page {
       display: block;
       padding: 45px 50px;
@@ -453,7 +544,7 @@
       font-family: 'Merriweather', 'Cairo', serif;
     }
     .theme-harvard .cv-sidebar { display: none !important; }
-    .theme-harvard .cv-main { padding: 0; }
+    .theme-harvard .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
     .theme-harvard .header-banner {
       background: transparent;
       border: none;
@@ -477,16 +568,8 @@
       color: #111827;
       border-bottom: 1px solid #9ca3af;
       padding-bottom: 3px;
-      margin-top: 15px;
     }
-
-    /* قسم المهارات الإضافي داخل المحتوى الرئيسي للتصاميم التي بدون سايدبار */
-    .inline-skills-section { display: none; }
-    .theme-ats .inline-skills-section,
-    .theme-nordic .inline-skills-section,
-    .theme-harvard .inline-skills-section {
-      display: block;
-    }
+    .theme-harvard .inline-skills-section { display: block; }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
     .ai-modal-overlay {
@@ -696,7 +779,7 @@
   <!-- صفحة الـ CV -->
   <div class="cv-page" id="cvContainer">
     
-    <!-- القائمة الجانبية (للتصاميم التي مع صورة) -->
+    <!-- القائمة الجانبية / الهيدر الجانبي -->
     <aside class="cv-sidebar" id="sidebarContainer">
       <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()">
         <img id="profileImg" src="" alt="Profile Photo" style="display:none;">
@@ -794,7 +877,7 @@
         <button class="add-btn" onclick="addExperience()" id="btnAddExp">➕ إضافة خبرة أو مشروع جديد</button>
       </div>
 
-      <!-- قسم المهارات المدمج داخل المتن (يظهر في التصاميم التي بدون سايدبار) -->
+      <!-- قسم المهارات المدمج داخل المتن (يظهر في التصاميم ذات الهيدر العلوي والتصاميم بدون صورة) -->
       <div class="inline-skills-section">
         <h3 class="section-title"><span>⚙️</span> <span contenteditable="true" id="titleInlineSkills">المهارات والكفاءات (Core Skills)</span></h3>
         <div class="editable-block" contenteditable="true" id="txtInlineSkills" style="font-size: 13px; line-height: 1.6; color: #334155;">
@@ -1085,7 +1168,6 @@
       aiSuggestSkills();
     }
 
-    // تغيير التصميم والتحكم بظهور أداة الصورة
     function setDesign(themeName, btn, hasPhoto = true) {
       document.body.classList.remove(
         'theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark',
@@ -1095,7 +1177,6 @@
       document.querySelectorAll('.btn-design').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
-      // إخفاء أو إظهار شريط أدوات الصورة
       const photoBar = document.getElementById('photoControlsBar');
       if (hasPhoto) {
         photoBar.style.display = 'flex';
