@@ -11,9 +11,10 @@
     :root {
       --primary: #1e3a8a;
       --primary-light: rgba(30, 58, 138, 0.08);
+      --sidebar-bg: #0f172a;
+      --sidebar-text: #f8fafc;
       --text-main: #1e293b;
       --text-muted: #64748b;
-      --bg-card: #ffffff;
       --border-color: #e2e8f0;
     }
 
@@ -21,6 +22,8 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
     body {
@@ -43,7 +46,7 @@
       background: #ffffff;
       padding: 12px 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -64,7 +67,7 @@
       padding: 7px 14px;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 13px;
       transition: all 0.2s;
     }
@@ -104,24 +107,18 @@
       background: #0284c7;
       color: #fff;
       border: none;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
     }
 
-    .btn-action:hover {
-      background: #0369a1;
-    }
-
-    .btn-save-pdf {
-      background: #0284c7;
-    }
+    .btn-action:hover { background: #0369a1; }
 
     /* شريط أدوات الصورة */
     .photo-controls-bar {
@@ -142,40 +139,42 @@
       cursor: pointer;
     }
 
-    /* صفحة الـ CV */
+    /* ================= حاوية الـ CV ================= */
     .cv-page {
-      max-width: 950px;
+      max-width: 920px;
       margin: 0 auto;
       background: #ffffff;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       border-radius: 4px;
       overflow: hidden;
-      direction: ltr; /* محتوى السيرة بالإنجليزية */
+      direction: ltr;
       text-align: left;
       display: grid;
-      grid-template-columns: 290px 1fr;
-      min-height: 1150px;
+      grid-template-columns: 280px 1fr;
+      min-height: 1120px;
+      position: relative;
     }
 
     /* القائمة الجانبية */
     .cv-sidebar {
-      background: #0f172a;
-      color: #f8fafc;
-      padding: 30px 24px;
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      padding: 30px 22px;
       display: flex;
       flex-direction: column;
       gap: 25px;
+      transition: background 0.3s;
     }
 
     .photo-wrapper {
       width: 100%;
       height: 220px;
-      background: #1e293b;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      border: 2px dashed #475569;
+      border: 2px dashed rgba(255, 255, 255, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -189,7 +188,7 @@
     }
 
     .photo-placeholder {
-      color: #94a3b8;
+      color: #cbd5e1;
       text-align: center;
       font-size: 12px;
       padding: 10px;
@@ -200,15 +199,15 @@
       padding: 35px 32px;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 22px;
       background: #ffffff;
     }
 
     .header-banner {
       background: var(--primary-light);
-      padding: 20px;
+      padding: 18px 20px;
       border-radius: 8px;
-      border-left: 4px solid var(--primary);
+      border-left: 5px solid var(--primary);
     }
 
     .candidate-name {
@@ -232,7 +231,7 @@
     .contact-info {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
       font-size: 12px;
       color: var(--text-muted);
       margin-top: 10px;
@@ -241,7 +240,7 @@
 
     /* العناوين والأقسام */
     .section-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       color: var(--primary);
       text-transform: uppercase;
@@ -249,40 +248,51 @@
       align-items: center;
       gap: 8px;
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 6px;
+      padding-bottom: 5px;
       margin-bottom: 12px;
       outline: none;
     }
 
     .sidebar-section-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
-      color: #38bdf8;
+      color: #ffffff;
       text-transform: uppercase;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 5px;
       margin-bottom: 10px;
       outline: none;
+      letter-spacing: 0.5px;
     }
 
-    /* العناصر التفاعلية والقابلة للتعديل */
+    /* تعديل النصوص وتنسيق الـ Focus لمنع المشكلة البيضاء */
     .editable-block {
       outline: none;
+      border-radius: 4px;
+      padding: 1px 3px;
     }
-    .editable-block:focus {
-      background: #fefce8;
-      border-radius: 3px;
+
+    .cv-main .editable-block:focus {
+      background: #fef9c3;
+      color: #0f172a !important;
+    }
+
+    /* حل مشكلة الشريط الجانبي: النص يبقى أبيض مع خلفية شفافة مميزة */
+    .cv-sidebar .editable-block:focus {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
+      outline: 1px dashed #ffffff;
     }
 
     .experience-list, .skills-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .editable-item {
       position: relative;
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-radius: 6px;
       border: 1px solid transparent;
       transition: all 0.15s ease;
@@ -294,27 +304,27 @@
     }
 
     .cv-sidebar .editable-item:hover {
-      background: #1e293b;
-      border-color: #334155;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
-    /* شريط أزرار الحذف والتكرار */
+    /* أزرار الحذف والتكرار */
     .item-actions {
       position: absolute;
-      top: 6px;
-      right: 6px;
+      top: 4px;
+      right: 4px;
       display: none;
       gap: 4px;
       background: #ffffff;
-      padding: 2px 4px;
+      padding: 2px 5px;
       border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       border: 1px solid #cbd5e1;
       z-index: 20;
     }
 
     .cv-sidebar .item-actions {
-      background: #0f172a;
+      background: #1e293b;
       border-color: #475569;
     }
 
@@ -345,10 +355,10 @@
       background: transparent;
       border: 1px dashed #cbd5e1;
       color: #64748b;
-      padding: 6px 12px;
+      padding: 5px 12px;
       border-radius: 6px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       margin-top: 6px;
       transition: all 0.2s;
@@ -361,13 +371,13 @@
     }
 
     .cv-sidebar .add-btn {
-      border-color: #475569;
-      color: #94a3b8;
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #cbd5e1;
     }
     .cv-sidebar .add-btn:hover {
-      background: #1e293b;
-      color: #38bdf8;
-      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: #ffffff;
     }
 
     .job-header {
@@ -384,7 +394,7 @@
 
     .job-company {
       color: var(--primary);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .job-date {
@@ -393,47 +403,112 @@
     }
 
     .bullet-points {
-      margin-top: 6px;
+      margin-top: 5px;
       padding-left: 18px;
       font-size: 12.5px;
       color: #334155;
       line-height: 1.5;
     }
 
-    /* ================= ثيمات التصاميم ================= */
+    /* ================= التصاميم الأربعة الاحترافية ================= */
+
+    /* 1. Executive (افتراضي) */
+    .theme-executive .cv-page {
+      grid-template-columns: 280px 1fr;
+    }
+
     /* 2. Silicon Tech */
     .theme-tech .cv-page {
       display: flex;
       flex-direction: column;
     }
     .theme-tech .cv-sidebar {
-      display: flex;
       flex-direction: row;
-      background: #0f172a;
-      padding: 20px;
+      flex-wrap: wrap;
       align-items: center;
+      padding: 20px 30px;
       gap: 20px;
     }
-    .theme-tech .photo-wrapper { width: 120px; height: 120px; border-radius: 50%; }
+    .theme-tech .photo-wrapper { width: 110px; height: 110px; border-radius: 50%; }
+    .theme-tech .skills-list { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+    .theme-tech .skills-list .editable-item { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 4px 10px; }
 
-    /* 3. Editorial */
-    .theme-editorial .candidate-name { font-family: 'Times New Roman', serif; letter-spacing: 1px; }
-    .theme-editorial .header-banner { background: transparent; border-left: none; border-bottom: 2px solid var(--primary); }
+    /* 3. Modern Corporate Grid (التصميم الاحترافي الجديد كلياً) */
+    .theme-corporate .cv-page {
+      display: block;
+      padding: 0;
+      background: #f8fafc;
+    }
+    .theme-corporate .cv-sidebar {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      align-items: center;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 25px 35px;
+      border-bottom: 4px solid rgba(0,0,0,0.15);
+      gap: 25px;
+    }
+    .theme-corporate .photo-wrapper {
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
+      border: 3px solid #ffffff;
+    }
+    .theme-corporate .cv-main {
+      padding: 30px 35px;
+      background: #ffffff;
+    }
+    .theme-corporate .header-banner {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .theme-corporate .candidate-name {
+      color: #ffffff;
+      font-size: 28px;
+    }
+    .theme-corporate .candidate-title {
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+    .theme-corporate .contact-info {
+      color: #cbd5e1;
+    }
 
     /* 4. Dark Mode */
-    .theme-dark .cv-page { background: #090d16; color: #cbd5e1; }
-    .theme-dark .cv-main { background: #090d16; }
-    .theme-dark .header-banner { background: #131b2e; }
+    .theme-dark .cv-page { background: #0b1120; color: #cbd5e1; }
+    .theme-dark .cv-main { background: #0b1120; }
+    .theme-dark .header-banner { background: #1e293b; border-left-color: var(--primary); }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
-    .theme-dark .editable-item:hover { background: #131b2e; }
+    .theme-dark .editable-item:hover { background: #1e293b; border-color: #334155; }
+    .theme-dark .section-title { border-bottom-color: #334155; }
 
-    /* إخفاء أزرار التحكم تماماً عند الحفظ كـ PDF */
+    /* ================= إعدادات الطباعة الدقيقة (PDF) ================= */
+    @page {
+      size: A4 portrait;
+      margin: 0mm;
+    }
+
     @media print {
-      body { background: white; padding: 0; }
-      .controls-container, .item-actions, .add-btn { display: none !important; }
-      .cv-page { box-shadow: none; max-width: 100%; border-radius: 0; }
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .controls-container, .item-actions, .add-btn {
+        display: none !important;
+      }
+      .cv-page {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
     }
   </style>
 </head>
@@ -447,24 +522,24 @@
         <span style="font-size: 13px; font-weight: bold;">اختر الدزاين:</span>
         <button class="btn-design active" onclick="setDesign('theme-executive', this)">1. Executive (كلاسيكي)</button>
         <button class="btn-design" onclick="setDesign('theme-tech', this)">2. Silicon Tech</button>
-        <button class="btn-design" onclick="setDesign('theme-editorial', this)">3. Editorial</button>
+        <button class="btn-design" onclick="setDesign('theme-corporate', this)">3. Modern Corporate (جديد ✨)</button>
         <button class="btn-design" onclick="setDesign('theme-dark', this)">4. Dark Mode</button>
       </div>
 
-      <!-- باليتة الألوان المباشرة -->
+      <!-- باليتة الألوان المباشرة المتناسقة -->
       <div class="color-bar">
         <span style="font-size: 12px; font-weight: bold;">🎨 لون الثيم:</span>
-        <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', this)" title="أزرق ملكي"></div>
-        <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', this)" title="أخضر زمردي"></div>
-        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', this)" title="عنابي"></div>
-        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', this)" title="رمادي كلاسيك"></div>
-        <div class="color-dot" style="background:#6b21a8;" onclick="setColor('#6b21a8', this)" title="بنفسجي"></div>
-        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', this)" title="برونزي"></div>
-        <input type="color" id="customColor" onchange="setColor(this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
+        <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
+        <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
+        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي ملكي"></div>
+        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي احترافي"></div>
+        <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي فاخر"></div>
+        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي ذهبي"></div>
+        <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
       </div>
 
       <!-- زر الحفظ كـ PDF -->
-      <button class="btn-action btn-save-pdf" onclick="window.print()">
+      <button class="btn-action" onclick="window.print()">
         📄 Save as PDF / حفظ
       </button>
     </div>
@@ -485,7 +560,7 @@
   <div class="cv-page" id="cvContainer">
     
     <!-- القائمة الجانبية -->
-    <aside class="cv-sidebar">
+    <aside class="cv-sidebar" id="sidebarContainer">
       <!-- الصورة الشخصية -->
       <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
         <img id="profileImg" src="" alt="Profile Photo" style="display:none;">
@@ -495,7 +570,7 @@
         </div>
       </div>
 
-      <!-- المهارات (Skills) مع أزرار الحذف والتكرار والإضافة -->
+      <!-- المهارات (Skills) -->
       <div>
         <h3 class="sidebar-section-title" contenteditable="true">⚙️ SKILLS</h3>
         <div class="skills-list" id="skillsList">
@@ -555,9 +630,9 @@
     <main class="cv-main">
       <!-- الهيدر والاسم -->
       <div class="header-banner">
-        <h1 class="candidate-name" contenteditable="true">SADOON MOHSOUN AZIZ</h1>
-        <div class="candidate-title" contenteditable="true">CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION</div>
-        <div class="contact-info" contenteditable="true">
+        <h1 class="candidate-name editable-block" contenteditable="true">SADOON MOHSOUN AZIZ</h1>
+        <div class="candidate-title editable-block" contenteditable="true">CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION</div>
+        <div class="contact-info editable-block" contenteditable="true">
           <span>📍 Baghdad, Iraq</span>
           <span>|</span>
           <span>📞 +964 781 533 3321</span>
@@ -657,10 +732,13 @@
       if (btn) btn.classList.add('active');
     }
 
-    // 2. تغيير اللون المباشر
-    function setColor(color, el) {
-      document.documentElement.style.setProperty('--primary', color);
-      document.documentElement.style.setProperty('--primary-light', color + '15');
+    // 2. تغيير اللون المباشر للشريط الجانبي والعناوين
+    function setColor(primaryColor, sidebarColor, el) {
+      document.documentElement.style.setProperty('--primary', primaryColor);
+      document.documentElement.style.setProperty('--primary-light', primaryColor + '15');
+      if (sidebarColor) {
+        document.documentElement.style.setProperty('--sidebar-bg', sidebarColor);
+      }
       document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
       if (el && el.classList.contains('color-dot')) el.classList.add('active');
     }
@@ -694,15 +772,15 @@
         </div>
         <div class="job-header">
           <div>
-            <span class="job-role editable-block" contenteditable="true">عنوان المشروع أو المسمى الوظيفي</span>
+            <span class="job-role editable-block" contenteditable="true">Job Title / Project Name</span>
             <span style="color:#94a3b8;"> — </span>
-            <span class="job-company editable-block" contenteditable="true">اسم الشركة أو العميل</span>
+            <span class="job-company editable-block" contenteditable="true">Company / Organization</span>
           </div>
           <div class="job-date editable-block" contenteditable="true">2024 – Present</div>
         </div>
         <ul class="bullet-points editable-block" contenteditable="true">
-          <li>أدخل أبرز الإنجازات والمهام المنجزة هنا...</li>
-          <li>استخدم أرقام ونتائج ملموسة لتعزيز قوة الـ CV.</li>
+          <li>Key achievement or responsibility description...</li>
+          <li>Demonstrated strong leadership and delivered measurable impact.</li>
         </ul>
       `;
       list.appendChild(div);
@@ -718,7 +796,7 @@
           <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
           <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
         </div>
-        <div class="editable-block" contenteditable="true">• مهارة جديدة (اكتب هنا)</div>
+        <div class="editable-block" contenteditable="true">• New Skill (Edit Here)</div>
       `;
       list.appendChild(div);
     }
@@ -734,17 +812,17 @@
           <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
         </div>
         <div class="job-header">
-          <span class="job-role editable-block" contenteditable="true">اسم الشهادة / الدورة التدريبية</span>
-          <span class="job-date editable-block" contenteditable="true">سنة التخرج</span>
+          <span class="job-role editable-block" contenteditable="true">Degree / Certification Title</span>
+          <span class="job-date editable-block" contenteditable="true">Graduation Year</span>
         </div>
         <div class="bullet-points editable-block" contenteditable="true">
-          الجامعة أو الجهة المانحة للشهادة
+          Institution / University Name
         </div>
       `;
       list.appendChild(div);
     }
 
-    // 8. التحكم بالصورة ورفعها
+    // 8. التحكم بالصورة
     function handleImageUpload(e) {
       const file = e.target.files[0];
       if (file) {
