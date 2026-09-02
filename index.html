@@ -6,7 +6,7 @@
   <title>Sadoon Mohsoun Aziz - Professional CV Studio + AI Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #1e3a8a;
@@ -48,9 +48,15 @@
 
     .top-toolbar {
       background: #ffffff;
-      padding: 12px 20px;
+      padding: 14px 20px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toolbar-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -68,11 +74,11 @@
     .btn-design, .btn-lang {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12.5px;
       transition: all 0.2s;
     }
 
@@ -80,6 +86,15 @@
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
+    }
+
+    .btn-design.nophoto-badge {
+      border-color: #0284c7;
+      color: #0369a1;
+    }
+    .btn-design.nophoto-badge.active {
+      background: var(--primary);
+      color: #fff;
     }
 
     .color-bar {
@@ -160,6 +175,7 @@
       justify-content: center;
       gap: 15px;
       font-size: 13px;
+      transition: all 0.3s;
     }
 
     .photo-controls-bar input[type="range"] {
@@ -360,24 +376,117 @@
     .lang-ar .bullet-points { padding-right: 18px; }
     .lang-en .bullet-points { padding-left: 18px; }
 
-    /* التصاميم */
-    .theme-tech .cv-page { display: flex; flex-direction: column; }
-    .theme-tech .cv-sidebar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 20px 30px; gap: 20px; }
-    .theme-tech .photo-wrapper { width: 110px; height: 110px; border-radius: 50%; }
+    /* ================= التصاميم ================= */
 
-    .theme-corporate .cv-page { display: block; background: #f8fafc; }
-    .theme-corporate .cv-sidebar { display: grid; grid-template-columns: 140px 1fr; align-items: center; background: var(--primary); padding: 25px 35px; gap: 25px; }
-    .theme-corporate .photo-wrapper { width: 130px; height: 130px; border-radius: 12px; border: 3px solid #fff; }
-    .theme-corporate .cv-main { padding: 30px 35px; background: #ffffff; }
-    .theme-corporate .header-banner { background: transparent; border: none; padding: 0; }
-    .theme-corporate .candidate-name { color: #ffffff; }
+    /* 1. Executive (Default) */
+    .theme-executive .cv-page { grid-template-columns: 280px 1fr; }
 
+    /* 2. Silicon Tech (Compact Modern Header) */
+    .theme-tech .cv-page { display: grid; grid-template-columns: 270px 1fr; }
+    .theme-tech .cv-sidebar { padding: 25px 18px; background: #0f172a; }
+    .theme-tech .photo-wrapper { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto; }
+    .theme-tech .header-banner { background: transparent; border: none; padding: 0 0 10px 0; border-bottom: 2px solid var(--primary); border-radius: 0; }
+    .theme-tech .section-title { color: var(--primary); }
+
+    /* 3. Modern Corporate (Sleek Grid) */
+    .theme-corporate .cv-page { display: grid; grid-template-columns: 290px 1fr; }
+    .theme-corporate .cv-sidebar { background: var(--sidebar-bg); }
+    .theme-corporate .photo-wrapper { width: 140px; height: 140px; border-radius: 12px; margin: 0 auto; }
+    .theme-corporate .header-banner { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; }
+
+    /* 4. Dark Mode */
     .theme-dark .cv-page { background: #0b1120; color: #cbd5e1; }
     .theme-dark .cv-main { background: #0b1120; }
     .theme-dark .header-banner { background: #1e293b; }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
+    .theme-dark .editable-item:hover { background: #1e293b; }
+
+    /* ================= تصاميم بدون صورة (No-Photo Designs) ================= */
+
+    /* 5. ATS Minimal (معتمد بدون صورة) */
+    .theme-ats .cv-page {
+      display: block;
+      padding: 40px 45px;
+      background: #ffffff;
+    }
+    .theme-ats .cv-sidebar { display: none !important; }
+    .theme-ats .cv-main { padding: 0; }
+    .theme-ats .header-banner {
+      background: transparent;
+      border: none;
+      padding: 0 0 15px 0;
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      border-radius: 0;
+    }
+    .theme-ats .candidate-name { font-size: 30px; letter-spacing: 1px; color: #0f172a; }
+    .theme-ats .candidate-title { font-size: 13.5px; color: var(--primary); margin-top: 4px; }
+    .theme-ats .contact-info { justify-content: center; margin-top: 8px; font-size: 12.5px; }
+    .theme-ats .section-title { font-size: 14px; color: #0f172a; border-bottom: 1.5px solid #0f172a; margin-top: 15px; }
+
+    /* 6. Nordic Clean (اسكندنافي أنيق بدون صورة) */
+    .theme-nordic .cv-page {
+      display: block;
+      padding: 35px 40px;
+      background: #ffffff;
+      border-top: 8px solid var(--primary);
+    }
+    .theme-nordic .cv-sidebar { display: none !important; }
+    .theme-nordic .cv-main { padding: 0; }
+    .theme-nordic .header-banner {
+      background: var(--primary-light);
+      padding: 20px 24px;
+      border-radius: 12px;
+      border: none;
+    }
+    .theme-nordic .candidate-name { font-size: 28px; color: var(--primary); }
+    .theme-nordic .candidate-title { color: #334155; font-weight: 700; }
+    .theme-nordic .section-title { color: var(--primary); border-bottom: 2px dashed var(--primary); }
+
+    /* 7. Harvard Classic (هارفارد التنفيذي بدون صورة) */
+    .theme-harvard .cv-page {
+      display: block;
+      padding: 45px 50px;
+      background: #ffffff;
+      font-family: 'Merriweather', 'Cairo', serif;
+    }
+    .theme-harvard .cv-sidebar { display: none !important; }
+    .theme-harvard .cv-main { padding: 0; }
+    .theme-harvard .header-banner {
+      background: transparent;
+      border: none;
+      padding: 0 0 10px 0;
+      text-align: center;
+      border-bottom: 1px solid #1e293b;
+      border-radius: 0;
+    }
+    .theme-harvard .candidate-name {
+      font-family: 'Merriweather', serif;
+      font-size: 27px;
+      font-weight: 900;
+      color: #111827;
+      letter-spacing: 0.5px;
+    }
+    .theme-harvard .candidate-title { font-size: 13px; color: #4b5563; font-weight: 600; }
+    .theme-harvard .contact-info { justify-content: center; font-size: 12px; }
+    .theme-harvard .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 14px;
+      color: #111827;
+      border-bottom: 1px solid #9ca3af;
+      padding-bottom: 3px;
+      margin-top: 15px;
+    }
+
+    /* قسم المهارات الإضافي داخل المحتوى الرئيسي للتصاميم التي بدون سايدبار */
+    .inline-skills-section { display: none; }
+    .theme-ats .inline-skills-section,
+    .theme-nordic .inline-skills-section,
+    .theme-harvard .inline-skills-section {
+      display: block;
+    }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
     .ai-modal-overlay {
@@ -521,48 +630,59 @@
   <!-- شريط التحكم العلوي -->
   <div class="controls-container">
     <div class="top-toolbar">
-      <!-- اختيار اللغة -->
-      <div class="lang-selector">
-        <span style="font-size: 13px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
-        <button class="btn-lang active" id="btnLangAr" onclick="setLanguage('ar', this)">العربية</button>
-        <button class="btn-lang" id="btnLangEn" onclick="setLanguage('en', this)">English</button>
+      <!-- الصف 1: اللغة، الألوان، أزرار الإجراءات -->
+      <div class="toolbar-row">
+        <!-- اللغة -->
+        <div class="lang-selector">
+          <span style="font-size: 13px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
+          <button class="btn-lang active" id="btnLangAr" onclick="setLanguage('ar', this)">العربية</button>
+          <button class="btn-lang" id="btnLangEn" onclick="setLanguage('en', this)">English</button>
+        </div>
+
+        <!-- باليتة الألوان -->
+        <div class="color-bar">
+          <span style="font-size: 12px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
+          <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
+          <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
+          <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
+          <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
+          <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
+          <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
+          <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
+        </div>
+
+        <!-- أزرار الإجراءات -->
+        <div class="toolbar-actions">
+          <button class="btn-ai" id="btnAiOpen" onclick="openAiAgent()">
+            🤖 المساعد الذكي AI
+          </button>
+          <button class="btn-action" id="btnSavePdf" onclick="window.print()">
+            📄 Save as PDF
+          </button>
+        </div>
       </div>
 
-      <!-- اختيار الدزاين -->
-      <div class="design-selector">
-        <span style="font-size: 13px; font-weight: bold;" id="lblDesign">اختر الدزاين:</span>
-        <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this)">1. Executive</button>
-        <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this)">2. Silicon Tech</button>
-        <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this)">3. Modern Corporate</button>
-        <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this)">4. Dark Mode</button>
-      </div>
-
-      <!-- باليتة الألوان -->
-      <div class="color-bar">
-        <span style="font-size: 12px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
-        <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
-        <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
-        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
-        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
-        <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
-        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
-        <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
-      </div>
-
-      <div class="toolbar-actions">
-        <!-- زر المساعد الذكي -->
-        <button class="btn-ai" id="btnAiOpen" onclick="openAiAgent()">
-          🤖 المساعد الذكي AI
-        </button>
-        <!-- زر الحفظ -->
-        <button class="btn-action" id="btnSavePdf" onclick="window.print()">
-          📄 Save as PDF / حفظ
-        </button>
+      <!-- الصف 2: اختيار الدزاين (مع صورة وبدون صورة) -->
+      <div class="toolbar-row" style="border-top: 1px solid #f1f5f9; padding-top: 8px;">
+        <div class="design-selector">
+          <span style="font-size: 12.5px; font-weight: bold;" id="lblDesign">📷 تصاميم مع صورة:</span>
+          <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this, true)">1. Executive</button>
+          <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this, true)">2. Silicon Tech</button>
+          <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this, true)">3. Modern Corporate</button>
+          <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this, true)">4. Dark Mode</button>
+          
+          <span style="margin: 0 4px; color:#cbd5e1;">|</span>
+          
+          <span style="font-size: 12.5px; font-weight: bold; color: #0284c7;" id="lblNoPhotoDesign">📄 تصاميم بدون صورة:</span>
+          <button class="btn-design nophoto-badge" id="btnDesign5" onclick="setDesign('theme-ats', this, false)">5. ATS Clean ⭐</button>
+          <button class="btn-design nophoto-badge" id="btnDesign6" onclick="setDesign('theme-nordic', this, false)">6. Nordic Minimal</button>
+          <button class="btn-design nophoto-badge" id="btnDesign7" onclick="setDesign('theme-harvard', this, false)">7. Harvard Classic</button>
+        </div>
       </div>
     </div>
 
-    <!-- التحكم بالصورة -->
-    <div class="photo-controls-bar">
+    <!-- التحكم بالصورة (يختفي تلقائياً في التصاميم التي بدون صورة) -->
+    <div class="photo-controls-bar" id="photoControlsBar">
       <span id="txtPhotoLabel">🖼️ <strong>التحكم بالصورة:</strong></span>
       <label id="lblZoom">🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
       <label id="lblPanX">↔️ أفقي: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
@@ -575,6 +695,8 @@
 
   <!-- صفحة الـ CV -->
   <div class="cv-page" id="cvContainer">
+    
+    <!-- القائمة الجانبية (للتصاميم التي مع صورة) -->
     <aside class="cv-sidebar" id="sidebarContainer">
       <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()">
         <img id="profileImg" src="" alt="Profile Photo" style="display:none;">
@@ -622,6 +744,7 @@
       </div>
     </aside>
 
+    <!-- المحتوى الرئيسي -->
     <main class="cv-main">
       <div class="header-banner">
         <h1 class="candidate-name editable-block" contenteditable="true" id="txtCandidateName">سعدون محسن عزيز</h1>
@@ -635,6 +758,7 @@
         </div>
       </div>
 
+      <!-- نبذة مهنية -->
       <div>
         <h3 class="section-title"><span>👤</span> <span contenteditable="true" id="titleSummary">الملخص المهني</span></h3>
         <div class="editable-block" contenteditable="true" id="txtSummary" style="font-size: 13.5px; line-height: 1.7; color: #334155;">
@@ -642,6 +766,7 @@
         </div>
       </div>
 
+      <!-- الخبرات المهنية -->
       <div>
         <h3 class="section-title"><span>💼</span> <span contenteditable="true" id="titleExp">الخبرات المهنية والمشاريع</span></h3>
         <div class="experience-list" id="experienceList">
@@ -653,7 +778,7 @@
             </div>
             <div class="job-header">
               <div>
-                <span class="job-role editable-block" contenteditable="true">مشرف خدمة العملاء الواردة</span>
+                <span class="job-role editable-block" contenteditable="true">مشرف خدمة العملاء والعمليات</span>
                 <span style="color:#94a3b8;"> — </span>
                 <span class="job-company editable-block" contenteditable="true">شركة رائدة للخدمات والعمليات</span>
               </div>
@@ -669,6 +794,15 @@
         <button class="add-btn" onclick="addExperience()" id="btnAddExp">➕ إضافة خبرة أو مشروع جديد</button>
       </div>
 
+      <!-- قسم المهارات المدمج داخل المتن (يظهر في التصاميم التي بدون سايدبار) -->
+      <div class="inline-skills-section">
+        <h3 class="section-title"><span>⚙️</span> <span contenteditable="true" id="titleInlineSkills">المهارات والكفاءات (Core Skills)</span></h3>
+        <div class="editable-block" contenteditable="true" id="txtInlineSkills" style="font-size: 13px; line-height: 1.6; color: #334155;">
+          • إدارة عمليات خدمة العملاء • برامج Microsoft Office (Word, Excel, PowerPoint) • متابعة KPIs & SLA • إدخال البيانات السريع • قيادة وتدريب فرق العمل • اللغة العربية (الأم) والإنجليزية (مستوى متقدم)
+        </div>
+      </div>
+
+      <!-- التعليم -->
       <div>
         <h3 class="section-title"><span>🎓</span> <span contenteditable="true" id="titleEdu">التعليم والمؤهلات</span></h3>
         <div class="experience-list" id="educationList">
@@ -731,9 +865,7 @@
             <option value="sales">📈 المبيعات والتسويق والمحاسبة (Sales, Marketing & Accounts)</option>
           </select>
         </div>
-        <div class="ai-pill-grid" id="suggestedSkillsGrid">
-          <!-- مهارات تتولد تلقائياً -->
-        </div>
+        <div class="ai-pill-grid" id="suggestedSkillsGrid"></div>
         <span style="font-size:11px; color:#64748b;" id="aiSkillsFooterNote">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
       </div>
 
@@ -754,16 +886,20 @@
     </div>
   </div>
 
-  <!-- ================= محرك الترجمة والوكيل الذكي ================= -->
+  <!-- ================= محرك الترجمة والتصاميم والوكيل الذكي ================= -->
   <script>
     const I18N = {
       ar: {
         lblLang: "🌐 اللغة:",
-        lblDesign: "اختر الدزاين:",
-        btnDesign1: "1. Executive (كلاسيكي)",
+        lblDesign: "📷 تصاميم مع صورة:",
+        lblNoPhotoDesign: "📄 تصاميم بدون صورة:",
+        btnDesign1: "1. Executive",
         btnDesign2: "2. Silicon Tech",
         btnDesign3: "3. Modern Corporate",
         btnDesign4: "4. Dark Mode",
+        btnDesign5: "5. ATS Clean ⭐",
+        btnDesign6: "6. Nordic Minimal",
+        btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 الثيم:",
         btnAiOpen: "🤖 المساعد الذكي AI",
         btnSavePdf: "📄 Save as PDF / حفظ",
@@ -775,6 +911,7 @@
         btnChangePhoto: "تغيير صورتك 📷",
         txtUploadPhoto: "اضغط لتحميل صورتك",
         titleSkills: "⚙️ المهارات الأساسية",
+        titleInlineSkills: "المهارات والكفاءات (Core Skills)",
         btnAddSkill: "➕ إضافة مهارة",
         titleLanguages: "🌐 اللغات",
         titleSummary: "الملخص المهني",
@@ -786,6 +923,7 @@
         candidateTitle: "مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير",
         candidateContact: "<span>📍 بغداد، العراق</span><span>|</span><span>📞 +964 770 000 0000</span><span>|</span><span>✉️ sadoon.email@example.com</span>",
         candidateSummary: "مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، واستخدام برامج الأوفيس وأتمتة لوحات التقارير لرفع كفاءة الأداء ورضا العملاء.",
+        candidateInlineSkills: "• إدارة عمليات خدمة العملاء • برامج Microsoft Office (Word, Excel, PowerPoint) • متابعة KPIs & SLA • إدخال البيانات السريع • قيادة وتدريب فرق العمل • اللغة العربية (الأم) والإنجليزية (مستوى متقدم)",
         langArText: "<strong>العربية:</strong> اللغة الأم (Native)",
         langEnText: "<strong>الإنجليزية:</strong> مستوى مهني متقدم",
         aiModalTitle: "وكيل الـ CV الذكي (Smart AI Agent)",
@@ -806,11 +944,15 @@
       },
       en: {
         lblLang: "🌐 Language:",
-        lblDesign: "Choose Design:",
+        lblDesign: "📷 With Photo Designs:",
+        lblNoPhotoDesign: "📄 No-Photo Designs:",
         btnDesign1: "1. Executive",
         btnDesign2: "2. Silicon Tech",
         btnDesign3: "3. Modern Corporate",
         btnDesign4: "4. Dark Mode",
+        btnDesign5: "5. ATS Clean ⭐",
+        btnDesign6: "6. Nordic Minimal",
+        btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 Theme:",
         btnAiOpen: "🤖 Smart AI Agent",
         btnSavePdf: "📄 Save as PDF",
@@ -822,6 +964,7 @@
         btnChangePhoto: "Change Photo 📷",
         txtUploadPhoto: "Click to upload photo",
         titleSkills: "⚙️ CORE SKILLS",
+        titleInlineSkills: "CORE COMPETENCIES & SKILLS",
         btnAddSkill: "➕ Add Skill",
         titleLanguages: "🌐 LANGUAGES",
         titleSummary: "PROFESSIONAL SUMMARY",
@@ -833,6 +976,7 @@
         candidateTitle: "CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION",
         candidateContact: "<span>📍 Baghdad, Iraq</span><span>|</span><span>📞 +964 770 000 0000</span><span>|</span><span>✉️ sadoon.email@example.com</span>",
         candidateSummary: "Customer Care Supervisor with proven track record in leading front-line support teams, optimizing SLA adherence, utilizing advanced MS Office tools, and designing automated KPI reporting pipelines to elevate customer satisfaction and operational efficiency.",
+        candidateInlineSkills: "• Customer Operations Management • Microsoft Office (Advanced Excel, Word, PPT) • KPI & SLA Tracking • Fast Data Entry • Team Leadership & Coaching • Arabic (Native) & English (Professional)",
         langArText: "<strong>Arabic:</strong> Native",
         langEnText: "<strong>English:</strong> Professional Working",
         aiModalTitle: "Smart CV AI Agent",
@@ -875,19 +1019,28 @@
 
       document.getElementById('lblLang').innerText = dict.lblLang;
       document.getElementById('lblDesign').innerText = dict.lblDesign;
+      document.getElementById('lblNoPhotoDesign').innerText = dict.lblNoPhotoDesign;
       document.getElementById('btnDesign1').innerText = dict.btnDesign1;
       document.getElementById('btnDesign2').innerText = dict.btnDesign2;
       document.getElementById('btnDesign3').innerText = dict.btnDesign3;
       document.getElementById('btnDesign4').innerText = dict.btnDesign4;
+      document.getElementById('btnDesign5').innerText = dict.btnDesign5;
+      document.getElementById('btnDesign6').innerText = dict.btnDesign6;
+      document.getElementById('btnDesign7').innerText = dict.btnDesign7;
+
       document.getElementById('lblTheme').innerText = dict.lblTheme;
       document.getElementById('btnAiOpen').innerText = dict.btnAiOpen;
       document.getElementById('btnSavePdf').innerText = dict.btnSavePdf;
       document.getElementById('txtPhotoLabel').innerHTML = dict.txtPhotoLabel;
+      document.getElementById('lblZoom').innerHTML = `${dict.lblZoom} <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()">`;
+      document.getElementById('lblPanX').innerHTML = `${dict.lblPanX} <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()">`;
+      document.getElementById('lblPanY').innerHTML = `${dict.lblPanY} <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()">`;
       document.getElementById('btnResetPhoto').innerText = dict.btnResetPhoto;
       document.getElementById('btnChangePhoto').innerText = dict.btnChangePhoto;
       document.getElementById('txtUploadPhoto').innerText = dict.txtUploadPhoto;
 
       document.getElementById('titleSkills').innerText = dict.titleSkills;
+      document.getElementById('titleInlineSkills').innerText = dict.titleInlineSkills;
       document.getElementById('btnAddSkill').innerText = dict.btnAddSkill;
       document.getElementById('titleLanguages').innerText = dict.titleLanguages;
       document.getElementById('titleSummary').innerText = dict.titleSummary;
@@ -900,6 +1053,7 @@
       document.getElementById('txtCandidateTitle').innerText = dict.candidateTitle;
       document.getElementById('txtCandidateContact').innerHTML = dict.candidateContact;
       document.getElementById('txtSummary').innerText = dict.candidateSummary;
+      document.getElementById('txtInlineSkills').innerText = dict.candidateInlineSkills;
 
       document.getElementById('languagesList').innerHTML = `
         <div class="editable-item">
@@ -931,11 +1085,23 @@
       aiSuggestSkills();
     }
 
-    function setDesign(themeName, btn) {
-      document.body.classList.remove('theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark');
+    // تغيير التصميم والتحكم بظهور أداة الصورة
+    function setDesign(themeName, btn, hasPhoto = true) {
+      document.body.classList.remove(
+        'theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark',
+        'theme-ats', 'theme-nordic', 'theme-harvard'
+      );
       document.body.classList.add(themeName);
       document.querySelectorAll('.btn-design').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+
+      // إخفاء أو إظهار شريط أدوات الصورة
+      const photoBar = document.getElementById('photoControlsBar');
+      if (hasPhoto) {
+        photoBar.style.display = 'flex';
+      } else {
+        photoBar.style.display = 'none';
+      }
     }
 
     function setColor(primaryColor, sidebarColor, el) {
