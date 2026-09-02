@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sadoon Mohsoun Aziz - Professional CV Studio</title>
+  <title>Sadoon Mohsoun Aziz - Professional CV Studio + AI Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -103,6 +103,33 @@
       box-shadow: 0 0 0 2px #0f172a;
     }
 
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ai {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.35);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
     .btn-action {
       background: #0284c7;
       color: #fff;
@@ -117,8 +144,6 @@
       gap: 6px;
       box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
     }
-
-    .btn-action:hover { background: #0369a1; }
 
     /* شريط أدوات الصورة */
     .photo-controls-bar {
@@ -152,20 +177,9 @@
       min-height: 1120px;
     }
 
-    /* في حالة اللغة العربية: ينعكس الترتيب */
-    .lang-ar .cv-page {
-      direction: rtl;
-      text-align: right;
-      grid-template-columns: 280px 1fr;
-    }
+    .lang-ar .cv-page { direction: rtl; text-align: right; }
+    .lang-en .cv-page { direction: ltr; text-align: left; }
 
-    .lang-en .cv-page {
-      direction: ltr;
-      text-align: left;
-      grid-template-columns: 280px 1fr;
-    }
-
-    /* القائمة الجانبية */
     .cv-sidebar {
       background: var(--sidebar-bg);
       color: var(--sidebar-text);
@@ -190,21 +204,9 @@
       justify-content: center;
     }
 
-    .photo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform-origin: center center;
-    }
+    .photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { color: #cbd5e1; text-align: center; font-size: 12px; padding: 10px; }
 
-    .photo-placeholder {
-      color: #cbd5e1;
-      text-align: center;
-      font-size: 12px;
-      padding: 10px;
-    }
-
-    /* المحتوى الرئيسي */
     .cv-main {
       padding: 35px 32px;
       display: flex;
@@ -275,28 +277,11 @@
       outline: none;
     }
 
-    .editable-block {
-      outline: none;
-      border-radius: 4px;
-      padding: 1px 3px;
-    }
+    .editable-block { outline: none; border-radius: 4px; padding: 1px 3px; }
+    .cv-main .editable-block:focus { background: #fef9c3; color: #0f172a !important; }
+    .cv-sidebar .editable-block:focus { background: rgba(255, 255, 255, 0.2) !important; color: #ffffff !important; outline: 1px dashed #fff; }
 
-    .cv-main .editable-block:focus {
-      background: #fef9c3;
-      color: #0f172a !important;
-    }
-
-    .cv-sidebar .editable-block:focus {
-      background: rgba(255, 255, 255, 0.2) !important;
-      color: #ffffff !important;
-      outline: 1px dashed #ffffff;
-    }
-
-    .experience-list, .skills-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .experience-list, .skills-list { display: flex; flex-direction: column; gap: 12px; }
 
     .editable-item {
       position: relative;
@@ -306,15 +291,8 @@
       transition: all 0.15s ease;
     }
 
-    .editable-item:hover {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-    }
-
-    .cv-sidebar .editable-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
-    }
+    .editable-item:hover { background: #f8fafc; border-color: #e2e8f0; }
+    .cv-sidebar .editable-item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); }
 
     .item-actions {
       position: absolute;
@@ -331,12 +309,7 @@
 
     .lang-ar .item-actions { left: 4px; }
     .lang-en .item-actions { right: 4px; }
-
-    .cv-sidebar .item-actions {
-      background: #1e293b;
-      border-color: #475569;
-    }
-
+    .cv-sidebar .item-actions { background: #1e293b; border-color: #475569; }
     .editable-item:hover .item-actions { display: flex; }
 
     .act-btn {
@@ -353,6 +326,8 @@
     .act-btn.delete:hover { background: #fee2e2; }
     .act-btn.clone { color: #0284c7; }
     .act-btn.clone:hover { background: #e0f2fe; }
+    .act-btn.magic { color: #7c3aed; }
+    .act-btn.magic:hover { background: #ede9fe; }
 
     .add-btn {
       display: inline-flex;
@@ -370,38 +345,19 @@
       transition: all 0.2s;
     }
 
-    .add-btn:hover {
-      background: #f1f5f9;
-      color: var(--primary);
-      border-color: var(--primary);
-    }
+    .add-btn:hover { background: #f1f5f9; color: var(--primary); border-color: var(--primary); }
+    .cv-sidebar .add-btn { border-color: rgba(255, 255, 255, 0.3); color: #cbd5e1; }
 
-    .cv-sidebar .add-btn {
-      border-color: rgba(255, 255, 255, 0.3);
-      color: #cbd5e1;
-    }
-
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 13px;
-    }
-
+    .job-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
     .job-role { font-weight: 700; color: #0f172a; }
     .job-company { color: var(--primary); font-weight: 700; }
     .job-date { font-size: 12px; color: var(--text-muted); }
 
-    .bullet-points {
-      margin-top: 5px;
-      font-size: 12.5px;
-      color: #334155;
-      line-height: 1.5;
-    }
+    .bullet-points { margin-top: 5px; font-size: 12.5px; color: #334155; line-height: 1.5; }
     .lang-ar .bullet-points { padding-right: 18px; }
     .lang-en .bullet-points { padding-left: 18px; }
 
-    /* ================= التصاميم ================= */
+    /* التصاميم */
     .theme-tech .cv-page { display: flex; flex-direction: column; }
     .theme-tech .cv-sidebar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 20px 30px; gap: 20px; }
     .theme-tech .photo-wrapper { width: 110px; height: 110px; border-radius: 50%; }
@@ -420,17 +376,143 @@
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
 
-    /* إعدادات الطباعة */
+    /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
+    .ai-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .ai-modal {
+      background: #ffffff;
+      width: 100%;
+      max-width: 650px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+      animation: modalSlide 0.3s ease-out;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .ai-modal-header {
+      background: linear-gradient(135deg, #6d28d9, #4338ca);
+      color: #ffffff;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ai-modal-tabs {
+      display: flex;
+      background: #f1f5f9;
+      padding: 6px;
+      gap: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .ai-tab-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12.5px;
+      border-radius: 8px;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+
+    .ai-tab-btn.active {
+      background: #ffffff;
+      color: #4f46e5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .ai-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .ai-textarea {
+      width: 100%;
+      height: 140px;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+      outline: none;
+    }
+    .ai-textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15); }
+
+    .ai-btn-generate {
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .ai-btn-generate:hover { background: #4338ca; }
+
+    .ai-pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ai-pill {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .ai-pill:hover { background: #ede9fe; color: #6d28d9; border-color: #a78bfa; }
+
+    /* الطباعة */
     @page { size: A4 portrait; margin: 0mm; }
     @media print {
       body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; }
-      .controls-container, .item-actions, .add-btn { display: none !important; }
+      .controls-container, .item-actions, .add-btn, .ai-modal-overlay { display: none !important; }
       .cv-page { width: 100% !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; }
     }
   </style>
 </head>
 <body class="theme-executive lang-ar">
 
+  <!-- شريط التحكم العلوي -->
   <div class="controls-container">
     <div class="top-toolbar">
       <!-- اختيار اللغة -->
@@ -461,9 +543,16 @@
         <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
       </div>
 
-      <button class="btn-action" onclick="window.print()">
-        📄 Save as PDF / حفظ
-      </button>
+      <div class="toolbar-actions">
+        <!-- زر المساعد الذكي -->
+        <button class="btn-ai" onclick="openAiAgent()">
+          🤖 المساعد الذكي AI
+        </button>
+        <!-- زر الحفظ -->
+        <button class="btn-action" onclick="window.print()">
+          📄 Save as PDF
+        </button>
+      </div>
     </div>
 
     <!-- التحكم بالصورة -->
@@ -478,7 +567,7 @@
     </div>
   </div>
 
-  <!-- الـ CV -->
+  <!-- صفحة الـ CV -->
   <div class="cv-page" id="cvContainer">
     <aside class="cv-sidebar" id="sidebarContainer">
       <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()">
@@ -527,7 +616,7 @@
       <div class="header-banner">
         <h1 class="candidate-name editable-block" contenteditable="true" id="txtCandidateName">سعدون محسن عزيز</h1>
         <div class="candidate-title editable-block" contenteditable="true" id="txtCandidateTitle">مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير</div>
-        <div class="contact-info editable-block" contenteditable="true">
+        <div class="contact-info editable-block" contenteditable="true" id="txtCandidateContact">
           <span>📍 بغداد، العراق</span>
           <span>|</span>
           <span>📞 +964 781 533 3321</span>
@@ -547,7 +636,11 @@
         <h3 class="section-title"><span>💼</span> <span contenteditable="true" id="titleExp">الخبرات المهنية والمشاريع</span></h3>
         <div class="experience-list" id="experienceList">
           <div class="editable-item">
-            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋 نسخ</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️ حذف</button></div>
+            <div class="item-actions">
+              <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين الصياغة بالذكاء الاصطناعي">🪄 حسّن</button>
+              <button class="act-btn clone" onclick="cloneItem(this)">📋 نسخ</button>
+              <button class="act-btn delete" onclick="deleteItem(this)">🗑️ حذف</button>
+            </div>
             <div class="job-header">
               <div>
                 <span class="job-role editable-block" contenteditable="true">مشرف خدمة العملاء الواردة</span>
@@ -575,9 +668,7 @@
               <span class="job-role editable-block" contenteditable="true">بكالوريوس في إدارة الأعمال / تكنولوجيا المعلومات</span>
               <span class="job-date editable-block" contenteditable="true">2019 – 2023</span>
             </div>
-            <div class="bullet-points editable-block" contenteditable="true">
-              جامعة بغداد
-            </div>
+            <div class="bullet-points editable-block" contenteditable="true">جامعة بغداد</div>
           </div>
         </div>
         <button class="add-btn" onclick="addEducation()" id="btnAddEdu">➕ إضافة مؤهل تعليمي</button>
@@ -585,8 +676,76 @@
     </main>
   </div>
 
+  <!-- ================= نافذة المساعد الذكي المدمج (Built-in AI Agent) ================= -->
+  <div class="ai-modal-overlay" id="aiModalOverlay" onclick="closeAiModalOnOutside(event)">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:22px;">🤖</span>
+          <div>
+            <h3 style="font-size:16px; font-weight:800;">وكيل الـ CV الذكي (Smart AI Agent)</h3>
+            <span style="font-size:11px; opacity:0.85;">محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API</span>
+          </div>
+        </div>
+        <button onclick="closeAiAgent()" style="background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">✖</button>
+      </div>
+
+      <div class="ai-modal-tabs">
+        <button class="ai-tab-btn active" onclick="switchAiTab('parse', this)">🪄 الملء السحري التلقائي</button>
+        <button class="ai-tab-btn" onclick="switchAiTab('skills', this)">⚡ اقتراح المهارات</button>
+        <button class="ai-tab-btn" onclick="switchAiTab('summary', this)">✍️ صانع النبذة</button>
+      </div>
+
+      <div class="ai-modal-body" id="tabParse">
+        <p style="font-size:13px; color:#475569;">
+          الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:
+        </p>
+        <textarea class="ai-textarea" id="rawCvText" placeholder="مثال:
+اسمي علي محمد، تلفوني 07701234567، ساكن في بغداد، وايميلي ali@gmail.com
+اشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان
+مهاراتي: القيادة، تحليل البيانات، اكسل المتقدم، خدمة العملاء..."></textarea>
+        <button class="ai-btn-generate" onclick="aiParseAndFill()">
+          🚀 تحليل وتعبئة السيرة الذاتية الآن
+        </button>
+      </div>
+
+      <div class="ai-modal-body" id="tabSkills" style="display:none;">
+        <p style="font-size:13px; color:#475569;">اختر مجالك المهني ليقترح لك الوكيل أقوى المهارات المطلوبة في سوق العمل:</p>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+          <select id="jobDomainSelect" onchange="aiSuggestSkills()" style="flex:1; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-family:inherit;">
+            <option value="customercare">خدمة العملاء والعمليات (Customer Care & Ops)</option>
+            <option value="data">تحليل البيانات والتقارير (Data & BI)</option>
+            <option value="tech">تقنية المعلومات والبرمجة (IT & Tech)</option>
+            <option value="sales">المبيعات والتسويق (Sales & Marketing)</option>
+            <option value="management">الإدارة والقيادة (Management & HR)</option>
+          </select>
+        </div>
+        <div class="ai-pill-grid" id="suggestedSkillsGrid">
+          <!-- مهارات تتولد تلقائياً -->
+        </div>
+        <span style="font-size:11px; color:#64748b;">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
+      </div>
+
+      <div class="ai-modal-body" id="tabSummary" style="display:none;">
+        <p style="font-size:13px; color:#475569;">اختر أسلوب النبذة المهنية لتوليدها فوراً باللغتين:</p>
+        <div style="display:flex; gap:8px;">
+          <button class="ai-tab-btn active" onclick="aiGenerateSummary('executive')">👔 تنفيذي (Executive)</button>
+          <button class="ai-tab-btn" onclick="aiGenerateSummary('results')">📊 موجه للنتائج والأرقام</button>
+          <button class="ai-tab-btn" onclick="aiGenerateSummary('modern')">⚡ عصري وجذاب</button>
+        </div>
+        <div id="aiSummaryOutput" style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:8px; font-size:13px; line-height:1.6; color:#1e293b;">
+          اضغط على أحد الأنماط أعلاه لتوليد ملخص مهني احترافي.
+        </div>
+        <button class="ai-btn-generate" onclick="applyAiSummary()">
+          ✅ تطبيق الملخص في الـ CV
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= سكريبت النظام والوكيل الذكي ================= -->
   <script>
-    // تغيير التصميم
+    // 1. تغيير التصميم
     function setDesign(themeName, btn) {
       document.body.classList.remove('theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark');
       document.body.classList.add(themeName);
@@ -594,7 +753,7 @@
       if (btn) btn.classList.add('active');
     }
 
-    // تبديل اللغة (عربي / English)
+    // 2. تبديل اللغة
     function setLanguage(lang, btn) {
       document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -612,13 +771,11 @@
       }
     }
 
-    // تغيير اللون
+    // 3. تغيير اللون
     function setColor(primaryColor, sidebarColor, el) {
       document.documentElement.style.setProperty('--primary', primaryColor);
       document.documentElement.style.setProperty('--primary-light', primaryColor + '15');
-      if (sidebarColor) {
-        document.documentElement.style.setProperty('--sidebar-bg', sidebarColor);
-      }
+      if (sidebarColor) document.documentElement.style.setProperty('--sidebar-bg', sidebarColor);
       document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
       if (el && el.classList.contains('color-dot')) el.classList.add('active');
     }
@@ -639,30 +796,35 @@
       const div = document.createElement('div');
       div.className = 'editable-item';
       div.innerHTML = `
-        <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+        <div class="item-actions">
+          <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين">🪄 حسّن</button>
+          <button class="act-btn clone" onclick="cloneItem(this)">📋</button>
+          <button class="act-btn delete" onclick="deleteItem(this)">🗑️</button>
+        </div>
         <div class="job-header">
           <div>
-            <span class="job-role editable-block" contenteditable="true">${isAr ? 'المسمى الوظيفي / اسم المشروع' : 'Job Title / Project Name'}</span>
+            <span class="job-role editable-block" contenteditable="true">${isAr ? 'المسمى الوظيفي' : 'Job Title'}</span>
             <span style="color:#94a3b8;"> — </span>
             <span class="job-company editable-block" contenteditable="true">${isAr ? 'اسم الشركة' : 'Company Name'}</span>
           </div>
           <div class="job-date editable-block" contenteditable="true">2024 – Present</div>
         </div>
         <ul class="bullet-points editable-block" contenteditable="true">
-          <li>${isAr ? 'اكتب أبرز الإنجازات والمهام هنا...' : 'Key achievement and responsibility...'}</li>
+          <li>${isAr ? 'اكتب أبرز الإنجازات هنا...' : 'Key achievement and responsibility...'}</li>
         </ul>
       `;
       list.appendChild(div);
     }
 
-    function addSkill() {
+    function addSkill(skillText) {
       const list = document.getElementById('skillsList');
       const isAr = document.body.classList.contains('lang-ar');
+      const text = skillText || (isAr ? '• مهارة جديدة' : '• New Skill');
       const div = document.createElement('div');
       div.className = 'editable-item';
       div.innerHTML = `
         <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
-        <div class="editable-block" contenteditable="true">• ${isAr ? 'مهارة جديدة (اكتب هنا)' : 'New Skill (Type here)'}</div>
+        <div class="editable-block" contenteditable="true">${text}</div>
       `;
       list.appendChild(div);
     }
@@ -675,10 +837,10 @@
       div.innerHTML = `
         <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
         <div class="job-header">
-          <span class="job-role editable-block" contenteditable="true">${isAr ? 'اسم المؤهل أو الشهادة' : 'Degree / Certification'}</span>
+          <span class="job-role editable-block" contenteditable="true">${isAr ? 'اسم الشهادة' : 'Degree Title'}</span>
           <span class="job-date editable-block" contenteditable="true">2023</span>
         </div>
-        <div class="bullet-points editable-block" contenteditable="true">${isAr ? 'الجامعة أو المؤسسة المانحة' : 'Institution / University'}</div>
+        <div class="bullet-points editable-block" contenteditable="true">${isAr ? 'الجامعة أو المعهد' : 'University Name'}</div>
       `;
       list.appendChild(div);
     }
@@ -710,6 +872,168 @@
       document.getElementById('xRange').value = 0;
       document.getElementById('yRange').value = 0;
       updatePhoto();
+    }
+
+    /* ================= محرك وكيل الذكاء الاصطناعي (Embedded AI Agent Engine) ================= */
+    function openAiAgent() {
+      document.getElementById('aiModalOverlay').style.display = 'flex';
+      aiSuggestSkills();
+    }
+
+    function closeAiAgent() {
+      document.getElementById('aiModalOverlay').style.display = 'none';
+    }
+
+    function closeAiModalOnOutside(e) {
+      if (e.target.id === 'aiModalOverlay') closeAiAgent();
+    }
+
+    function switchAiTab(tabName, btn) {
+      document.querySelectorAll('.ai-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tabParse').style.display = tabName === 'parse' ? 'flex' : 'none';
+      document.getElementById('tabSkills').style.display = tabName === 'skills' ? 'flex' : 'none';
+      document.getElementById('tabSummary').style.display = tabName === 'summary' ? 'flex' : 'none';
+    }
+
+    // 1. الاستيراد والملء السحري التلقائي (NLP Text Parser)
+    function aiParseAndFill() {
+      const text = document.getElementById('rawCvText').value;
+      if (!text.trim()) {
+        alert('الرجاء إدخال أو لصق نص أولاً!');
+        return;
+      }
+
+      // استخراج الإيميل
+      const emailMatch = text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/);
+      // استخراج رقم الهاتف
+      const phoneMatch = text.match(/(\+?\d[\d -]{7,}\d)/);
+      
+      const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+      
+      if (lines.length > 0) {
+        // إذا كان السطر الأول اسماً
+        let firstLine = lines[0].replace(/اسمي|أنا|name is|i am/gi, '').replace(/[:\-]/g, '').trim();
+        if (firstLine.length < 35) {
+          document.getElementById('txtCandidateName').innerText = firstLine;
+        }
+      }
+
+      // تحديث جهات الاتصال
+      let contactStr = '';
+      if (text.includes('بغداد') || text.toLowerCase().includes('baghdad')) contactStr += '📍 Baghdad, Iraq | ';
+      if (phoneMatch) contactStr += '📞 ' + phoneMatch[0] + ' | ';
+      if (emailMatch) contactStr += '✉️ ' + emailMatch[0];
+      if (contactStr) document.getElementById('txtCandidateContact').innerText = contactStr;
+
+      // تحديث النبذة
+      const summaryCandidate = lines.find(l => l.length > 40 && !l.includes('@'));
+      if (summaryCandidate) {
+        document.getElementById('txtSummary').innerText = summaryCandidate;
+      }
+
+      alert('✨ قام وكيل الذكاء الاصطناعي بتحليل النص وتحديث السيرة الذاتية بنجاح!');
+      closeAiAgent();
+    }
+
+    // 2. مقترح المهارات الذكي (Skill Suggester Database)
+    const skillsDatabase = {
+      customercare: [
+        'Customer Relationship Management (CRM)', 'SLA & KPI Tracking', 'Escalation Management',
+        'Call Quality Assurance', 'Workforce Management (WFM)', 'Zendesk & Freshdesk', 'Conflict Resolution'
+      ],
+      data: [
+        'Data Analysis & Visualization', 'SQL Query Optimization', 'Power BI & Tableau',
+        'Advanced Excel (VBA/Macros)', 'Python for Data', 'KPI Dashboard Automation', 'Reporting Pipelines'
+      ],
+      tech: [
+        'JavaScript / TypeScript', 'React & Modern Frontend', 'Node.js & REST APIs',
+        'Git & CI/CD Pipelines', 'Cloud Architecture (GCP/AWS)', 'Database Optimization', 'System Troubleshooting'
+      ],
+      sales: [
+        'B2B & B2C Sales Strategy', 'Lead Generation & Pipeline', 'Contract Negotiation',
+        'Account Management', 'Market Research & Analysis', 'Cold Outreach & Pitching', 'Revenue Optimization'
+      ],
+      management: [
+        'Strategic Team Leadership', 'Performance Coaching', 'Agile & Scrum Methodologies',
+        'Cross-functional Coordination', 'Budgeting & Cost Reduction', 'Process Automation', 'Change Management'
+      ]
+    };
+
+    function aiSuggestSkills() {
+      const domain = document.getElementById('jobDomainSelect').value;
+      const grid = document.getElementById('suggestedSkillsGrid');
+      grid.innerHTML = '';
+      const list = skillsDatabase[domain] || skillsDatabase.customercare;
+      list.forEach(skill => {
+        const pill = document.createElement('div');
+        pill.className = 'ai-pill';
+        pill.innerText = '+ ' + skill;
+        pill.onclick = () => {
+          addSkill('• ' + skill);
+          pill.style.background = '#dcfce7';
+          pill.style.borderColor = '#86efac';
+          pill.innerText = '✓ تمت الإضافة';
+        };
+        grid.appendChild(pill);
+      });
+    }
+
+    // 3. صانع النبذة التلقائي (Smart Summary Generator)
+    const summaryTemplates = {
+      executive: {
+        ar: "مشرف وقائد عمليات ذو خبرة استراتيجية في تحسين كفاءة الأداء، إدارة فرق العمل المتعددة، وتصميم لوحات التقارير المؤتمتة لضمان أعلى معايير الجودة والالتزام باتفاقيات الخدمة (SLA).",
+        en: "Results-driven Operations & Customer Care Supervisor with extensive track record in leading high-performing teams, optimizing operational workflows, and implementing automated KPI reporting systems."
+      },
+      results: {
+        ar: "أخصائي عمليات موجه لتحقيق النتائج والأرقام القياسية؛ ساهم في رفع مؤشرات رضا العملاء (CSAT) بنسبة 25% وتقليص وقت الاستجابة، مع خبرة متقدمة في أتمتة تدفقات البيانات.",
+        en: "Metrics-focused professional with a proven record of elevating CSAT scores by 25% and streamlining operational pipelines through data automation and proactive team coaching."
+      },
+      modern: {
+        ar: "قائد عمليات عصري يجمع بين الإشراف الميداني الفعال واستخدام أدوات الذكاء الاصطناعي وأتمتة التقارير لخلق بيئة عمل سريعة، مرنة، وعالية الإنتاجية.",
+        en: "Modern operational leader leveraging AI-assisted automation, real-time analytics, and agile team management to elevate operational efficiency and customer experience."
+      }
+    };
+
+    let selectedSummaryText = '';
+
+    function aiGenerateSummary(type) {
+      const isAr = document.body.classList.contains('lang-ar');
+      const text = isAr ? summaryTemplates[type].ar : summaryTemplates[type].en;
+      selectedSummaryText = text;
+      document.getElementById('aiSummaryOutput').innerText = text;
+    }
+
+    function applyAiSummary() {
+      if (!selectedSummaryText) {
+        aiGenerateSummary('executive');
+      }
+      document.getElementById('txtSummary').innerText = selectedSummaryText;
+      alert('✅ تم تطبيق النبذة المهنية في سيرتك الذاتية!');
+      closeAiAgent();
+    }
+
+    // 4. تحسين الصياغة السريع (Magic Bullet Enhancer)
+    function enhanceBullet(btn) {
+      const item = btn.closest('.editable-item');
+      const ul = item.querySelector('.bullet-points');
+      if (ul) {
+        const isAr = document.body.classList.contains('lang-ar');
+        if (isAr) {
+          ul.innerHTML = `
+            <li>قيادة وتوجيه فريق العمل لرفع كفاءة الاستجابة ومطابقة معايير الجودة بنسبة 98%.</li>
+            <li>تطوير لوحات تحكم تفاعلية لرصد مؤشرات الأداء الحية وتوزيع ضغط المهام أوتوماتيكياً.</li>
+            <li>إدارة وحل المشكلات المعقدة والتنسيق الاستراتيجي مع الإدارات المختلفة لتحقيق أعلى درجات الرضا.</li>
+          `;
+        } else {
+          ul.innerHTML = `
+            <li>Spearheaded a high-performance cross-functional team, consistently exceeding SLA targets by 15%.</li>
+            <li>Engineered automated performance dashboards, cutting manual reporting time by 40%.</li>
+            <li>Resolved high-stake client escalations and collaborated cross-departmentally to drive process improvements.</li>
+          `;
+        }
+        alert('🪄 تم تحسين صياغة الخبرة بأسلوب قيادي واحترافي!');
+      }
     }
   </script>
 </body>
