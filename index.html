@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Sadoon Mohsoun Aziz - Professional CV Studio + AI Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
       font-family: 'Cairo', 'Inter', sans-serif;
       background-color: #f1f5f9;
       color: var(--text-main);
-      padding: 20px 10px 60px 10px;
+      padding: 15px 8px 60px 8px;
     }
 
     body.lang-en { font-family: 'Inter', 'Cairo', sans-serif; }
@@ -38,15 +38,15 @@
     /* الشريط العلوي */
     .controls-container {
       max-width: 950px;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 15px auto;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .top-toolbar {
       background: #ffffff;
-      padding: 14px 20px;
+      padding: 12px 16px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       display: flex;
@@ -59,7 +59,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .design-selector, .lang-selector {
@@ -76,7 +76,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 12.5px;
+      font-size: 12px;
       transition: all 0.2s;
     }
 
@@ -98,16 +98,18 @@
     .color-bar {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: #f8fafc;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 20px;
       border: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .color-dot {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
       border-radius: 50%;
       border: 2px solid #fff;
       cursor: pointer;
@@ -116,7 +118,7 @@
     }
 
     .color-dot.active, .color-dot:hover {
-      transform: scale(1.25);
+      transform: scale(1.2);
       box-shadow: 0 0 0 2px #0f172a;
     }
 
@@ -130,64 +132,57 @@
       background: linear-gradient(135deg, #7c3aed, #4f46e5);
       color: #fff;
       border: none;
-      padding: 9px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 12.5px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       box-shadow: 0 2px 10px rgba(124, 58, 237, 0.35);
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
     }
 
     .btn-action {
       background: #0284c7;
       color: #fff;
       border: none;
-      padding: 9px 18px;
+      padding: 8px 16px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
     }
 
     .photo-controls-bar {
       background: #ffffff;
-      padding: 10px 18px;
+      padding: 10px 14px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.04);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 15px;
-      font-size: 13px;
-      transition: all 0.3s;
+      gap: 12px;
+      font-size: 12.5px;
     }
 
     .photo-controls-bar input[type="range"] {
-      width: 90px;
+      width: 80px;
       cursor: pointer;
     }
 
-    /* ================= صفحة الـ CV ================= */
+    /* ================= صفحة الـ CV العامة ================= */
     .cv-page {
       max-width: 920px;
       margin: 0 auto;
       background: #ffffff;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-radius: 4px;
+      border-radius: 6px;
       overflow: hidden;
       min-height: 1120px;
       position: relative;
@@ -196,7 +191,6 @@
     .lang-ar .cv-page { direction: rtl; text-align: right; }
     .lang-en .cv-page { direction: ltr; text-align: left; }
 
-    /* تنسيق الصورة الشخصية */
     .photo-box {
       background: rgba(255, 255, 255, 0.05);
       overflow: hidden;
@@ -220,20 +214,21 @@
       color: #cbd5e1;
       text-align: center;
       font-size: 11px;
-      padding: 8px;
+      padding: 6px;
     }
 
     .candidate-name {
-      font-size: 26px;
+      font-size: clamp(20px, 4vw, 26px);
       font-weight: 900;
       color: #0f172a;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       outline: none;
+      line-height: 1.2;
     }
 
     .candidate-title {
-      font-size: 13px;
+      font-size: clamp(11.5px, 2.5vw, 13px);
       font-weight: 700;
       color: var(--primary);
       margin-top: 4px;
@@ -244,29 +239,29 @@
     .contact-info {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      font-size: 12px;
+      gap: 8px 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
       margin-top: 8px;
       outline: none;
     }
 
     .section-title {
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--primary);
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       border-bottom: 2px solid var(--border-color);
       padding-bottom: 5px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       outline: none;
     }
 
     .sidebar-section-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
       color: #ffffff;
       text-transform: uppercase;
@@ -276,11 +271,11 @@
       outline: none;
     }
 
-    .editable-block { outline: none; border-radius: 4px; padding: 1px 3px; }
+    .editable-block { outline: none; border-radius: 4px; padding: 2px 4px; }
     .editable-block:focus { background: #fef9c3; color: #0f172a !important; }
     .cv-sidebar .editable-block:focus { background: rgba(255, 255, 255, 0.2) !important; color: #ffffff !important; outline: 1px dashed #fff; }
 
-    .experience-list, .skills-list { display: flex; flex-direction: column; gap: 12px; }
+    .experience-list, .skills-list { display: flex; flex-direction: column; gap: 10px; }
 
     .editable-item {
       position: relative;
@@ -290,16 +285,23 @@
       transition: all 0.15s ease;
     }
 
-    .editable-item:hover { background: #f8fafc; border-color: #e2e8f0; }
-    .cv-sidebar .editable-item:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); }
+    .editable-item:hover, .editable-item:focus-within {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .cv-sidebar .editable-item:hover, .cv-sidebar .editable-item:focus-within {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
 
     .item-actions {
       position: absolute;
-      top: 4px;
+      top: 2px;
       display: none;
-      gap: 4px;
+      gap: 3px;
       background: #ffffff;
-      padding: 2px 5px;
+      padding: 2px 4px;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       border: 1px solid #cbd5e1;
@@ -309,14 +311,18 @@
     .lang-ar .item-actions { left: 4px; }
     .lang-en .item-actions { right: 4px; }
     .cv-sidebar .item-actions { background: #1e293b; border-color: #475569; }
-    .editable-item:hover .item-actions { display: flex; }
+    
+    .editable-item:hover .item-actions,
+    .editable-item:focus-within .item-actions {
+      display: flex;
+    }
 
     .act-btn {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 3px 6px;
-      font-size: 12px;
+      padding: 3px 5px;
+      font-size: 11px;
       border-radius: 4px;
       line-height: 1;
     }
@@ -331,13 +337,13 @@
     .add-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: transparent;
       border: 1px dashed #cbd5e1;
       color: #64748b;
-      padding: 5px 12px;
+      padding: 5px 10px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
       margin-top: 6px;
@@ -347,118 +353,63 @@
     .add-btn:hover { background: #f1f5f9; color: var(--primary); border-color: var(--primary); }
     .cv-sidebar .add-btn { border-color: rgba(255, 255, 255, 0.3); color: #cbd5e1; }
 
-    .job-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; }
+    .job-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 12.5px;
+      gap: 4px;
+    }
+
     .job-role { font-weight: 700; color: #0f172a; }
     .job-company { color: var(--primary); font-weight: 700; }
-    .job-date { font-size: 12px; color: var(--text-muted); }
+    .job-date { font-size: 11.5px; color: var(--text-muted); }
 
-    .bullet-points { margin-top: 5px; font-size: 12.5px; color: #334155; line-height: 1.5; }
-    .lang-ar .bullet-points { padding-right: 18px; }
-    .lang-en .bullet-points { padding-left: 18px; }
+    .bullet-points { margin-top: 4px; font-size: 12px; color: #334155; line-height: 1.5; }
+    .lang-ar .bullet-points { padding-right: 16px; }
+    .lang-en .bullet-points { padding-left: 16px; }
 
-    /* =========================================================================
-       1. EXECUTIVE DESIGN (كلاسيكي جانبي - عمود داكن كامل)
-       ========================================================================= */
+    /* ================= التصاميم ================= */
+
+    /* 1. EXECUTIVE */
     .theme-executive .top-header-section { display: none; }
     .theme-executive .cv-page { display: grid; grid-template-columns: 280px 1fr; }
-    .theme-executive .cv-sidebar {
-      background: var(--sidebar-bg);
-      color: var(--sidebar-text);
-      padding: 30px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-    .theme-executive .sidebar-photo-wrapper {
-      width: 100%;
-      height: 220px;
-      border-radius: 10px;
-      display: flex;
-    }
-    .theme-executive .cv-main { padding: 35px 32px; display: flex; flex-direction: column; gap: 22px; }
-    .theme-executive .main-header-banner {
-      background: var(--primary-light);
-      padding: 18px 20px;
-      border-radius: 8px;
-    }
+    .theme-executive .cv-sidebar { background: var(--sidebar-bg); color: var(--sidebar-text); padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; }
+    .theme-executive .sidebar-photo-wrapper { width: 100%; height: 210px; border-radius: 10px; display: flex; }
+    .theme-executive .cv-main { padding: 30px 28px; display: flex; flex-direction: column; gap: 20px; }
+    .theme-executive .main-header-banner { background: var(--primary-light); padding: 16px 18px; border-radius: 8px; }
     .lang-ar.theme-executive .main-header-banner { border-right: 5px solid var(--primary); }
     .lang-en.theme-executive .main-header-banner { border-left: 5px solid var(--primary); }
     .theme-executive .inline-skills-section { display: none; }
 
-    /* =========================================================================
-       2. SILICON TECH DESIGN (هيدر علوي ممتد + صورة دائرية بجانب الاسم)
-       ========================================================================= */
+    /* 2. SILICON TECH */
     .theme-tech .cv-sidebar { display: none; }
     .theme-tech .main-header-banner { display: none; }
-    .theme-tech .top-header-section {
-      display: flex;
-      align-items: center;
-      background: var(--sidebar-bg);
-      color: #ffffff;
-      padding: 24px 30px;
-      gap: 24px;
-      border-bottom: 4px solid var(--primary);
-    }
-    .theme-tech .top-photo-wrapper {
-      width: 120px;
-      height: 120px;
-      min-width: 120px;
-      border-radius: 50%;
-      border: 3px solid #ffffff;
-      display: flex;
-    }
-    .theme-tech .top-header-text .candidate-name { color: #ffffff; font-size: 26px; }
-    .theme-tech .top-header-text .candidate-title { color: #38bdf8; font-size: 13px; }
+    .theme-tech .top-header-section { display: flex; align-items: center; background: var(--sidebar-bg); color: #ffffff; padding: 20px 25px; gap: 20px; border-bottom: 4px solid var(--primary); }
+    .theme-tech .top-photo-wrapper { width: 110px; height: 110px; min-width: 110px; border-radius: 50%; border: 3px solid #ffffff; display: flex; }
+    .theme-tech .top-header-text .candidate-name { color: #ffffff; }
+    .theme-tech .top-header-text .candidate-title { color: #38bdf8; }
     .theme-tech .top-header-text .contact-info { color: #cbd5e1; }
-    .theme-tech .cv-main { padding: 30px 35px; display: flex; flex-direction: column; gap: 22px; }
-    .theme-tech .inline-skills-section {
-      display: block;
-      background: #f8fafc;
-      padding: 16px 20px;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-    }
+    .theme-tech .cv-main { padding: 25px 30px; display: flex; flex-direction: column; gap: 20px; }
+    .theme-tech .inline-skills-section { display: block; background: #f8fafc; padding: 14px 18px; border-radius: 10px; border: 1px solid #e2e8f0; }
 
-    /* =========================================================================
-       3. MODERN CORPORATE (هيدر أبيض عصري + صورة مربعة بزوايا ناعمة)
-       ========================================================================= */
+    /* 3. MODERN CORPORATE */
     .theme-corporate .cv-sidebar { display: none; }
     .theme-corporate .main-header-banner { display: none; }
-    .theme-corporate .top-header-section {
-      display: flex;
-      align-items: center;
-      background: #f8fafc;
-      padding: 25px 35px;
-      gap: 24px;
-      border-bottom: 2px solid var(--primary);
-    }
-    .theme-corporate .top-photo-wrapper {
-      width: 125px;
-      height: 125px;
-      min-width: 125px;
-      border-radius: 14px;
-      border: 3px solid var(--primary);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: flex;
-    }
-    .theme-corporate .top-header-text .candidate-name { color: var(--primary); font-size: 28px; }
-    .theme-corporate .top-header-text .candidate-title { color: #334155; font-size: 13.5px; font-weight: 700; }
-    .theme-corporate .cv-main { padding: 30px 35px; display: flex; flex-direction: column; gap: 22px; }
-    .theme-corporate .inline-skills-section {
-      display: block;
-      background: var(--primary-light);
-      padding: 16px 20px;
-      border-radius: 8px;
-    }
+    .theme-corporate .top-header-section { display: flex; align-items: center; background: #f8fafc; padding: 20px 25px; gap: 20px; border-bottom: 2px solid var(--primary); }
+    .theme-corporate .top-photo-wrapper { width: 110px; height: 110px; min-width: 110px; border-radius: 12px; border: 3px solid var(--primary); display: flex; }
+    .theme-corporate .top-header-text .candidate-name { color: var(--primary); }
+    .theme-corporate .top-header-text .candidate-title { color: #334155; }
+    .theme-corporate .cv-main { padding: 25px 30px; display: flex; flex-direction: column; gap: 20px; }
+    .theme-corporate .inline-skills-section { display: block; background: var(--primary-light); padding: 14px 18px; border-radius: 8px; }
 
-    /* =========================================================================
-       4. DARK MODE (الوضع الليلي)
-       ========================================================================= */
+    /* 4. DARK MODE */
     .theme-dark .top-header-section { display: none; }
     .theme-dark .cv-page { display: grid; grid-template-columns: 280px 1fr; background: #0b1120; color: #cbd5e1; }
-    .theme-dark .cv-sidebar { background: #070c18; padding: 30px 22px; display: flex; flex-direction: column; gap: 25px; }
-    .theme-dark .sidebar-photo-wrapper { width: 100%; height: 220px; border-radius: 10px; display: flex; border-color: #38bdf8; }
-    .theme-dark .cv-main { background: #0b1120; padding: 35px 32px; display: flex; flex-direction: column; gap: 22px; }
+    .theme-dark .cv-sidebar { background: #070c18; padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; }
+    .theme-dark .sidebar-photo-wrapper { width: 100%; height: 210px; border-radius: 10px; display: flex; border-color: #38bdf8; }
+    .theme-dark .cv-main { background: #0b1120; padding: 30px 28px; display: flex; flex-direction: column; gap: 20px; }
     .theme-dark .main-header-banner { background: #1e293b; border-color: var(--primary); }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
@@ -466,65 +417,157 @@
     .theme-dark .editable-item:hover { background: #1e293b; }
     .theme-dark .inline-skills-section { display: none; }
 
-    /* =========================================================================
-       5. ATS CLEAN (بدون صورة - عمود فردي معتمد)
-       ========================================================================= */
-    .theme-ats .top-header-section { display: none; }
-    .theme-ats .cv-sidebar { display: none; }
-    .theme-ats .cv-page { display: block; padding: 40px 45px; background: #ffffff; }
-    .theme-ats .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-ats .main-header-banner {
-      background: transparent;
-      border: none;
-      padding: 0 0 15px 0;
-      text-align: center;
-      border-bottom: 2px solid #0f172a;
-      border-radius: 0;
-    }
-    .theme-ats .candidate-name { font-size: 30px; letter-spacing: 1px; color: #0f172a; }
-    .theme-ats .candidate-title { font-size: 13.5px; color: var(--primary); margin-top: 4px; }
-    .theme-ats .contact-info { justify-content: center; margin-top: 8px; font-size: 12.5px; }
-    .theme-ats .section-title { font-size: 14px; color: #0f172a; border-bottom: 1.5px solid #0f172a; margin-top: 10px; }
+    /* 5, 6, 7 (No Photo) */
+    .theme-ats .top-header-section, .theme-nordic .top-header-section, .theme-harvard .top-header-section { display: none; }
+    .theme-ats .cv-sidebar, .theme-nordic .cv-sidebar, .theme-harvard .cv-sidebar { display: none; }
+    
+    .theme-ats .cv-page { display: block; padding: 35px 35px; background: #ffffff; }
+    .theme-ats .cv-main { padding: 0; display: flex; flex-direction: column; gap: 18px; }
+    .theme-ats .main-header-banner { background: transparent; border: none; padding: 0 0 12px 0; text-align: center; border-bottom: 2px solid #0f172a; border-radius: 0; }
+    .theme-ats .candidate-name { font-size: 26px; color: #0f172a; }
+    .theme-ats .contact-info { justify-content: center; }
     .theme-ats .inline-skills-section { display: block; }
 
-    /* =========================================================================
-       6. NORDIC MINIMAL (بدون صورة - اسكندنافي عصري)
-       ========================================================================= */
-    .theme-nordic .top-header-section { display: none; }
-    .theme-nordic .cv-sidebar { display: none; }
-    .theme-nordic .cv-page { display: block; padding: 35px 40px; background: #ffffff; border-top: 8px solid var(--primary); }
-    .theme-nordic .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-nordic .main-header-banner {
-      background: var(--primary-light);
-      padding: 20px 24px;
-      border-radius: 12px;
-      border: none;
-    }
-    .theme-nordic .candidate-name { font-size: 28px; color: var(--primary); }
-    .theme-nordic .candidate-title { color: #334155; font-weight: 700; }
+    .theme-nordic .cv-page { display: block; padding: 30px 30px; background: #ffffff; border-top: 6px solid var(--primary); }
+    .theme-nordic .cv-main { padding: 0; display: flex; flex-direction: column; gap: 18px; }
+    .theme-nordic .main-header-banner { background: var(--primary-light); padding: 18px 20px; border-radius: 10px; border: none; }
+    .theme-nordic .candidate-name { color: var(--primary); }
     .theme-nordic .section-title { color: var(--primary); border-bottom: 2px dashed var(--primary); }
-    .theme-nordic .inline-skills-section { display: block; background: #f8fafc; padding: 14px 18px; border-radius: 8px; border: 1px solid #e2e8f0; }
+    .theme-nordic .inline-skills-section { display: block; background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+
+    .theme-harvard .cv-page { display: block; padding: 35px 35px; background: #ffffff; font-family: 'Merriweather', 'Cairo', serif; }
+    .theme-harvard .cv-main { padding: 0; display: flex; flex-direction: column; gap: 18px; }
+    .theme-harvard .main-header-banner { background: transparent; border: none; padding: 0 0 10px 0; text-align: center; border-bottom: 1px solid #1e293b; border-radius: 0; }
+    .theme-harvard .candidate-name { font-family: 'Merriweather', serif; font-size: 25px; color: #111827; }
+    .theme-harvard .contact-info { justify-content: center; }
+    .theme-harvard .inline-skills-section { display: block; }
 
     /* =========================================================================
-       7. HARVARD CLASSIC (بدون صورة - هارفارد الأكاديمي)
+       📱 تحسينات الهاتف المحمول الفائقة (Mobile Responsiveness)
        ========================================================================= */
-    .theme-harvard .top-header-section { display: none; }
-    .theme-harvard .cv-sidebar { display: none; }
-    .theme-harvard .cv-page { display: block; padding: 45px 50px; background: #ffffff; font-family: 'Merriweather', 'Cairo', serif; }
-    .theme-harvard .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-harvard .main-header-banner {
-      background: transparent;
-      border: none;
-      padding: 0 0 10px 0;
-      text-align: center;
-      border-bottom: 1px solid #1e293b;
-      border-radius: 0;
+    @media (max-width: 768px) {
+      body {
+        padding: 8px 4px 50px 4px;
+      }
+
+      .controls-container {
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .top-toolbar {
+        padding: 10px 12px;
+        gap: 10px;
+      }
+
+      .toolbar-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .lang-selector, .toolbar-actions {
+        justify-content: space-between;
+      }
+
+      .design-selector {
+        overflow-x: auto;
+        padding-bottom: 4px;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-design, .btn-lang {
+        padding: 5px 10px;
+        font-size: 11.5px;
+      }
+
+      .photo-controls-bar {
+        padding: 8px 10px;
+        gap: 8px;
+        font-size: 11.5px;
+        justify-content: space-between;
+      }
+
+      .photo-controls-bar input[type="range"] {
+        width: 60px;
+      }
+
+      /* تعديل هيكل السيرة على الموبايل ليصبح عمودياً أنيقاً بدون ضغط */
+      .theme-executive .cv-page,
+      .theme-dark .cv-page {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .theme-executive .cv-sidebar,
+      .theme-dark .cv-sidebar {
+        padding: 18px 16px;
+        gap: 15px;
+      }
+
+      .theme-executive .sidebar-photo-wrapper,
+      .theme-dark .sidebar-photo-wrapper {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        border-radius: 50%;
+      }
+
+      .theme-tech .top-header-section,
+      .theme-corporate .top-header-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 18px 14px;
+        gap: 12px;
+      }
+
+      .theme-tech .top-photo-wrapper,
+      .theme-corporate .top-photo-wrapper {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        margin: 0 auto;
+      }
+
+      .theme-tech .top-header-text .contact-info,
+      .theme-corporate .top-header-text .contact-info {
+        justify-content: center;
+      }
+
+      .cv-main {
+        padding: 18px 14px !important;
+        gap: 15px !important;
+      }
+
+      .theme-ats .cv-page,
+      .theme-nordic .cv-page,
+      .theme-harvard .cv-page {
+        padding: 18px 14px !important;
+      }
+
+      .candidate-name {
+        font-size: 21px !important;
+      }
+
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+
+      .job-date {
+        font-size: 11px;
+      }
+
+      .bullet-points {
+        font-size: 11.5px;
+      }
+
+      .lang-ar .bullet-points { padding-right: 14px; }
+      .lang-en .bullet-points { padding-left: 14px; }
     }
-    .theme-harvard .candidate-name { font-family: 'Merriweather', serif; font-size: 27px; font-weight: 900; color: #111827; }
-    .theme-harvard .candidate-title { font-size: 13px; color: #4b5563; font-weight: 600; }
-    .theme-harvard .contact-info { justify-content: center; font-size: 12px; }
-    .theme-harvard .section-title { font-family: 'Merriweather', serif; font-size: 14px; color: #111827; border-bottom: 1px solid #9ca3af; }
-    .theme-harvard .inline-skills-section { display: block; }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
     .ai-modal-overlay {
@@ -539,31 +582,25 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 15px;
+      padding: 10px;
     }
 
     .ai-modal {
       background: #ffffff;
       width: 100%;
-      max-width: 680px;
-      border-radius: 16px;
+      max-width: 650px;
+      border-radius: 14px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       max-height: 90vh;
-      animation: modalSlide 0.3s ease-out;
-    }
-
-    @keyframes modalSlide {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
     }
 
     .ai-modal-header {
       background: linear-gradient(135deg, #6d28d9, #4338ca);
       color: #ffffff;
-      padding: 16px 22px;
+      padding: 14px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -572,94 +609,98 @@
     .ai-modal-tabs {
       display: flex;
       background: #f1f5f9;
-      padding: 6px;
-      gap: 6px;
+      padding: 4px;
+      gap: 4px;
       border-bottom: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .ai-tab-btn {
       flex: 1;
-      padding: 8px 12px;
+      padding: 8px 10px;
       border: none;
       background: transparent;
       cursor: pointer;
       font-weight: 700;
-      font-size: 12.5px;
-      border-radius: 8px;
+      font-size: 11.5px;
+      border-radius: 6px;
       color: #64748b;
-      transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .ai-tab-btn.active {
       background: #ffffff;
       color: #4f46e5;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
     }
 
     .ai-modal-body {
-      padding: 20px;
+      padding: 16px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
     }
 
     .ai-textarea {
       width: 100%;
-      height: 140px;
-      padding: 12px;
+      height: 120px;
+      padding: 10px;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      border-radius: 8px;
       font-family: inherit;
-      font-size: 13px;
+      font-size: 12.5px;
       resize: vertical;
       outline: none;
     }
-    .ai-textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15); }
+    .ai-textarea:focus { border-color: #6366f1; }
 
     .ai-btn-generate {
       background: #4f46e5;
       color: #ffffff;
       border: none;
-      padding: 10px 18px;
+      padding: 10px 14px;
       border-radius: 8px;
       font-weight: 700;
+      font-size: 13px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: background 0.2s;
+      gap: 6px;
     }
-    .ai-btn-generate:hover { background: #4338ca; }
 
     .ai-pill-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      max-height: 250px;
+      gap: 6px;
+      max-height: 220px;
       overflow-y: auto;
-      padding: 4px;
+      padding: 2px;
     }
 
     .ai-pill {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 11.5px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.15s;
     }
     .ai-pill:hover { background: #ede9fe; color: #6d28d9; border-color: #a78bfa; }
 
-    /* الطباعة */
+    /* الطباعة (PDF دائماً A4 مكتبي) */
     @page { size: A4 portrait; margin: 0mm; }
     @media print {
       body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; }
       .controls-container, .item-actions, .add-btn, .ai-modal-overlay { display: none !important; }
       .cv-page { width: 100% !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; }
+      
+      /* إعادة الهيكل لسطح المكتب عند الطباعة */
+      .theme-executive .cv-page, .theme-dark .cv-page { display: grid !important; grid-template-columns: 280px 1fr !important; }
+      .theme-executive .cv-sidebar, .theme-dark .cv-sidebar { display: flex !important; }
+      .theme-executive .sidebar-photo-wrapper, .theme-dark .sidebar-photo-wrapper { width: 100% !important; height: 210px !important; border-radius: 10px !important; }
     }
   </style>
 </head>
@@ -671,46 +712,44 @@
       <div class="toolbar-row">
         <!-- اللغة -->
         <div class="lang-selector">
-          <span style="font-size: 13px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
+          <span style="font-size: 12.5px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
           <button class="btn-lang active" id="btnLangAr" onclick="setLanguage('ar', this)">العربية</button>
           <button class="btn-lang" id="btnLangEn" onclick="setLanguage('en', this)">English</button>
         </div>
 
         <!-- باليتة الألوان -->
         <div class="color-bar">
-          <span style="font-size: 12px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
+          <span style="font-size: 11.5px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
           <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
           <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
           <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
           <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
           <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
           <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
-          <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
+          <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:18px;height:18px;border:none;cursor:pointer;border-radius:50%;">
         </div>
 
         <!-- أزرار الإجراءات -->
         <div class="toolbar-actions">
           <button class="btn-ai" id="btnAiOpen" onclick="openAiAgent()">
-            🤖 المساعد الذكي AI
+            🤖 AI Agent
           </button>
           <button class="btn-action" id="btnSavePdf" onclick="window.print()">
-            📄 Save as PDF
+            📄 Save PDF
           </button>
         </div>
       </div>
 
-      <!-- اختيار الدزاين -->
-      <div class="toolbar-row" style="border-top: 1px solid #f1f5f9; padding-top: 8px;">
+      <!-- اختيار الدزاين (مع تمرير أفقي على الموبايل) -->
+      <div class="toolbar-row" style="border-top: 1px solid #f1f5f9; padding-top: 6px;">
         <div class="design-selector">
-          <span style="font-size: 12.5px; font-weight: bold;" id="lblDesign">📷 تصاميم مع صورة:</span>
+          <span style="font-size: 11.5px; font-weight: bold;" id="lblDesign">📷 صور:</span>
           <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this, true)">1. Executive</button>
           <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this, true)">2. Silicon Tech</button>
           <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this, true)">3. Modern Corporate</button>
           <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this, true)">4. Dark Mode</button>
           
-          <span style="margin: 0 4px; color:#cbd5e1;">|</span>
-          
-          <span style="font-size: 12.5px; font-weight: bold; color: #0284c7;" id="lblNoPhotoDesign">📄 تصاميم بدون صورة:</span>
+          <span style="font-size: 11.5px; font-weight: bold; color: #0284c7; margin-right:4px;" id="lblNoPhotoDesign">📄 بدون صورة:</span>
           <button class="btn-design nophoto-badge" id="btnDesign5" onclick="setDesign('theme-ats', this, false)">5. ATS Clean ⭐</button>
           <button class="btn-design nophoto-badge" id="btnDesign6" onclick="setDesign('theme-nordic', this, false)">6. Nordic Minimal</button>
           <button class="btn-design nophoto-badge" id="btnDesign7" onclick="setDesign('theme-harvard', this, false)">7. Harvard Classic</button>
@@ -720,25 +759,25 @@
 
     <!-- التحكم بالصورة -->
     <div class="photo-controls-bar" id="photoControlsBar">
-      <span id="txtPhotoLabel">🖼️ <strong>التحكم بالصورة:</strong></span>
-      <label id="lblZoom">🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
-      <label id="lblPanX">↔️ أفقي: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <label id="lblPanY">↕️ عمودي: <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer;">إعادة ضبط</button>
+      <span id="txtPhotoLabel">🖼️ <strong>الصورة:</strong></span>
+      <label id="lblZoom">🔍 <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
+      <label id="lblPanX">↔️ <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <label id="lblPanY">↕️ <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:3px 7px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer; font-size:11px;">إعادة ضبط</button>
       <input type="file" id="imageUploader" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
-      <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:4px 10px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer;">تغيير صورتك 📷</button>
+      <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:3px 8px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:11px;">تغيير 📷</button>
     </div>
   </div>
 
   <!-- ================= صفحة السيرة الذاتية ================= -->
   <div class="cv-page" id="cvContainer">
 
-    <!-- الهيدر العلوي المدمج (يظهر في Silicon Tech و Modern Corporate) -->
+    <!-- الهيدر العلوي المدمج (Silicon Tech & Modern Corporate) -->
     <header class="top-header-section" id="topHeaderSection">
       <div class="photo-box top-photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
         <img class="profile-img-el" src="" alt="Profile Photo" style="display:none;">
         <div class="placeholder-txt">
-          <span style="font-size:24px;">👤</span><br>
+          <span style="font-size:20px;">👤</span><br>
           <span class="txt-upload-photo-label">تحميل صورتك</span>
         </div>
       </div>
@@ -755,12 +794,12 @@
       </div>
     </header>
 
-    <!-- القائمة الجانبية (تظهر في Executive و Dark Mode) -->
+    <!-- القائمة الجانبية (Executive & Dark Mode) -->
     <aside class="cv-sidebar" id="sidebarContainer">
       <div class="photo-box sidebar-photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
         <img class="profile-img-el" src="" alt="Profile Photo" style="display:none;">
         <div class="placeholder-txt">
-          <span style="font-size:32px;">👤</span><br>
+          <span style="font-size:28px;">👤</span><br>
           <span class="txt-upload-photo-label">اضغط لتحميل صورتك</span>
         </div>
       </div>
@@ -805,7 +844,6 @@
 
     <!-- المحتوى الرئيسي -->
     <main class="cv-main">
-      <!-- هيدر المتن (يظهر في Executive، Dark Mode، والتصاميم بدون صورة) -->
       <div class="main-header-banner" id="mainHeaderBanner">
         <h1 class="candidate-name editable-block" contenteditable="true" id="txtCandidateName">سعدون محسن عزيز</h1>
         <div class="candidate-title editable-block" contenteditable="true" id="txtCandidateTitle">مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير</div>
@@ -821,7 +859,7 @@
       <!-- نبذة مهنية -->
       <div>
         <h3 class="section-title"><span>👤</span> <span contenteditable="true" id="titleSummary">الملخص المهني</span></h3>
-        <div class="editable-block" contenteditable="true" id="txtSummary" style="font-size: 13.5px; line-height: 1.7; color: #334155;">
+        <div class="editable-block" contenteditable="true" id="txtSummary" style="font-size: 13px; line-height: 1.6; color: #334155;">
           مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، واستخدام برامج الأوفيس وأتمتة لوحات التقارير لرفع كفاءة الأداء ورضا العملاء.
         </div>
       </div>
@@ -832,9 +870,9 @@
         <div class="experience-list" id="experienceList">
           <div class="editable-item">
             <div class="item-actions">
-              <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين الصياغة">🪄 حسّن</button>
-              <button class="act-btn clone" onclick="cloneItem(this)">📋 نسخ</button>
-              <button class="act-btn delete" onclick="deleteItem(this)">🗑️ حذف</button>
+              <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين">🪄 حسّن</button>
+              <button class="act-btn clone" onclick="cloneItem(this)">📋</button>
+              <button class="act-btn delete" onclick="deleteItem(this)">🗑️</button>
             </div>
             <div class="job-header">
               <div>
@@ -857,7 +895,7 @@
       <!-- المهارات المدمجة داخل الصفحة -->
       <div class="inline-skills-section">
         <h3 class="section-title"><span>⚙️</span> <span contenteditable="true" id="titleInlineSkills">المهارات والكفاءات (Core Skills)</span></h3>
-        <div class="editable-block" contenteditable="true" id="txtInlineSkills" style="font-size: 13px; line-height: 1.6; color: #334155;">
+        <div class="editable-block" contenteditable="true" id="txtInlineSkills" style="font-size: 12.5px; line-height: 1.6; color: #334155;">
           • إدارة عمليات خدمة العملاء • برامج Microsoft Office (Word, Excel, PowerPoint) • متابعة KPIs & SLA • إدخال البيانات السريع • قيادة وتدريب فرق العمل • اللغة العربية (الأم) والإنجليزية (مستوى متقدم)
         </div>
       </div>
@@ -885,13 +923,13 @@
     <div class="ai-modal" id="aiModalBox">
       <div class="ai-modal-header">
         <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:22px;">🤖</span>
+          <span style="font-size:20px;">🤖</span>
           <div>
-            <h3 style="font-size:16px; font-weight:800;" id="aiModalTitle">وكيل الـ CV الذكي (Smart AI Agent)</h3>
-            <span style="font-size:11px; opacity:0.85;" id="aiModalSubtitle">محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API</span>
+            <h3 style="font-size:15px; font-weight:800;" id="aiModalTitle">وكيل الـ CV الذكي (Smart AI Agent)</h3>
+            <span style="font-size:10.5px; opacity:0.85;" id="aiModalSubtitle">محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API</span>
           </div>
         </div>
-        <button onclick="closeAiAgent()" style="background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">✖</button>
+        <button onclick="closeAiAgent()" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer;">✖</button>
       </div>
 
       <div class="ai-modal-tabs">
@@ -901,7 +939,7 @@
       </div>
 
       <div class="ai-modal-body" id="tabParse">
-        <p style="font-size:13px; color:#475569;" id="aiParseDesc">
+        <p style="font-size:12.5px; color:#475569;" id="aiParseDesc">
           الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:
         </p>
         <textarea class="ai-textarea" id="rawCvText" placeholder="مثال:
@@ -914,29 +952,29 @@
       </div>
 
       <div class="ai-modal-body" id="tabSkills" style="display:none;">
-        <p style="font-size:13px; color:#475569;" id="aiSkillsDesc">اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:</p>
-        <div style="display:flex; gap:8px; margin-bottom:10px;">
-          <select id="jobDomainSelect" onchange="aiSuggestSkills()" style="flex:1; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-family:inherit;">
-            <option value="office">📄 برامج الأوفيس والإنتاجية (Microsoft Office & Productivity)</option>
-            <option value="customercare">🎧 خدمة العملاء ومراكز الاتصال (Customer Care & Call Center)</option>
+        <p style="font-size:12.5px; color:#475569;" id="aiSkillsDesc">اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:</p>
+        <div style="display:flex; gap:6px; margin-bottom:6px;">
+          <select id="jobDomainSelect" onchange="aiSuggestSkills()" style="flex:1; padding:7px; border-radius:6px; border:1px solid #cbd5e1; font-family:inherit; font-size:12px;">
+            <option value="office">📄 برامج الأوفيس والإنتاجية (Office & Productivity)</option>
+            <option value="customercare">🎧 خدمة العملاء والعمليات (Customer Care & Ops)</option>
             <option value="soft">👥 مهارات شخصية وقيادية (Soft Skills & Leadership)</option>
             <option value="data">📊 تحليل البيانات والتقارير (Data & Analytics)</option>
             <option value="tech">💻 تكنولوجيا المعلومات والدعم الفني (IT & Tech Support)</option>
-            <option value="sales">📈 المبيعات والتسويق والمحاسبة (Sales, Marketing & Accounts)</option>
+            <option value="sales">📈 المبيعات والتسويق والمحاسبة (Sales & Accounts)</option>
           </select>
         </div>
         <div class="ai-pill-grid" id="suggestedSkillsGrid"></div>
-        <span style="font-size:11px; color:#64748b;" id="aiSkillsFooterNote">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
+        <span style="font-size:10.5px; color:#64748b;" id="aiSkillsFooterNote">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
       </div>
 
       <div class="ai-modal-body" id="tabSummary" style="display:none;">
-        <p style="font-size:13px; color:#475569;" id="aiSummaryDesc">اختر أسلوب النبذة المهنية لتوليدها فوراً:</p>
-        <div style="display:flex; gap:8px;">
-          <button class="ai-tab-btn active" id="btnSumExec" onclick="aiGenerateSummary('executive')">👔 تنفيذي (Executive)</button>
+        <p style="font-size:12.5px; color:#475569;" id="aiSummaryDesc">اختر أسلوب النبذة المهنية لتوليدها فوراً:</p>
+        <div style="display:flex; gap:6px;">
+          <button class="ai-tab-btn active" id="btnSumExec" onclick="aiGenerateSummary('executive')">👔 تنفيذي</button>
           <button class="ai-tab-btn" id="btnSumResults" onclick="aiGenerateSummary('results')">📊 موجه للنتائج</button>
-          <button class="ai-tab-btn" id="btnSumModern" onclick="aiGenerateSummary('modern')">⚡ عصري وجذاب</button>
+          <button class="ai-tab-btn" id="btnSumModern" onclick="aiGenerateSummary('modern')">⚡ عصري</button>
         </div>
-        <div id="aiSummaryOutput" style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:8px; font-size:13px; line-height:1.6; color:#1e293b;">
+        <div id="aiSummaryOutput" style="background:#f8fafc; border:1px solid #e2e8f0; padding:10px; border-radius:6px; font-size:12.5px; line-height:1.6; color:#1e293b;">
           اضغط على أحد الأنماط أعلاه لتوليد ملخص مهني احترافي.
         </div>
         <button class="ai-btn-generate" id="btnApplySummary" onclick="applyAiSummary()">
@@ -951,8 +989,8 @@
     const I18N = {
       ar: {
         lblLang: "🌐 اللغة:",
-        lblDesign: "📷 تصاميم مع صورة:",
-        lblNoPhotoDesign: "📄 تصاميم بدون صورة:",
+        lblDesign: "📷 صور:",
+        lblNoPhotoDesign: "📄 بدون صورة:",
         btnDesign1: "1. Executive",
         btnDesign2: "2. Silicon Tech",
         btnDesign3: "3. Modern Corporate",
@@ -961,14 +999,14 @@
         btnDesign6: "6. Nordic Minimal",
         btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 الثيم:",
-        btnAiOpen: "🤖 المساعد الذكي AI",
-        btnSavePdf: "📄 Save as PDF / حفظ",
-        txtPhotoLabel: "🖼️ <strong>التحكم بالصورة:</strong>",
-        lblZoom: "🔍 التكبير:",
-        lblPanX: "↔️ أفقي:",
-        lblPanY: "↕️ عمودي:",
+        btnAiOpen: "🤖 AI Agent",
+        btnSavePdf: "📄 Save PDF",
+        txtPhotoLabel: "🖼️ <strong>الصورة:</strong>",
+        lblZoom: "🔍",
+        lblPanX: "↔️",
+        lblPanY: "↕️",
         btnResetPhoto: "إعادة ضبط",
-        btnChangePhoto: "تغيير صورتك 📷",
+        btnChangePhoto: "تغيير 📷",
         txtUploadPhotoLabel: "اضغط لتحميل صورتك",
         titleSkills: "⚙️ المهارات الأساسية",
         titleInlineSkills: "المهارات والكفاءات (Core Skills)",
@@ -997,15 +1035,15 @@
         aiSkillsDesc: "اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:",
         aiSkillsFooterNote: "اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.",
         aiSummaryDesc: "اختر أسلوب النبذة المهنية لتوليدها فوراً:",
-        btnSumExec: "👔 تنفيذي (Executive)",
+        btnSumExec: "👔 تنفيذي",
         btnSumResults: "📊 موجه للنتائج",
-        btnSumModern: "⚡ عصري وجذاب",
+        btnSumModern: "⚡ عصري",
         btnApplySummary: "✅ تطبيق الملخص في الـ CV"
       },
       en: {
-        lblLang: "🌐 Language:",
-        lblDesign: "📷 With Photo Designs:",
-        lblNoPhotoDesign: "📄 No-Photo Designs:",
+        lblLang: "🌐 Lang:",
+        lblDesign: "📷 Photo:",
+        lblNoPhotoDesign: "📄 No-Photo:",
         btnDesign1: "1. Executive",
         btnDesign2: "2. Silicon Tech",
         btnDesign3: "3. Modern Corporate",
@@ -1014,14 +1052,14 @@
         btnDesign6: "6. Nordic Minimal",
         btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 Theme:",
-        btnAiOpen: "🤖 Smart AI Agent",
-        btnSavePdf: "📄 Save as PDF",
-        txtPhotoLabel: "🖼️ <strong>Photo Controls:</strong>",
-        lblZoom: "🔍 Zoom:",
-        lblPanX: "↔️ Pan X:",
-        lblPanY: "↕️ Pan Y:",
+        btnAiOpen: "🤖 AI Agent",
+        btnSavePdf: "📄 Save PDF",
+        txtPhotoLabel: "🖼️ <strong>Photo:</strong>",
+        lblZoom: "🔍",
+        lblPanX: "↔️",
+        lblPanY: "↕️",
         btnResetPhoto: "Reset",
-        btnChangePhoto: "Change Photo 📷",
+        btnChangePhoto: "Change 📷",
         txtUploadPhotoLabel: "Click to upload photo",
         titleSkills: "⚙️ CORE SKILLS",
         titleInlineSkills: "CORE COMPETENCIES & SKILLS",
@@ -1272,7 +1310,7 @@
       updatePhoto();
     }
 
-    /* بنك المهارات */
+    /* بنك المهارات الشامل */
     const skillsDatabase = {
       office: {
         ar: [
