@@ -44,10 +44,10 @@
     /* ================= شريط التحكم العلوي ================= */
     .controls-container {
       max-width: 920px;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 12px auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
     }
 
@@ -123,7 +123,6 @@
       gap: 4px;
     }
 
-    /* صف الألوان */
     .color-bar-wrapper {
       display: flex;
       align-items: center;
@@ -153,7 +152,6 @@
       box-shadow: 0 0 0 2px #0f172a;
     }
 
-    /* صف التصاميم (تمرير أفقي ناعم على الموبايل) */
     .design-scroll-row {
       display: flex;
       align-items: center;
@@ -163,14 +161,6 @@
       width: 100%;
       -webkit-overflow-scrolling: touch;
       white-space: nowrap;
-    }
-
-    .design-scroll-row::-webkit-scrollbar {
-      height: 4px;
-    }
-    .design-scroll-row::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
     }
 
     .btn-design {
@@ -201,10 +191,10 @@
       color: #fff;
     }
 
-    /* شريط أدوات الصورة */
+    /* شريط أدوات الصورة المطور */
     .photo-controls-bar {
       background: #ffffff;
-      padding: 10px 14px;
+      padding: 8px 12px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.04);
       display: flex;
@@ -216,8 +206,19 @@
     }
 
     .photo-controls-bar input[type="range"] {
-      width: 65px;
+      width: 60px;
       cursor: pointer;
+    }
+
+    .btn-toggle-fit {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      color: #334155;
     }
 
     /* ================= صفحة الـ CV العامة ================= */
@@ -236,15 +237,17 @@
     .lang-ar .cv-page { direction: rtl; text-align: right; }
     .lang-en .cv-page { direction: ltr; text-align: left; }
 
+    /* تنسيق الصورة الشخصية */
     .photo-box {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.1);
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border: 2px dashed rgba(255, 255, 255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.2s;
     }
 
     .photo-box img {
@@ -252,6 +255,11 @@
       height: 100%;
       object-fit: cover;
       transform-origin: center center;
+      transition: transform 0.1s ease;
+    }
+
+    .photo-box img.fit-contain {
+      object-fit: contain !important;
     }
 
     .photo-box .placeholder-txt {
@@ -416,7 +424,7 @@
 
     /* ================= تنسيقات التصاميم ================= */
 
-    /* 1. EXECUTIVE (Desktop: Grid, Mobile: Stack) */
+    /* 1. EXECUTIVE */
     .theme-executive .top-header-section { display: none; }
     .theme-executive .cv-page { display: grid; grid-template-columns: 280px 1fr; }
     .theme-executive .cv-sidebar { background: var(--sidebar-bg); color: var(--sidebar-text); padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; }
@@ -490,26 +498,11 @@
        📱 تحسينات الهاتف المحمول الفائقة (Mobile Responsiveness)
        ========================================================================= */
     @media (max-width: 768px) {
-      body {
-        padding: 6px 4px 60px 4px;
-      }
+      body { padding: 6px 4px 60px 4px; }
+      .controls-container { gap: 6px; margin-bottom: 8px; }
+      .top-toolbar { padding: 10px 10px; gap: 8px; }
+      .photo-controls-bar { padding: 8px 10px; gap: 6px; }
 
-      .controls-container {
-        gap: 6px;
-        margin-bottom: 8px;
-      }
-
-      .top-toolbar {
-        padding: 10px 10px;
-        gap: 8px;
-      }
-
-      .photo-controls-bar {
-        padding: 8px 10px;
-        gap: 6px;
-      }
-
-      /* تحويل Executive و Dark Mode لعمود واحد منظم على الموبايل */
       .theme-executive .cv-page,
       .theme-dark .cv-page {
         display: flex !important;
@@ -524,10 +517,10 @@
 
       .theme-executive .sidebar-photo-wrapper,
       .theme-dark .sidebar-photo-wrapper {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         margin: 0 auto;
-        border-radius: 50%;
+        border-radius: 12px;
       }
 
       .theme-tech .top-header-section,
@@ -540,9 +533,9 @@
 
       .theme-tech .top-photo-wrapper,
       .theme-corporate .top-photo-wrapper {
-        width: 95px;
-        height: 95px;
-        min-width: 95px;
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
         margin: 0 auto;
       }
 
@@ -551,26 +544,10 @@
         justify-content: center;
       }
 
-      .cv-main {
-        padding: 16px 12px !important;
-        gap: 14px !important;
-      }
-
-      .theme-ats .cv-page,
-      .theme-nordic .cv-page,
-      .theme-harvard .cv-page {
-        padding: 16px 12px !important;
-      }
-
-      .candidate-name {
-        font-size: 20px !important;
-      }
-
-      .job-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-      }
+      .cv-main { padding: 16px 12px !important; gap: 14px !important; }
+      .theme-ats .cv-page, .theme-nordic .cv-page, .theme-harvard .cv-page { padding: 16px 12px !important; }
+      .candidate-name { font-size: 20px !important; }
+      .job-header { flex-direction: column; align-items: flex-start; gap: 2px; }
     }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
@@ -694,7 +671,7 @@
     }
     .ai-pill:hover { background: #ede9fe; color: #6d28d9; border-color: #a78bfa; }
 
-    /* ================= إعدادات الطباعة الدقيقة (A4 Desktop Standard) ================= */
+    /* ================= إعدادات الطباعة الدقيقة (A4 Desktop Standard لملء الصفحة تماماً) ================= */
     @page {
       size: A4 portrait;
       margin: 0mm !important;
@@ -702,51 +679,58 @@
 
     @media print {
       html, body {
-        width: 210mm !important;
-        min-width: 210mm !important;
-        max-width: 210mm !important;
-        height: 297mm !important;
+        width: 100% !important;
+        height: 100% !important;
         background: #ffffff !important;
         padding: 0 !important;
         margin: 0 !important;
       }
+
       .controls-container, .item-actions, .add-btn, .ai-modal-overlay {
         display: none !important;
       }
+
       .cv-page {
-        width: 210mm !important;
-        max-width: 210mm !important;
-        min-height: 297mm !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh !important;
+        height: auto !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         margin: 0 !important;
       }
       
-      /* إعادة الهيكل لسطح المكتب عند التصدير للـ PDF حتى لو كان من الموبايل */
-      .theme-executive .cv-page, .theme-dark .cv-page {
+      /* الحفاظ على الهيكل المكتبي المتناسق عند الطباعة */
+      .theme-executive .cv-page {
         display: grid !important;
-        grid-template-columns: 280px 1fr !important;
+        grid-template-columns: 30% 70% !important;
       }
-      .theme-executive .cv-sidebar, .theme-dark .cv-sidebar {
+      .theme-executive .cv-sidebar {
         display: flex !important;
-        padding: 30px 22px !important;
+        padding: 24px 18px !important;
       }
-      .theme-executive .sidebar-photo-wrapper, .theme-dark .sidebar-photo-wrapper {
+      .theme-executive .sidebar-photo-wrapper {
         width: 100% !important;
-        height: 220px !important;
-        border-radius: 10px !important;
+        height: 200px !important;
+        border-radius: 8px !important;
+      }
+      .theme-executive .cv-main {
+        padding: 24px 22px !important;
+      }
+      .theme-tech .cv-page, .theme-corporate .cv-page {
+        display: block !important;
       }
       .theme-tech .top-header-section, .theme-corporate .top-header-section {
+        display: flex !important;
         flex-direction: row !important;
+        align-items: center !important;
         text-align: inherit !important;
+        padding: 18px 22px !important;
       }
       .theme-tech .top-photo-wrapper, .theme-corporate .top-photo-wrapper {
-        width: 110px !important;
-        height: 110px !important;
+        width: 100px !important;
+        height: 100px !important;
         margin: 0 !important;
-      }
-      .cv-main {
-        padding: 30px 32px !important;
       }
     }
   </style>
@@ -785,7 +769,7 @@
         <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
       </div>
 
-      <!-- الصف 3: شريط التصاميم المطور (تمرير أفقي ناعم بدون كسر نصوص) -->
+      <!-- الصف 3: شريط التصاميم -->
       <div class="design-scroll-row">
         <span style="font-size: 11.5px; font-weight: bold; margin-left:4px;" id="lblDesign">📷 صور:</span>
         <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this, true)">Executive</button>
@@ -800,13 +784,16 @@
       </div>
     </div>
 
-    <!-- شريط أدوات الصورة -->
+    <!-- شريط أدوات الصورة المطور مع خيار احتواء كامل الصورة -->
     <div class="photo-controls-bar" id="photoControlsBar">
-      <span id="txtPhotoLabel">🖼️ <strong>الصورة:</strong></span>
-      <label id="lblZoom">🔍 <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
-      <label id="lblPanX">↔️ <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <label id="lblPanY">↕️ <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer; font-size:11px;">إعادة ضبط</button>
+      <div style="display:flex; align-items:center; gap:6px;">
+        <span id="txtPhotoLabel">🖼️ <strong>الصورة:</strong></span>
+        <button class="btn-toggle-fit" id="btnToggleFit" onclick="togglePhotoFit()">🔄 كامل الصورة</button>
+      </div>
+      <label id="lblZoom">🔍 <input type="range" id="zoomRange" min="0.2" max="3.0" step="0.02" value="1" oninput="updatePhoto()"></label>
+      <label id="lblPanX">↔️ <input type="range" id="xRange" min="-150" max="150" value="0" oninput="updatePhoto()"></label>
+      <label id="lblPanY">↕️ <input type="range" id="yRange" min="-150" max="150" value="0" oninput="updatePhoto()"></label>
+      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:4px 7px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer; font-size:11px;">إعادة ضبط</button>
       <input type="file" id="imageUploader" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
       <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:4px 9px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:11px;">تغيير 📷</button>
     </div>
@@ -1027,7 +1014,7 @@
     </div>
   </div>
 
-  <!-- ================= سكريبت النظام والترجمة ================= -->
+  <!-- ================= سكريبت النظام والترجمة وضبط الصورة ================= -->
   <script>
     const I18N = {
       ar: {
@@ -1044,6 +1031,8 @@
         btnResetPhoto: "إعادة ضبط",
         btnChangePhoto: "تغيير 📷",
         txtUploadPhotoLabel: "اضغط لتحميل صورتك",
+        btnFitContain: "🔄 كامل الصورة",
+        btnFitCover: "🔄 ملء الإطار",
         titleSkills: "⚙️ المهارات الأساسية",
         titleInlineSkills: "المهارات والكفاءات (Core Skills)",
         btnAddSkill: "➕ إضافة مهارة",
@@ -1090,6 +1079,8 @@
         btnResetPhoto: "Reset",
         btnChangePhoto: "Change 📷",
         txtUploadPhotoLabel: "Click to upload photo",
+        btnFitContain: "🔄 Fit Whole",
+        btnFitCover: "🔄 Fill Cover",
         titleSkills: "⚙️ CORE SKILLS",
         titleInlineSkills: "CORE COMPETENCIES & SKILLS",
         btnAddSkill: "➕ Add Skill",
@@ -1144,15 +1135,13 @@
         document.getElementById('aiModalBox').setAttribute('dir', 'ltr');
       }
 
-      document.getElementById('lblDesign').innerText = dict.lblDesign;
-      document.getElementById('lblNoPhotoDesign').innerText = dict.lblNoPhotoDesign;
       document.getElementById('lblTheme').innerText = dict.lblTheme;
       document.getElementById('btnAiOpen').innerText = dict.btnAiOpen;
       document.getElementById('btnSavePdf').innerText = dict.btnSavePdf;
       document.getElementById('txtPhotoLabel').innerHTML = dict.txtPhotoLabel;
-      document.getElementById('lblZoom').innerHTML = `${dict.lblZoom} <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()">`;
-      document.getElementById('lblPanX').innerHTML = `${dict.lblPanX} <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()">`;
-      document.getElementById('lblPanY').innerHTML = `${dict.lblPanY} <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()">`;
+      document.getElementById('lblZoom').innerHTML = `${dict.lblZoom} <input type="range" id="zoomRange" min="0.2" max="3.0" step="0.02" value="${document.getElementById('zoomRange').value}" oninput="updatePhoto()">`;
+      document.getElementById('lblPanX').innerHTML = `${dict.lblPanX} <input type="range" id="xRange" min="-150" max="150" value="${document.getElementById('xRange').value}" oninput="updatePhoto()">`;
+      document.getElementById('lblPanY').innerHTML = `${dict.lblPanY} <input type="range" id="yRange" min="-150" max="150" value="${document.getElementById('yRange').value}" oninput="updatePhoto()">`;
       document.getElementById('btnResetPhoto').innerText = dict.btnResetPhoto;
       document.getElementById('btnChangePhoto').innerText = dict.btnChangePhoto;
       
@@ -1294,7 +1283,9 @@
       list.appendChild(div);
     }
 
+    /* ================= معالجة وضبط الصورة الفائقة ================= */
     let uploadedImgData = '';
+    let isFitContain = false;
 
     function handleImageUpload(e) {
       const file = e.target.files[0];
@@ -1312,6 +1303,21 @@
         };
         reader.readAsDataURL(file);
       }
+    }
+
+    function togglePhotoFit() {
+      isFitContain = !isFitContain;
+      const isAr = document.body.classList.contains('lang-ar');
+      const btn = document.getElementById('btnToggleFit');
+      document.querySelectorAll('.profile-img-el').forEach(img => {
+        if (isFitContain) {
+          img.classList.add('fit-contain');
+          btn.innerText = isAr ? '🔄 ملء الإطار' : '🔄 Fill Cover';
+        } else {
+          img.classList.remove('fit-contain');
+          btn.innerText = isAr ? '🔄 كامل الصورة' : '🔄 Fit Whole';
+        }
+      });
     }
 
     function updatePhoto() {
