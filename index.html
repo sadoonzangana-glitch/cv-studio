@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sadoon Mohsoun Aziz - Professional CV Studio + AI Agent</title>
+  <title>Professional CV Studio + AI Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,6 +31,10 @@
       background-color: #f1f5f9;
       color: var(--text-main);
       padding: 20px 10px 60px 10px;
+    }
+
+    body.lang-en {
+      font-family: 'Inter', 'Cairo', sans-serif;
     }
 
     /* الشريط العلوي */
@@ -145,7 +149,6 @@
       box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
     }
 
-    /* شريط أدوات الصورة */
     .photo-controls-bar {
       background: #ffffff;
       padding: 10px 18px;
@@ -395,7 +398,7 @@
     .ai-modal {
       background: #ffffff;
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       overflow: hidden;
@@ -487,6 +490,9 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding: 4px;
     }
 
     .ai-pill {
@@ -517,23 +523,23 @@
     <div class="top-toolbar">
       <!-- اختيار اللغة -->
       <div class="lang-selector">
-        <span style="font-size: 13px; font-weight: bold;">🌐 اللغة:</span>
-        <button class="btn-lang active" onclick="setLanguage('ar', this)">العربية</button>
-        <button class="btn-lang" onclick="setLanguage('en', this)">English</button>
+        <span style="font-size: 13px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
+        <button class="btn-lang active" id="btnLangAr" onclick="setLanguage('ar', this)">العربية</button>
+        <button class="btn-lang" id="btnLangEn" onclick="setLanguage('en', this)">English</button>
       </div>
 
       <!-- اختيار الدزاين -->
       <div class="design-selector">
-        <span style="font-size: 13px; font-weight: bold;">اختر الدزاين:</span>
-        <button class="btn-design active" onclick="setDesign('theme-executive', this)">1. Executive</button>
-        <button class="btn-design" onclick="setDesign('theme-tech', this)">2. Silicon Tech</button>
-        <button class="btn-design" onclick="setDesign('theme-corporate', this)">3. Modern Corporate</button>
-        <button class="btn-design" onclick="setDesign('theme-dark', this)">4. Dark Mode</button>
+        <span style="font-size: 13px; font-weight: bold;" id="lblDesign">اختر الدزاين:</span>
+        <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this)">1. Executive</button>
+        <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this)">2. Silicon Tech</button>
+        <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this)">3. Modern Corporate</button>
+        <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this)">4. Dark Mode</button>
       </div>
 
       <!-- باليتة الألوان -->
       <div class="color-bar">
-        <span style="font-size: 12px; font-weight: bold;">🎨 الثيم:</span>
+        <span style="font-size: 12px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
         <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
         <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
         <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
@@ -545,25 +551,25 @@
 
       <div class="toolbar-actions">
         <!-- زر المساعد الذكي -->
-        <button class="btn-ai" onclick="openAiAgent()">
+        <button class="btn-ai" id="btnAiOpen" onclick="openAiAgent()">
           🤖 المساعد الذكي AI
         </button>
         <!-- زر الحفظ -->
-        <button class="btn-action" onclick="window.print()">
-          📄 Save as PDF
+        <button class="btn-action" id="btnSavePdf" onclick="window.print()">
+          📄 حفظ / Save as PDF
         </button>
       </div>
     </div>
 
     <!-- التحكم بالصورة -->
     <div class="photo-controls-bar">
-      <span>🖼️ <strong>التحكم بالصورة:</strong></span>
-      <label>🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
-      <label>↔️ أفقي: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <label>↕️ عمودي: <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <button onclick="resetPhoto()" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer;">إعادة ضبط</button>
+      <span id="txtPhotoLabel">🖼️ <strong>التحكم بالصورة:</strong></span>
+      <label id="lblZoom">🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
+      <label id="lblPanX">↔️ أفقي: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <label id="lblPanY">↕️ عمودي: <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer;">إعادة ضبط</button>
       <input type="file" id="imageUploader" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
-      <button onclick="document.getElementById('imageUploader').click()" style="padding:4px 10px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer;">تغيير صورتك 📷</button>
+      <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:4px 10px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer;">تغيير صورتك 📷</button>
     </div>
   </div>
 
@@ -587,6 +593,10 @@
           </div>
           <div class="editable-item">
             <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true">• Microsoft Office (Word, Excel, PowerPoint)</div>
+          </div>
+          <div class="editable-item">
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
             <div class="editable-block" contenteditable="true">• الإشراف على الفرق وتدريب الموظفين</div>
           </div>
           <div class="editable-item">
@@ -599,7 +609,7 @@
 
       <div>
         <h3 class="sidebar-section-title" id="titleLanguages" contenteditable="true">🌐 اللغات</h3>
-        <div class="skills-list">
+        <div class="skills-list" id="languagesList">
           <div class="editable-item">
             <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
             <div class="editable-block" contenteditable="true"><strong>العربية:</strong> اللغة الأم (Native)</div>
@@ -637,7 +647,7 @@
         <div class="experience-list" id="experienceList">
           <div class="editable-item">
             <div class="item-actions">
-              <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين الصياغة بالذكاء الاصطناعي">🪄 حسّن</button>
+              <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين الصياغة">🪄 حسّن</button>
               <button class="act-btn clone" onclick="cloneItem(this)">📋 نسخ</button>
               <button class="act-btn delete" onclick="deleteItem(this)">🗑️ حذف</button>
             </div>
@@ -676,76 +686,257 @@
     </main>
   </div>
 
-  <!-- ================= نافذة المساعد الذكي المدمج (Built-in AI Agent) ================= -->
+  <!-- ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= -->
   <div class="ai-modal-overlay" id="aiModalOverlay" onclick="closeAiModalOnOutside(event)">
-    <div class="ai-modal">
+    <div class="ai-modal" id="aiModalBox">
       <div class="ai-modal-header">
         <div style="display:flex; align-items:center; gap:8px;">
           <span style="font-size:22px;">🤖</span>
           <div>
-            <h3 style="font-size:16px; font-weight:800;">وكيل الـ CV الذكي (Smart AI Agent)</h3>
-            <span style="font-size:11px; opacity:0.85;">محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API</span>
+            <h3 style="font-size:16px; font-weight:800;" id="aiModalTitle">وكيل الـ CV الذكي (Smart AI Agent)</h3>
+            <span style="font-size:11px; opacity:0.85;" id="aiModalSubtitle">محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API</span>
           </div>
         </div>
         <button onclick="closeAiAgent()" style="background:none; border:none; color:#fff; font-size:20px; cursor:pointer;">✖</button>
       </div>
 
       <div class="ai-modal-tabs">
-        <button class="ai-tab-btn active" onclick="switchAiTab('parse', this)">🪄 الملء السحري التلقائي</button>
-        <button class="ai-tab-btn" onclick="switchAiTab('skills', this)">⚡ اقتراح المهارات</button>
-        <button class="ai-tab-btn" onclick="switchAiTab('summary', this)">✍️ صانع النبذة</button>
+        <button class="ai-tab-btn active" id="aiTabParse" onclick="switchAiTab('parse', this)">🪄 الملء السحري التلقائي</button>
+        <button class="ai-tab-btn" id="aiTabSkills" onclick="switchAiTab('skills', this)">⚡ اقتراح المهارات</button>
+        <button class="ai-tab-btn" id="aiTabSummary" onclick="switchAiTab('summary', this)">✍️ صانع النبذة</button>
       </div>
 
       <div class="ai-modal-body" id="tabParse">
-        <p style="font-size:13px; color:#475569;">
+        <p style="font-size:13px; color:#475569;" id="aiParseDesc">
           الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:
         </p>
         <textarea class="ai-textarea" id="rawCvText" placeholder="مثال:
 اسمي علي محمد، تلفوني 07701234567، ساكن في بغداد، وايميلي ali@gmail.com
 اشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان
-مهاراتي: القيادة، تحليل البيانات، اكسل المتقدم، خدمة العملاء..."></textarea>
-        <button class="ai-btn-generate" onclick="aiParseAndFill()">
+مهاراتي: القيادة، برامج الأوفيس، وورد، اكسل، خدمة العملاء..."></textarea>
+        <button class="ai-btn-generate" id="btnAiParseAction" onclick="aiParseAndFill()">
           🚀 تحليل وتعبئة السيرة الذاتية الآن
         </button>
       </div>
 
       <div class="ai-modal-body" id="tabSkills" style="display:none;">
-        <p style="font-size:13px; color:#475569;">اختر مجالك المهني ليقترح لك الوكيل أقوى المهارات المطلوبة في سوق العمل:</p>
+        <p style="font-size:13px; color:#475569;" id="aiSkillsDesc">اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:</p>
         <div style="display:flex; gap:8px; margin-bottom:10px;">
           <select id="jobDomainSelect" onchange="aiSuggestSkills()" style="flex:1; padding:8px; border-radius:8px; border:1px solid #cbd5e1; font-family:inherit;">
-            <option value="customercare">خدمة العملاء والعمليات (Customer Care & Ops)</option>
-            <option value="data">تحليل البيانات والتقارير (Data & BI)</option>
-            <option value="tech">تقنية المعلومات والبرمجة (IT & Tech)</option>
-            <option value="sales">المبيعات والتسويق (Sales & Marketing)</option>
-            <option value="management">الإدارة والقيادة (Management & HR)</option>
+            <option value="office">📄 برامج الأوفيس والإنتاجية (Microsoft Office & Productivity)</option>
+            <option value="customercare">🎧 خدمة العملاء ومراكز الاتصال (Customer Care & Call Center)</option>
+            <option value="soft">👥 مهارات شخصية وقيادية (Soft Skills & Leadership)</option>
+            <option value="data">📊 تحليل البيانات والتقارير (Data & Analytics)</option>
+            <option value="tech">💻 تكنولوجيا المعلومات والدعم الفني (IT & Tech Support)</option>
+            <option value="sales">📈 المبيعات والتسويق والمحاسبة (Sales, Marketing & Accounts)</option>
           </select>
         </div>
         <div class="ai-pill-grid" id="suggestedSkillsGrid">
           <!-- مهارات تتولد تلقائياً -->
         </div>
-        <span style="font-size:11px; color:#64748b;">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
+        <span style="font-size:11px; color:#64748b;" id="aiSkillsFooterNote">اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.</span>
       </div>
 
       <div class="ai-modal-body" id="tabSummary" style="display:none;">
-        <p style="font-size:13px; color:#475569;">اختر أسلوب النبذة المهنية لتوليدها فوراً باللغتين:</p>
+        <p style="font-size:13px; color:#475569;" id="aiSummaryDesc">اختر أسلوب النبذة المهنية لتوليدها فوراً:</p>
         <div style="display:flex; gap:8px;">
-          <button class="ai-tab-btn active" onclick="aiGenerateSummary('executive')">👔 تنفيذي (Executive)</button>
-          <button class="ai-tab-btn" onclick="aiGenerateSummary('results')">📊 موجه للنتائج والأرقام</button>
-          <button class="ai-tab-btn" onclick="aiGenerateSummary('modern')">⚡ عصري وجذاب</button>
+          <button class="ai-tab-btn active" id="btnSumExec" onclick="aiGenerateSummary('executive')">👔 تنفيذي (Executive)</button>
+          <button class="ai-tab-btn" id="btnSumResults" onclick="aiGenerateSummary('results')">📊 موجه للنتائج</button>
+          <button class="ai-tab-btn" id="btnSumModern" onclick="aiGenerateSummary('modern')">⚡ عصري وجذاب</button>
         </div>
         <div id="aiSummaryOutput" style="background:#f8fafc; border:1px solid #e2e8f0; padding:12px; border-radius:8px; font-size:13px; line-height:1.6; color:#1e293b;">
           اضغط على أحد الأنماط أعلاه لتوليد ملخص مهني احترافي.
         </div>
-        <button class="ai-btn-generate" onclick="applyAiSummary()">
+        <button class="ai-btn-generate" id="btnApplySummary" onclick="applyAiSummary()">
           ✅ تطبيق الملخص في الـ CV
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= سكريبت النظام والوكيل الذكي ================= -->
+  <!-- ================= محرك الترجمة والوكيل الذكي ================= -->
   <script>
-    // 1. تغيير التصميم
+    // قاموس الترجمة الكامل لجميع نصوص الموقع والـ AI
+    const I18N = {
+      ar: {
+        lblLang: "🌐 اللغة:",
+        lblDesign: "اختر الدزاين:",
+        btnDesign1: "1. Executive (كلاسيكي)",
+        btnDesign2: "2. Silicon Tech",
+        btnDesign3: "3. Modern Corporate",
+        btnDesign4: "4. Dark Mode",
+        lblTheme: "🎨 الثيم:",
+        btnAiOpen: "🤖 المساعد الذكي AI",
+        btnSavePdf: "📄 Save as PDF / حفظ",
+        txtPhotoLabel: "🖼️ <strong>التحكم بالصورة:</strong>",
+        lblZoom: "🔍 التكبير:",
+        lblPanX: "↔️ أفقي:",
+        lblPanY: "↕️ عمودي:",
+        btnResetPhoto: "إعادة ضبط",
+        btnChangePhoto: "تغيير صورتك 📷",
+        txtUploadPhoto: "اضغط لتحميل صورتك",
+        titleSkills: "⚙️ المهارات الأساسية",
+        btnAddSkill: "➕ إضافة مهارة",
+        titleLanguages: "🌐 اللغات",
+        titleSummary: "الملخص المهني",
+        titleExp: "الخبرات المهنية والمشاريع",
+        btnAddExp: "➕ إضافة خبرة أو مشروع جديد",
+        titleEdu: "التعليم والمؤهلات",
+        btnAddEdu: "➕ إضافة مؤهل تعليمي",
+        candidateName: "سعدون محسن عزيز",
+        candidateTitle: "مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير",
+        candidateContact: "<span>📍 بغداد، العراق</span><span>|</span><span>📞 +964 781 533 3321</span><span>|</span><span>✉️ sadoonzangana@gmail.com</span>",
+        candidateSummary: "مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، واستخدام برامج الأوفيس وأتمتة لوحات التقارير لرفع كفاءة الأداء ورضا العملاء.",
+        langArText: "<strong>العربية:</strong> اللغة الأم (Native)",
+        langEnText: "<strong>الإنجليزية:</strong> مستوى مهني متقدم",
+        aiModalTitle: "وكيل الـ CV الذكي (Smart AI Agent)",
+        aiModalSubtitle: "محرك ذكاء اصطناعي مدمج يعمل بدون إنترنت أو API",
+        aiTabParse: "🪄 الملء السحري التلقائي",
+        aiTabSkills: "⚡ اقتراح المهارات",
+        aiTabSummary: "✍️ صانع النبذة",
+        aiParseDesc: "الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:",
+        rawPlaceholder: "مثال:\nاسمي علي محمد، تلفوني 07701234567، ساكن في بغداد، وايميلي ali@gmail.com\nاشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان\nمهاراتي: القيادة، برامج الأوفيس، وورد، اكسل، خدمة العملاء...",
+        btnAiParseAction: "🚀 تحليل وتعبئة السيرة الذاتية الآن",
+        aiSkillsDesc: "اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:",
+        aiSkillsFooterNote: "اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.",
+        aiSummaryDesc: "اختر أسلوب النبذة المهنية لتوليدها فوراً:",
+        btnSumExec: "👔 تنفيذي (Executive)",
+        btnSumResults: "📊 موجه للنتائج",
+        btnSumModern: "⚡ عصري وجذاب",
+        btnApplySummary: "✅ تطبيق الملخص في الـ CV"
+      },
+      en: {
+        lblLang: "🌐 Language:",
+        lblDesign: "Choose Design:",
+        btnDesign1: "1. Executive",
+        btnDesign2: "2. Silicon Tech",
+        btnDesign3: "3. Modern Corporate",
+        btnDesign4: "4. Dark Mode",
+        lblTheme: "🎨 Theme:",
+        btnAiOpen: "🤖 Smart AI Agent",
+        btnSavePdf: "📄 Save as PDF",
+        txtPhotoLabel: "🖼️ <strong>Photo Controls:</strong>",
+        lblZoom: "🔍 Zoom:",
+        lblPanX: "↔️ Pan X:",
+        lblPanY: "↕️ Pan Y:",
+        btnResetPhoto: "Reset",
+        btnChangePhoto: "Change Photo 📷",
+        txtUploadPhoto: "Click to upload photo",
+        titleSkills: "⚙️ CORE SKILLS",
+        btnAddSkill: "➕ Add Skill",
+        titleLanguages: "🌐 LANGUAGES",
+        titleSummary: "PROFESSIONAL SUMMARY",
+        titleExp: "PROFESSIONAL EXPERIENCE & PROJECTS",
+        btnAddExp: "➕ Add Experience / Project",
+        titleEdu: "EDUCATION & CERTIFICATIONS",
+        btnAddEdu: "➕ Add Education",
+        candidateName: "SADOON MOHSOUN AZIZ",
+        candidateTitle: "CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION",
+        candidateContact: "<span>📍 Baghdad, Iraq</span><span>|</span><span>📞 +964 781 533 3321</span><span>|</span><span>✉️ sadoonzangana@gmail.com</span>",
+        candidateSummary: "Customer Care Supervisor with proven track record in leading front-line support teams, optimizing SLA adherence, utilizing advanced MS Office tools, and designing automated KPI reporting pipelines to elevate customer satisfaction and operational efficiency.",
+        langArText: "<strong>Arabic:</strong> Native",
+        langEnText: "<strong>English:</strong> Professional Working",
+        aiModalTitle: "Smart CV AI Agent",
+        aiModalSubtitle: "Embedded offline intelligence engine — Zero API required",
+        aiTabParse: "🪄 Magic Auto-Fill",
+        aiTabSkills: "⚡ Skill Suggester",
+        aiTabSummary: "✍️ Summary Builder",
+        aiParseDesc: "Paste any raw notes, old resume, or details about yourself, and the AI agent will instantly structure and fill your CV:",
+        rawPlaceholder: "Example:\nMy name is Ali Mohammed, phone +964 7701234567, location Baghdad, email ali@gmail.com\nWorked as Operations Supervisor at Tech Corp from 2022 to present\nSkills: Leadership, MS Office, Advanced Excel, Word, Customer Care...",
+        btnAiParseAction: "🚀 Parse & Auto-Fill CV Now",
+        aiSkillsDesc: "Select category to get high-impact in-demand industry skills:",
+        aiSkillsFooterNote: "Click any skill to instantly add it to your CV.",
+        aiSummaryDesc: "Choose summary tone to generate instantly:",
+        btnSumExec: "👔 Executive",
+        btnSumResults: "📊 Results-Driven",
+        btnSumModern: "⚡ Modern & Dynamic",
+        btnApplySummary: "✅ Apply Summary to CV"
+      }
+    };
+
+    // تبديل اللغة مع عزل تام 100%
+    function setLanguage(lang, btn) {
+      document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const dict = I18N[lang];
+
+      if (lang === 'ar') {
+        document.body.classList.remove('lang-en');
+        document.body.classList.add('lang-ar');
+        document.documentElement.setAttribute('dir', 'rtl');
+        document.documentElement.setAttribute('lang', 'ar');
+        document.getElementById('aiModalBox').setAttribute('dir', 'rtl');
+      } else {
+        document.body.classList.remove('lang-ar');
+        document.body.classList.add('lang-en');
+        document.documentElement.setAttribute('dir', 'ltr');
+        document.documentElement.setAttribute('lang', 'en');
+        document.getElementById('aiModalBox').setAttribute('dir', 'ltr');
+      }
+
+      // ترجمة جميع عناصر الصفحة
+      document.getElementById('lblLang').innerText = dict.lblLang;
+      document.getElementById('lblDesign').innerText = dict.lblDesign;
+      document.getElementById('btnDesign1').innerText = dict.btnDesign1;
+      document.getElementById('btnDesign2').innerText = dict.btnDesign2;
+      document.getElementById('btnDesign3').innerText = dict.btnDesign3;
+      document.getElementById('btnDesign4').innerText = dict.btnDesign4;
+      document.getElementById('lblTheme').innerText = dict.lblTheme;
+      document.getElementById('btnAiOpen').innerText = dict.btnAiOpen;
+      document.getElementById('btnSavePdf').innerText = dict.btnSavePdf;
+      document.getElementById('txtPhotoLabel').innerHTML = dict.txtPhotoLabel;
+      document.getElementById('btnResetPhoto').innerText = dict.btnResetPhoto;
+      document.getElementById('btnChangePhoto').innerText = dict.btnChangePhoto;
+      document.getElementById('txtUploadPhoto').innerText = dict.txtUploadPhoto;
+
+      document.getElementById('titleSkills').innerText = dict.titleSkills;
+      document.getElementById('btnAddSkill').innerText = dict.btnAddSkill;
+      document.getElementById('titleLanguages').innerText = dict.titleLanguages;
+      document.getElementById('titleSummary').innerText = dict.titleSummary;
+      document.getElementById('titleExp').innerText = dict.titleExp;
+      document.getElementById('btnAddExp').innerText = dict.btnAddExp;
+      document.getElementById('titleEdu').innerText = dict.titleEdu;
+      document.getElementById('btnAddEdu').innerText = dict.btnAddEdu;
+
+      document.getElementById('txtCandidateName').innerText = dict.candidateName;
+      document.getElementById('txtCandidateTitle').innerText = dict.candidateTitle;
+      document.getElementById('txtCandidateContact').innerHTML = dict.candidateContact;
+      document.getElementById('txtSummary').innerText = dict.candidateSummary;
+
+      // تحديث قائمة اللغات
+      document.getElementById('languagesList').innerHTML = `
+        <div class="editable-item">
+          <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+          <div class="editable-block" contenteditable="true">${dict.langArText}</div>
+        </div>
+        <div class="editable-item">
+          <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+          <div class="editable-block" contenteditable="true">${dict.langEnText}</div>
+        </div>
+      `;
+
+      // ترجمة الـ AI Modal
+      document.getElementById('aiModalTitle').innerText = dict.aiModalTitle;
+      document.getElementById('aiModalSubtitle').innerText = dict.aiModalSubtitle;
+      document.getElementById('aiTabParse').innerText = dict.aiTabParse;
+      document.getElementById('aiTabSkills').innerText = dict.aiTabSkills;
+      document.getElementById('aiTabSummary').innerText = dict.aiTabSummary;
+      document.getElementById('aiParseDesc').innerText = dict.aiParseDesc;
+      document.getElementById('rawCvText').placeholder = dict.rawPlaceholder;
+      document.getElementById('btnAiParseAction').innerText = dict.btnAiParseAction;
+      document.getElementById('aiSkillsDesc').innerText = dict.aiSkillsDesc;
+      document.getElementById('aiSkillsFooterNote').innerText = dict.aiSkillsFooterNote;
+      document.getElementById('aiSummaryDesc').innerText = dict.aiSummaryDesc;
+      document.getElementById('btnSumExec').innerText = dict.btnSumExec;
+      document.getElementById('btnSumResults').innerText = dict.btnSumResults;
+      document.getElementById('btnSumModern').innerText = dict.btnSumModern;
+      document.getElementById('btnApplySummary').innerText = dict.btnApplySummary;
+
+      aiSuggestSkills();
+    }
+
+    // تغيير التصميم
     function setDesign(themeName, btn) {
       document.body.classList.remove('theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark');
       document.body.classList.add(themeName);
@@ -753,25 +944,7 @@
       if (btn) btn.classList.add('active');
     }
 
-    // 2. تبديل اللغة
-    function setLanguage(lang, btn) {
-      document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-
-      if (lang === 'ar') {
-        document.body.classList.remove('lang-en');
-        document.body.classList.add('lang-ar');
-        document.documentElement.setAttribute('dir', 'rtl');
-        document.documentElement.setAttribute('lang', 'ar');
-      } else {
-        document.body.classList.remove('lang-ar');
-        document.body.classList.add('lang-en');
-        document.documentElement.setAttribute('dir', 'ltr');
-        document.documentElement.setAttribute('lang', 'en');
-      }
-    }
-
-    // 3. تغيير اللون
+    // تغيير اللون
     function setColor(primaryColor, sidebarColor, el) {
       document.documentElement.style.setProperty('--primary', primaryColor);
       document.documentElement.style.setProperty('--primary-light', primaryColor + '15');
@@ -782,7 +955,7 @@
 
     function deleteItem(btn) {
       const item = btn.closest('.editable-item');
-      if (item && confirm('هل أنت متأكد من الحذف؟')) item.remove();
+      if (item && confirm('هل أنت متأكد من الحذف؟ / Are you sure to delete?')) item.remove();
     }
 
     function cloneItem(btn) {
@@ -797,7 +970,7 @@
       div.className = 'editable-item';
       div.innerHTML = `
         <div class="item-actions">
-          <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين">🪄 حسّن</button>
+          <button class="act-btn magic" onclick="enhanceBullet(this)" title="تحسين">🪄 ${isAr ? 'حسّن' : 'Enhance'}</button>
           <button class="act-btn clone" onclick="cloneItem(this)">📋</button>
           <button class="act-btn delete" onclick="deleteItem(this)">🗑️</button>
         </div>
@@ -810,7 +983,7 @@
           <div class="job-date editable-block" contenteditable="true">2024 – Present</div>
         </div>
         <ul class="bullet-points editable-block" contenteditable="true">
-          <li>${isAr ? 'اكتب أبرز الإنجازات هنا...' : 'Key achievement and responsibility...'}</li>
+          <li>${isAr ? 'اكتب أبرز الإنجازات والمسؤوليات هنا...' : 'Key achievement and core responsibility...'}</li>
         </ul>
       `;
       list.appendChild(div);
@@ -874,7 +1047,92 @@
       updatePhoto();
     }
 
-    /* ================= محرك وكيل الذكاء الاصطناعي (Embedded AI Agent Engine) ================= */
+    /* ================= بنك المهارات الضخم وقاعدة المعرفة للـ AI ================= */
+    const skillsDatabase = {
+      office: {
+        ar: [
+          'Microsoft Excel المتقدم (VLOOKUP, Pivot Tables, المعادلات)', 'Microsoft Word (تنسيق التقارير والنماذج الرسمية)',
+          'Microsoft PowerPoint (تصميم العروض التقديمية الاحترافية)', 'Microsoft Outlook (إدارة المراسلات والتقويم)',
+          'Google Docs & Google Sheets', 'إدخال البيانات السريع والدقيق (Fast Data Entry)',
+          'الطباعة باللمس عربي وإنجليزي (Touch Typing)', 'إدارة وتحويل ملفات PDF والنماذج الإلكترونية',
+          'Microsoft Teams & Zoom للمراسلات والاجتماعات', 'الأرشفة الإلكترونية وتنظيم الملفات السحابية'
+        ],
+        en: [
+          'Advanced Microsoft Excel (VLOOKUP, XLOOKUP, Pivot Tables)', 'Microsoft Word (Advanced Document Formatting)',
+          'Microsoft PowerPoint (Executive Presentations)', 'Microsoft Outlook (Email & Calendar Management)',
+          'Google Docs, Sheets & Workspace', 'Fast & Accurate Data Entry (70+ WPM)',
+          'Touch Typing (Arabic & English)', 'PDF Forms & Digital Document Management',
+          'Microsoft Teams & Zoom Collaboration', 'Digital Archiving & Cloud Drive Management'
+        ]
+      },
+      customercare: {
+        ar: [
+          'إدارة علاقات العملاء (CRM)', 'متابعة مؤشرات الأداء (KPIs & SLA Compliance)',
+          'التعامل مع الشكاوى الحرجة والتصعيد (Escalation Handling)', 'خدمة العملاء عبر الهاتف والدردشة الحية (Omnichannel Support)',
+          'أنظمة التذاكر (Zendesk, Freshdesk, Jira)', 'ضمان جودة المكالمات (Call Quality Assurance)',
+          'مهارات حل النزاعات وتهدئة العملاء', 'بناء ولاء العملاء وتجربة المستخدم (CX)',
+          'إدارة وتوزيع ضغط العمل (Workforce Management)', 'التواصل الفعال والاستماع النشط'
+        ],
+        en: [
+          'Customer Relationship Management (CRM)', 'SLA & KPI Tracking',
+          'Escalation & Critical Incident Management', 'Omnichannel Support (Phone, Live Chat, Email)',
+          'Ticketing Systems (Zendesk, Freshdesk, Jira)', 'Call Quality Assurance (QA)',
+          'Conflict Resolution & De-escalation', 'Customer Experience (CX) & Retention',
+          'Workforce Management & Queue Dispatch', 'Active Listening & Empathy'
+        ]
+      },
+      soft: {
+        ar: [
+          'القيادة والإشراف على فرق العمل', 'إدارة الوقت وتحديد الأولويات تحت الضغط',
+          'التواصل الشفهي والكتابي الاحترافي', 'حل المشكلات والتفكير التحليلي',
+          'العمل الجماعي والتعاون بين الأقسام', 'المرونة وسرعة التكيف مع التغيير',
+          'التفاوض والإقناع الإيجابي', 'اتخاذ القرارات السريعة في بيئة العمل الديناميكية'
+        ],
+        en: [
+          'Team Leadership & Supervision', 'Time Management & Prioritization under Pressure',
+          'Professional Verbal & Written Communication', 'Analytical Thinking & Problem Solving',
+          'Cross-functional Teamwork & Collaboration', 'Adaptability & Agility in Fast-paced Environments',
+          'Positive Negotiation & Persuasion', 'Strategic Decision Making'
+        ]
+      },
+      data: {
+        ar: [
+          'تحليل البيانات وبناء لوحات المؤشرات (Power BI & Tableau)', 'استعلامات قواعد البيانات الأساسية (SQL Queries)',
+          'أتمتة التقارير الدورية (Reporting Automation)', 'إعداد الجداول المحورية والرسوم البيانية المتقدمة',
+          'تحليل اتجاهات الأعمال والأداء التشغيلي', 'تدقيق ومطابقة البيانات الرقمية'
+        ],
+        en: [
+          'Data Analysis & Dashboards (Power BI & Tableau)', 'SQL Basics & Query Optimization',
+          'KPI Reporting & Automated Pipelines', 'Advanced Pivot Tables & Charting',
+          'Business Trend & Operational Workload Analysis', 'Data Auditing & Quality Verification'
+        ]
+      },
+      tech: {
+        ar: [
+          'الدعم الفني واستكشاف الأخطاء وإصلاحها (IT Support)', 'إدارة أنظمة التشغيل (Windows 11 / macOS)',
+          'أساسيات صيانة الحاسوب والشبكات (Hardware & Networking)', 'أمن المعلومات وحماية البيانات الرقمية',
+          'استخدام أدوات الإنتاجية والذكاء الاصطناعي (AI Tools)', 'إدارة صلاحيات المستخدمين والبريد المؤسسي'
+        ],
+        en: [
+          'IT Technical Support & Troubleshooting', 'Operating Systems Management (Windows / macOS)',
+          'Hardware, Peripherals & Basic Networking', 'Cybersecurity & Data Privacy Best Practices',
+          'AI-assisted Productivity Tools & Automation', 'User Access Control & Corporate Email Admin'
+        ]
+      },
+      sales: {
+        ar: [
+          'استراتيجيات المبيعات (B2B & B2C)', 'التفاوض وإبرام العقود والصفقات',
+          'خدمة نقاط البيع وإدارة النقد (POS & Cash Handling)', 'إعداد عروض الأسعار ومتابعة الفواتير',
+          'التسويق الرقمي والتواصل عبر منصات التواصل', 'بناء علاقات طويلة الأمد مع الزبائن والشركاء'
+        ],
+        en: [
+          'B2B & B2C Sales Strategies', 'Contract Negotiation & Closing Deals',
+          'Point of Sale (POS) & Cash Operations', 'Quotations, Billing & Invoice Management',
+          'Digital Communication & Client Outreach', 'Client Relationship & Account Management'
+        ]
+      }
+    };
+
     function openAiAgent() {
       document.getElementById('aiModalOverlay').style.display = 'flex';
       aiSuggestSkills();
@@ -896,75 +1154,50 @@
       document.getElementById('tabSummary').style.display = tabName === 'summary' ? 'flex' : 'none';
     }
 
-    // 1. الاستيراد والملء السحري التلقائي (NLP Text Parser)
+    // 1. الاستيراد والملء السحري التلقائي
     function aiParseAndFill() {
       const text = document.getElementById('rawCvText').value;
+      const isAr = document.body.classList.contains('lang-ar');
       if (!text.trim()) {
-        alert('الرجاء إدخال أو لصق نص أولاً!');
+        alert(isAr ? 'الرجاء إدخال أو لصق نص أولاً!' : 'Please paste text first!');
         return;
       }
 
-      // استخراج الإيميل
       const emailMatch = text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/);
-      // استخراج رقم الهاتف
       const phoneMatch = text.match(/(\+?\d[\d -]{7,}\d)/);
-      
       const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
       
       if (lines.length > 0) {
-        // إذا كان السطر الأول اسماً
         let firstLine = lines[0].replace(/اسمي|أنا|name is|i am/gi, '').replace(/[:\-]/g, '').trim();
         if (firstLine.length < 35) {
           document.getElementById('txtCandidateName').innerText = firstLine;
         }
       }
 
-      // تحديث جهات الاتصال
       let contactStr = '';
-      if (text.includes('بغداد') || text.toLowerCase().includes('baghdad')) contactStr += '📍 Baghdad, Iraq | ';
+      if (text.includes('بغداد') || text.toLowerCase().includes('baghdad')) contactStr += (isAr ? '📍 بغداد، العراق | ' : '📍 Baghdad, Iraq | ');
       if (phoneMatch) contactStr += '📞 ' + phoneMatch[0] + ' | ';
       if (emailMatch) contactStr += '✉️ ' + emailMatch[0];
-      if (contactStr) document.getElementById('txtCandidateContact').innerText = contactStr;
+      if (contactStr) document.getElementById('txtCandidateContact').innerHTML = contactStr;
 
-      // تحديث النبذة
       const summaryCandidate = lines.find(l => l.length > 40 && !l.includes('@'));
       if (summaryCandidate) {
         document.getElementById('txtSummary').innerText = summaryCandidate;
       }
 
-      alert('✨ قام وكيل الذكاء الاصطناعي بتحليل النص وتحديث السيرة الذاتية بنجاح!');
+      alert(isAr ? '✨ قام وكيل الذكاء الاصطناعي بتحليل النص وتحديث السيرة الذاتية بنجاح!' : '✨ AI agent parsed the text and updated your CV successfully!');
       closeAiAgent();
     }
 
-    // 2. مقترح المهارات الذكي (Skill Suggester Database)
-    const skillsDatabase = {
-      customercare: [
-        'Customer Relationship Management (CRM)', 'SLA & KPI Tracking', 'Escalation Management',
-        'Call Quality Assurance', 'Workforce Management (WFM)', 'Zendesk & Freshdesk', 'Conflict Resolution'
-      ],
-      data: [
-        'Data Analysis & Visualization', 'SQL Query Optimization', 'Power BI & Tableau',
-        'Advanced Excel (VBA/Macros)', 'Python for Data', 'KPI Dashboard Automation', 'Reporting Pipelines'
-      ],
-      tech: [
-        'JavaScript / TypeScript', 'React & Modern Frontend', 'Node.js & REST APIs',
-        'Git & CI/CD Pipelines', 'Cloud Architecture (GCP/AWS)', 'Database Optimization', 'System Troubleshooting'
-      ],
-      sales: [
-        'B2B & B2C Sales Strategy', 'Lead Generation & Pipeline', 'Contract Negotiation',
-        'Account Management', 'Market Research & Analysis', 'Cold Outreach & Pitching', 'Revenue Optimization'
-      ],
-      management: [
-        'Strategic Team Leadership', 'Performance Coaching', 'Agile & Scrum Methodologies',
-        'Cross-functional Coordination', 'Budgeting & Cost Reduction', 'Process Automation', 'Change Management'
-      ]
-    };
-
+    // 2. مقترح المهارات الذكي مع بنك الأوفيس والمهارات الشاملة
     function aiSuggestSkills() {
       const domain = document.getElementById('jobDomainSelect').value;
+      const isAr = document.body.classList.contains('lang-ar');
       const grid = document.getElementById('suggestedSkillsGrid');
       grid.innerHTML = '';
-      const list = skillsDatabase[domain] || skillsDatabase.customercare;
+      const categoryData = skillsDatabase[domain] || skillsDatabase.office;
+      const list = isAr ? categoryData.ar : categoryData.en;
+
       list.forEach(skill => {
         const pill = document.createElement('div');
         pill.className = 'ai-pill';
@@ -973,25 +1206,25 @@
           addSkill('• ' + skill);
           pill.style.background = '#dcfce7';
           pill.style.borderColor = '#86efac';
-          pill.innerText = '✓ تمت الإضافة';
+          pill.innerText = isAr ? '✓ تمت الإضافة' : '✓ Added';
         };
         grid.appendChild(pill);
       });
     }
 
-    // 3. صانع النبذة التلقائي (Smart Summary Generator)
+    // 3. صانع النبذة التلقائي
     const summaryTemplates = {
       executive: {
-        ar: "مشرف وقائد عمليات ذو خبرة استراتيجية في تحسين كفاءة الأداء، إدارة فرق العمل المتعددة، وتصميم لوحات التقارير المؤتمتة لضمان أعلى معايير الجودة والالتزام باتفاقيات الخدمة (SLA).",
-        en: "Results-driven Operations & Customer Care Supervisor with extensive track record in leading high-performing teams, optimizing operational workflows, and implementing automated KPI reporting systems."
+        ar: "مشرف وقائد عمليات ذو خبرة استراتيجية في تحسين كفاءة الأداء، إدارة فرق العمل، وإتقان برامج الأوفيس وأتمتة لوحات التقارير لضمان أعلى معايير الجودة والالتزام باتفاقيات الخدمة (SLA).",
+        en: "Results-driven Operations & Customer Care Supervisor with extensive track record in leading teams, advanced MS Office proficiency, and implementing automated KPI reporting systems."
       },
       results: {
-        ar: "أخصائي عمليات موجه لتحقيق النتائج والأرقام القياسية؛ ساهم في رفع مؤشرات رضا العملاء (CSAT) بنسبة 25% وتقليص وقت الاستجابة، مع خبرة متقدمة في أتمتة تدفقات البيانات.",
-        en: "Metrics-focused professional with a proven record of elevating CSAT scores by 25% and streamlining operational pipelines through data automation and proactive team coaching."
+        ar: "أخصائي عمليات موجه للأرقام والنتائج؛ ساهم في رفع مؤشرات رضا العملاء (CSAT) بنسبة 25% وتقليص وقت الاستجابة، مع خبرة متقدمة في تحليل البيانات عبر Excel المتقدم.",
+        en: "Metrics-focused professional with a proven record of elevating CSAT scores by 25% and streamlining operational pipelines through Excel data modeling and proactive team coaching."
       },
       modern: {
-        ar: "قائد عمليات عصري يجمع بين الإشراف الميداني الفعال واستخدام أدوات الذكاء الاصطناعي وأتمتة التقارير لخلق بيئة عمل سريعة، مرنة، وعالية الإنتاجية.",
-        en: "Modern operational leader leveraging AI-assisted automation, real-time analytics, and agile team management to elevate operational efficiency and customer experience."
+        ar: "قائد عمليات عصري يجمع بين الإشراف الميداني الفعال واستخدام أدوات الأوفيس والذكاء الاصطناعي لخلق بيئة عمل سريعة، مرنة، وعالية الإنتاجية.",
+        en: "Modern operational leader leveraging AI tools, advanced MS Office suite, and agile team management to elevate operational efficiency and customer experience."
       }
     };
 
@@ -1009,11 +1242,12 @@
         aiGenerateSummary('executive');
       }
       document.getElementById('txtSummary').innerText = selectedSummaryText;
-      alert('✅ تم تطبيق النبذة المهنية في سيرتك الذاتية!');
+      const isAr = document.body.classList.contains('lang-ar');
+      alert(isAr ? '✅ تم تطبيق النبذة المهنية في سيرتك الذاتية!' : '✅ Professional summary applied to CV!');
       closeAiAgent();
     }
 
-    // 4. تحسين الصياغة السريع (Magic Bullet Enhancer)
+    // 4. تحسين الصياغة السريع
     function enhanceBullet(btn) {
       const item = btn.closest('.editable-item');
       const ul = item.querySelector('.bullet-points');
@@ -1022,17 +1256,17 @@
         if (isAr) {
           ul.innerHTML = `
             <li>قيادة وتوجيه فريق العمل لرفع كفاءة الاستجابة ومطابقة معايير الجودة بنسبة 98%.</li>
-            <li>تطوير لوحات تحكم تفاعلية لرصد مؤشرات الأداء الحية وتوزيع ضغط المهام أوتوماتيكياً.</li>
+            <li>إتقان إعداد التقارير اليومية والأسبوعية باستخدام Microsoft Excel المتقدم ولوحات التحكم.</li>
             <li>إدارة وحل المشكلات المعقدة والتنسيق الاستراتيجي مع الإدارات المختلفة لتحقيق أعلى درجات الرضا.</li>
           `;
         } else {
           ul.innerHTML = `
             <li>Spearheaded a high-performance cross-functional team, consistently exceeding SLA targets by 15%.</li>
-            <li>Engineered automated performance dashboards, cutting manual reporting time by 40%.</li>
+            <li>Generated executive analytics and operational KPI reports using Advanced Microsoft Excel and dashboards.</li>
             <li>Resolved high-stake client escalations and collaborated cross-departmentally to drive process improvements.</li>
           `;
         }
-        alert('🪄 تم تحسين صياغة الخبرة بأسلوب قيادي واحترافي!');
+        alert(isAr ? '🪄 تم تحسين صياغة الخبرة بأسلوب قيادي واحترافي!' : '🪄 Experience bullet points enhanced with executive impact!');
       }
     }
   </script>
