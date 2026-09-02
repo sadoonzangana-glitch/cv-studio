@@ -33,9 +33,7 @@
       padding: 20px 10px 60px 10px;
     }
 
-    body.lang-en {
-      font-family: 'Inter', 'Cairo', sans-serif;
-    }
+    body.lang-en { font-family: 'Inter', 'Cairo', sans-serif; }
 
     /* الشريط العلوي */
     .controls-container {
@@ -183,7 +181,7 @@
       cursor: pointer;
     }
 
-    /* ================= صفحة الـ CV العامة ================= */
+    /* ================= صفحة الـ CV ================= */
     .cv-page {
       max-width: 920px;
       margin: 0 auto;
@@ -198,22 +196,32 @@
     .lang-ar .cv-page { direction: rtl; text-align: right; }
     .lang-en .cv-page { direction: ltr; text-align: left; }
 
-    .photo-wrapper {
-      width: 100%;
-      height: 200px;
+    /* تنسيق الصورة الشخصية */
+    .photo-box {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      border: 2px dashed rgba(255, 255, 255, 0.25);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.2s;
     }
 
-    .photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-    .photo-placeholder { color: #cbd5e1; text-align: center; font-size: 12px; padding: 10px; }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform-origin: center center;
+    }
+
+    .photo-box .placeholder-txt {
+      color: #cbd5e1;
+      text-align: center;
+      font-size: 11px;
+      padding: 8px;
+    }
 
     .candidate-name {
       font-size: 26px;
@@ -239,7 +247,7 @@
       gap: 12px;
       font-size: 12px;
       color: var(--text-muted);
-      margin-top: 10px;
+      margin-top: 8px;
       outline: none;
     }
 
@@ -349,12 +357,10 @@
     .lang-en .bullet-points { padding-left: 18px; }
 
     /* =========================================================================
-       1. EXECUTIVE DESIGN (كلاسيكي جانبي - Full Vertical Sidebar)
+       1. EXECUTIVE DESIGN (كلاسيكي جانبي - عمود داكن كامل)
        ========================================================================= */
-    .theme-executive .cv-page {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-    }
+    .theme-executive .top-header-section { display: none; }
+    .theme-executive .cv-page { display: grid; grid-template-columns: 280px 1fr; }
     .theme-executive .cv-sidebar {
       background: var(--sidebar-bg);
       color: var(--sidebar-text);
@@ -363,61 +369,48 @@
       flex-direction: column;
       gap: 25px;
     }
-    .theme-executive .cv-main {
-      padding: 35px 32px;
+    .theme-executive .sidebar-photo-wrapper {
+      width: 100%;
+      height: 220px;
+      border-radius: 10px;
       display: flex;
-      flex-direction: column;
-      gap: 22px;
     }
-    .theme-executive .header-banner {
+    .theme-executive .cv-main { padding: 35px 32px; display: flex; flex-direction: column; gap: 22px; }
+    .theme-executive .main-header-banner {
       background: var(--primary-light);
       padding: 18px 20px;
       border-radius: 8px;
     }
-    .lang-ar.theme-executive .header-banner { border-right: 5px solid var(--primary); }
-    .lang-en.theme-executive .header-banner { border-left: 5px solid var(--primary); }
+    .lang-ar.theme-executive .main-header-banner { border-right: 5px solid var(--primary); }
+    .lang-en.theme-executive .main-header-banner { border-left: 5px solid var(--primary); }
     .theme-executive .inline-skills-section { display: none; }
 
     /* =========================================================================
-       2. SILICON TECH DESIGN (هيدر علوي ممتد + شبكة عصرية بالكامل)
+       2. SILICON TECH DESIGN (هيدر علوي ممتد + صورة دائرية بجانب الاسم)
        ========================================================================= */
-    .theme-tech .cv-page {
+    .theme-tech .cv-sidebar { display: none; }
+    .theme-tech .main-header-banner { display: none; }
+    .theme-tech .top-header-section {
       display: flex;
-      flex-direction: column;
-    }
-    .theme-tech .cv-sidebar {
-      order: 1;
-      display: flex;
-      flex-direction: row;
       align-items: center;
       background: var(--sidebar-bg);
       color: #ffffff;
-      padding: 22px 30px;
-      gap: 25px;
+      padding: 24px 30px;
+      gap: 24px;
+      border-bottom: 4px solid var(--primary);
     }
-    .theme-tech .photo-wrapper {
+    .theme-tech .top-photo-wrapper {
       width: 120px;
       height: 120px;
       min-width: 120px;
       border-radius: 50%;
       border: 3px solid #ffffff;
-    }
-    .theme-tech .cv-sidebar > div { display: none; } /* إخفاء القوائم الجانبية من الهيدر العلوي */
-    
-    .theme-tech .cv-main {
-      order: 2;
-      padding: 30px 35px;
       display: flex;
-      flex-direction: column;
-      gap: 22px;
     }
-    .theme-tech .header-banner {
-      background: transparent;
-      padding: 0 0 10px 0;
-      border: none;
-      border-bottom: 2px solid var(--primary);
-      border-radius: 0;
-    }
+    .theme-tech .top-header-text .candidate-name { color: #ffffff; font-size: 26px; }
+    .theme-tech .top-header-text .candidate-title { color: #38bdf8; font-size: 13px; }
+    .theme-tech .top-header-text .contact-info { color: #cbd5e1; }
+    .theme-tech .cv-main { padding: 30px 35px; display: flex; flex-direction: column; gap: 22px; }
     .theme-tech .inline-skills-section {
       display: block;
       background: #f8fafc;
@@ -427,42 +420,30 @@
     }
 
     /* =========================================================================
-       3. MODERN CORPORATE DESIGN (تصميم الشركات - هيدر مقسم وبطاقات أنيقة)
+       3. MODERN CORPORATE (هيدر أبيض عصري + صورة مربعة بزوايا ناعمة)
        ========================================================================= */
-    .theme-corporate .cv-page {
-      display: block;
-      padding: 0;
-      background: #ffffff;
-    }
-    .theme-corporate .cv-sidebar {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      align-items: center;
-      background: linear-gradient(135deg, var(--primary), var(--sidebar-bg));
-      color: #ffffff;
-      padding: 25px 35px;
-      gap: 25px;
-    }
-    .theme-corporate .photo-wrapper {
-      width: 130px;
-      height: 130px;
-      border-radius: 12px;
-      border: 3px solid #ffffff;
-    }
-    .theme-corporate .cv-sidebar > div { display: none; }
-    .theme-corporate .cv-main {
-      padding: 30px 35px;
+    .theme-corporate .cv-sidebar { display: none; }
+    .theme-corporate .main-header-banner { display: none; }
+    .theme-corporate .top-header-section {
       display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-    .theme-corporate .header-banner {
+      align-items: center;
       background: #f8fafc;
-      padding: 16px 20px;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
+      padding: 25px 35px;
+      gap: 24px;
+      border-bottom: 2px solid var(--primary);
     }
-    .theme-corporate .candidate-name { color: var(--primary); }
+    .theme-corporate .top-photo-wrapper {
+      width: 125px;
+      height: 125px;
+      min-width: 125px;
+      border-radius: 14px;
+      border: 3px solid var(--primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+    }
+    .theme-corporate .top-header-text .candidate-name { color: var(--primary); font-size: 28px; }
+    .theme-corporate .top-header-text .candidate-title { color: #334155; font-size: 13.5px; font-weight: 700; }
+    .theme-corporate .cv-main { padding: 30px 35px; display: flex; flex-direction: column; gap: 22px; }
     .theme-corporate .inline-skills-section {
       display: block;
       background: var(--primary-light);
@@ -471,17 +452,14 @@
     }
 
     /* =========================================================================
-       4. DARK MODE DESIGN (الوضع الليلي الاحترافي)
+       4. DARK MODE (الوضع الليلي)
        ========================================================================= */
-    .theme-dark .cv-page {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      background: #0b1120;
-      color: #cbd5e1;
-    }
+    .theme-dark .top-header-section { display: none; }
+    .theme-dark .cv-page { display: grid; grid-template-columns: 280px 1fr; background: #0b1120; color: #cbd5e1; }
     .theme-dark .cv-sidebar { background: #070c18; padding: 30px 22px; display: flex; flex-direction: column; gap: 25px; }
+    .theme-dark .sidebar-photo-wrapper { width: 100%; height: 220px; border-radius: 10px; display: flex; border-color: #38bdf8; }
     .theme-dark .cv-main { background: #0b1120; padding: 35px 32px; display: flex; flex-direction: column; gap: 22px; }
-    .theme-dark .header-banner { background: #1e293b; border-color: var(--primary); }
+    .theme-dark .main-header-banner { background: #1e293b; border-color: var(--primary); }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
@@ -489,16 +467,13 @@
     .theme-dark .inline-skills-section { display: none; }
 
     /* =========================================================================
-       5. ATS CLEAN (معتمد دولياً - بدون صورة - Single Column)
+       5. ATS CLEAN (بدون صورة - عمود فردي معتمد)
        ========================================================================= */
-    .theme-ats .cv-page {
-      display: block;
-      padding: 40px 45px;
-      background: #ffffff;
-    }
-    .theme-ats .cv-sidebar { display: none !important; }
+    .theme-ats .top-header-section { display: none; }
+    .theme-ats .cv-sidebar { display: none; }
+    .theme-ats .cv-page { display: block; padding: 40px 45px; background: #ffffff; }
     .theme-ats .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-ats .header-banner {
+    .theme-ats .main-header-banner {
       background: transparent;
       border: none;
       padding: 0 0 15px 0;
@@ -513,17 +488,13 @@
     .theme-ats .inline-skills-section { display: block; }
 
     /* =========================================================================
-       6. NORDIC MINIMAL (اسكندنافي أنيق - بدون صورة)
+       6. NORDIC MINIMAL (بدون صورة - اسكندنافي عصري)
        ========================================================================= */
-    .theme-nordic .cv-page {
-      display: block;
-      padding: 35px 40px;
-      background: #ffffff;
-      border-top: 8px solid var(--primary);
-    }
-    .theme-nordic .cv-sidebar { display: none !important; }
+    .theme-nordic .top-header-section { display: none; }
+    .theme-nordic .cv-sidebar { display: none; }
+    .theme-nordic .cv-page { display: block; padding: 35px 40px; background: #ffffff; border-top: 8px solid var(--primary); }
     .theme-nordic .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-nordic .header-banner {
+    .theme-nordic .main-header-banner {
       background: var(--primary-light);
       padding: 20px 24px;
       border-radius: 12px;
@@ -535,17 +506,13 @@
     .theme-nordic .inline-skills-section { display: block; background: #f8fafc; padding: 14px 18px; border-radius: 8px; border: 1px solid #e2e8f0; }
 
     /* =========================================================================
-       7. HARVARD CLASSIC (هارفارد الأكاديمي التنفيذي - بدون صورة)
+       7. HARVARD CLASSIC (بدون صورة - هارفارد الأكاديمي)
        ========================================================================= */
-    .theme-harvard .cv-page {
-      display: block;
-      padding: 45px 50px;
-      background: #ffffff;
-      font-family: 'Merriweather', 'Cairo', serif;
-    }
-    .theme-harvard .cv-sidebar { display: none !important; }
+    .theme-harvard .top-header-section { display: none; }
+    .theme-harvard .cv-sidebar { display: none; }
+    .theme-harvard .cv-page { display: block; padding: 45px 50px; background: #ffffff; font-family: 'Merriweather', 'Cairo', serif; }
     .theme-harvard .cv-main { padding: 0; display: flex; flex-direction: column; gap: 20px; }
-    .theme-harvard .header-banner {
+    .theme-harvard .main-header-banner {
       background: transparent;
       border: none;
       padding: 0 0 10px 0;
@@ -553,22 +520,10 @@
       border-bottom: 1px solid #1e293b;
       border-radius: 0;
     }
-    .theme-harvard .candidate-name {
-      font-family: 'Merriweather', serif;
-      font-size: 27px;
-      font-weight: 900;
-      color: #111827;
-      letter-spacing: 0.5px;
-    }
+    .theme-harvard .candidate-name { font-family: 'Merriweather', serif; font-size: 27px; font-weight: 900; color: #111827; }
     .theme-harvard .candidate-title { font-size: 13px; color: #4b5563; font-weight: 600; }
     .theme-harvard .contact-info { justify-content: center; font-size: 12px; }
-    .theme-harvard .section-title {
-      font-family: 'Merriweather', serif;
-      font-size: 14px;
-      color: #111827;
-      border-bottom: 1px solid #9ca3af;
-      padding-bottom: 3px;
-    }
+    .theme-harvard .section-title { font-family: 'Merriweather', serif; font-size: 14px; color: #111827; border-bottom: 1px solid #9ca3af; }
     .theme-harvard .inline-skills-section { display: block; }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
@@ -713,7 +668,6 @@
   <!-- شريط التحكم العلوي -->
   <div class="controls-container">
     <div class="top-toolbar">
-      <!-- الصف 1: اللغة، الألوان، أزرار الإجراءات -->
       <div class="toolbar-row">
         <!-- اللغة -->
         <div class="lang-selector">
@@ -745,7 +699,7 @@
         </div>
       </div>
 
-      <!-- الصف 2: اختيار الدزاين (مع صورة وبدون صورة) -->
+      <!-- اختيار الدزاين -->
       <div class="toolbar-row" style="border-top: 1px solid #f1f5f9; padding-top: 8px;">
         <div class="design-selector">
           <span style="font-size: 12.5px; font-weight: bold;" id="lblDesign">📷 تصاميم مع صورة:</span>
@@ -764,7 +718,7 @@
       </div>
     </div>
 
-    <!-- التحكم بالصورة (يختفي تلقائياً في التصاميم التي بدون صورة) -->
+    <!-- التحكم بالصورة -->
     <div class="photo-controls-bar" id="photoControlsBar">
       <span id="txtPhotoLabel">🖼️ <strong>التحكم بالصورة:</strong></span>
       <label id="lblZoom">🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
@@ -776,16 +730,38 @@
     </div>
   </div>
 
-  <!-- صفحة الـ CV -->
+  <!-- ================= صفحة السيرة الذاتية ================= -->
   <div class="cv-page" id="cvContainer">
-    
-    <!-- القائمة الجانبية / الهيدر الجانبي -->
+
+    <!-- الهيدر العلوي المدمج (يظهر في Silicon Tech و Modern Corporate) -->
+    <header class="top-header-section" id="topHeaderSection">
+      <div class="photo-box top-photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
+        <img class="profile-img-el" src="" alt="Profile Photo" style="display:none;">
+        <div class="placeholder-txt">
+          <span style="font-size:24px;">👤</span><br>
+          <span class="txt-upload-photo-label">تحميل صورتك</span>
+        </div>
+      </div>
+      <div class="top-header-text">
+        <h1 class="candidate-name editable-block" contenteditable="true">سعدون محسن عزيز</h1>
+        <div class="candidate-title editable-block" contenteditable="true">مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير</div>
+        <div class="contact-info editable-block" contenteditable="true">
+          <span>📍 بغداد، العراق</span>
+          <span>|</span>
+          <span>📞 +964 770 000 0000</span>
+          <span>|</span>
+          <span>✉️ sadoon.email@example.com</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- القائمة الجانبية (تظهر في Executive و Dark Mode) -->
     <aside class="cv-sidebar" id="sidebarContainer">
-      <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()">
-        <img id="profileImg" src="" alt="Profile Photo" style="display:none;">
-        <div class="photo-placeholder" id="photoPlaceholder">
+      <div class="photo-box sidebar-photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
+        <img class="profile-img-el" src="" alt="Profile Photo" style="display:none;">
+        <div class="placeholder-txt">
           <span style="font-size:32px;">👤</span><br>
-          <span id="txtUploadPhoto">اضغط لتحميل صورتك</span>
+          <span class="txt-upload-photo-label">اضغط لتحميل صورتك</span>
         </div>
       </div>
 
@@ -829,7 +805,8 @@
 
     <!-- المحتوى الرئيسي -->
     <main class="cv-main">
-      <div class="header-banner">
+      <!-- هيدر المتن (يظهر في Executive، Dark Mode، والتصاميم بدون صورة) -->
+      <div class="main-header-banner" id="mainHeaderBanner">
         <h1 class="candidate-name editable-block" contenteditable="true" id="txtCandidateName">سعدون محسن عزيز</h1>
         <div class="candidate-title editable-block" contenteditable="true" id="txtCandidateTitle">مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير</div>
         <div class="contact-info editable-block" contenteditable="true" id="txtCandidateContact">
@@ -877,7 +854,7 @@
         <button class="add-btn" onclick="addExperience()" id="btnAddExp">➕ إضافة خبرة أو مشروع جديد</button>
       </div>
 
-      <!-- قسم المهارات المدمج داخل المتن (يظهر في التصاميم ذات الهيدر العلوي والتصاميم بدون صورة) -->
+      <!-- المهارات المدمجة داخل الصفحة -->
       <div class="inline-skills-section">
         <h3 class="section-title"><span>⚙️</span> <span contenteditable="true" id="titleInlineSkills">المهارات والكفاءات (Core Skills)</span></h3>
         <div class="editable-block" contenteditable="true" id="txtInlineSkills" style="font-size: 13px; line-height: 1.6; color: #334155;">
@@ -992,7 +969,7 @@
         lblPanY: "↕️ عمودي:",
         btnResetPhoto: "إعادة ضبط",
         btnChangePhoto: "تغيير صورتك 📷",
-        txtUploadPhoto: "اضغط لتحميل صورتك",
+        txtUploadPhotoLabel: "اضغط لتحميل صورتك",
         titleSkills: "⚙️ المهارات الأساسية",
         titleInlineSkills: "المهارات والكفاءات (Core Skills)",
         btnAddSkill: "➕ إضافة مهارة",
@@ -1045,7 +1022,7 @@
         lblPanY: "↕️ Pan Y:",
         btnResetPhoto: "Reset",
         btnChangePhoto: "Change Photo 📷",
-        txtUploadPhoto: "Click to upload photo",
+        txtUploadPhotoLabel: "Click to upload photo",
         titleSkills: "⚙️ CORE SKILLS",
         titleInlineSkills: "CORE COMPETENCIES & SKILLS",
         btnAddSkill: "➕ Add Skill",
@@ -1120,7 +1097,8 @@
       document.getElementById('lblPanY').innerHTML = `${dict.lblPanY} <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()">`;
       document.getElementById('btnResetPhoto').innerText = dict.btnResetPhoto;
       document.getElementById('btnChangePhoto').innerText = dict.btnChangePhoto;
-      document.getElementById('txtUploadPhoto').innerText = dict.txtUploadPhoto;
+      
+      document.querySelectorAll('.txt-upload-photo-label').forEach(el => el.innerText = dict.txtUploadPhotoLabel);
 
       document.getElementById('titleSkills').innerText = dict.titleSkills;
       document.getElementById('titleInlineSkills').innerText = dict.titleInlineSkills;
@@ -1132,9 +1110,9 @@
       document.getElementById('titleEdu').innerText = dict.titleEdu;
       document.getElementById('btnAddEdu').innerText = dict.btnAddEdu;
 
-      document.getElementById('txtCandidateName').innerText = dict.candidateName;
-      document.getElementById('txtCandidateTitle').innerText = dict.candidateTitle;
-      document.getElementById('txtCandidateContact').innerHTML = dict.candidateContact;
+      document.querySelectorAll('.candidate-name').forEach(el => el.innerText = dict.candidateName);
+      document.querySelectorAll('.candidate-title').forEach(el => el.innerText = dict.candidateTitle);
+      document.querySelectorAll('.contact-info').forEach(el => el.innerHTML = dict.candidateContact);
       document.getElementById('txtSummary').innerText = dict.candidateSummary;
       document.getElementById('txtInlineSkills').innerText = dict.candidateInlineSkills;
 
@@ -1258,15 +1236,21 @@
       list.appendChild(div);
     }
 
+    let uploadedImgData = '';
+
     function handleImageUpload(e) {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          const img = document.getElementById('profileImg');
-          img.src = evt.target.result;
-          img.style.display = 'block';
-          document.getElementById('photoPlaceholder').style.display = 'none';
+          uploadedImgData = evt.target.result;
+          document.querySelectorAll('.profile-img-el').forEach(img => {
+            img.src = uploadedImgData;
+            img.style.display = 'block';
+          });
+          document.querySelectorAll('.placeholder-txt').forEach(txt => {
+            txt.style.display = 'none';
+          });
         };
         reader.readAsDataURL(file);
       }
@@ -1276,8 +1260,9 @@
       const zoom = document.getElementById('zoomRange').value;
       const x = document.getElementById('xRange').value;
       const y = document.getElementById('yRange').value;
-      const img = document.getElementById('profileImg');
-      img.style.transform = `scale(${zoom}) translate(${x}px, ${y}px)`;
+      document.querySelectorAll('.profile-img-el').forEach(img => {
+        img.style.transform = `scale(${zoom}) translate(${x}px, ${y}px)`;
+      });
     }
 
     function resetPhoto() {
@@ -1409,7 +1394,7 @@
       if (lines.length > 0) {
         let firstLine = lines[0].replace(/اسمي|أنا|name is|i am/gi, '').replace(/[:\-]/g, '').trim();
         if (firstLine.length < 35) {
-          document.getElementById('txtCandidateName').innerText = firstLine;
+          document.querySelectorAll('.candidate-name').forEach(el => el.innerText = firstLine);
         }
       }
 
@@ -1417,7 +1402,7 @@
       if (text.includes('بغداد') || text.toLowerCase().includes('baghdad')) contactStr += (isAr ? '📍 بغداد، العراق | ' : '📍 Baghdad, Iraq | ');
       if (phoneMatch) contactStr += '📞 ' + phoneMatch[0] + ' | ';
       if (emailMatch) contactStr += '✉️ ' + emailMatch[0];
-      if (contactStr) document.getElementById('txtCandidateContact').innerHTML = contactStr;
+      if (contactStr) document.querySelectorAll('.contact-info').forEach(el => el.innerHTML = contactStr);
 
       const summaryCandidate = lines.find(l => l.length > 40 && !l.includes('@'));
       if (summaryCandidate) {
