@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional CV Studio + AI Agent</title>
+  <title>Sadoon Mohsoun Aziz - Professional CV Studio + AI Agent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -556,7 +556,7 @@
         </button>
         <!-- زر الحفظ -->
         <button class="btn-action" id="btnSavePdf" onclick="window.print()">
-          📄 حفظ / Save as PDF
+          📄 Save as PDF / حفظ
         </button>
       </div>
     </div>
@@ -629,16 +629,16 @@
         <div class="contact-info editable-block" contenteditable="true" id="txtCandidateContact">
           <span>📍 بغداد، العراق</span>
           <span>|</span>
-          <span>📞 +964 781 533 3321</span>
+          <span>📞 +964 770 000 0000</span>
           <span>|</span>
-          <span>✉️ sadoonzangana@gmail.com</span>
+          <span>✉️ sadoon.email@example.com</span>
         </div>
       </div>
 
       <div>
         <h3 class="section-title"><span>👤</span> <span contenteditable="true" id="titleSummary">الملخص المهني</span></h3>
         <div class="editable-block" contenteditable="true" id="txtSummary" style="font-size: 13.5px; line-height: 1.7; color: #334155;">
-          مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، وتطوير لوحات تقارير تشغيلية مؤتمتة لتحليل ضغط العمل ورفع كفاءة الأداء ورضا العملاء.
+          مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، واستخدام برامج الأوفيس وأتمتة لوحات التقارير لرفع كفاءة الأداء ورضا العملاء.
         </div>
       </div>
 
@@ -655,14 +655,14 @@
               <div>
                 <span class="job-role editable-block" contenteditable="true">مشرف خدمة العملاء الواردة</span>
                 <span style="color:#94a3b8;"> — </span>
-                <span class="job-company editable-block" contenteditable="true">زين كاش (ZainCash)</span>
+                <span class="job-company editable-block" contenteditable="true">شركة رائدة للخدمات والعمليات</span>
               </div>
-              <div class="job-date editable-block" contenteditable="true">مايو 2024 – الحالي</div>
+              <div class="job-date editable-block" contenteditable="true">2024 – الحالي</div>
             </div>
             <ul class="bullet-points editable-block" contenteditable="true">
               <li>الإشراف المباشر على فريق يضم أكثر من 20 موظفاً وتوزيع المهام على قنوات الاتصال والدردشة.</li>
               <li>بناء لوحات بيانات تشغيلية وتتبّع مؤشرات الأداء الحية لتوزيع ضغط العمل بكفاءة.</li>
-              <li>حل الشكاوى الحرجة وتنسيق الإجراءات مع الأقسام التقنية والمالية.</li>
+              <li>حل الشكاوى الحرجة وتنسيق الإجراءات مع الأقسام المعنية.</li>
             </ul>
           </div>
         </div>
@@ -711,7 +711,7 @@
           الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:
         </p>
         <textarea class="ai-textarea" id="rawCvText" placeholder="مثال:
-اسمي علي محمد، تلفوني 07701234567، ساكن في بغداد، وايميلي ali@gmail.com
+اسمي علي محمد، تلفوني 07700000000، ساكن في بغداد، وايميلي ali.example@email.com
 اشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان
 مهاراتي: القيادة، برامج الأوفيس، وورد، اكسل، خدمة العملاء..."></textarea>
         <button class="ai-btn-generate" id="btnAiParseAction" onclick="aiParseAndFill()">
@@ -756,7 +756,6 @@
 
   <!-- ================= محرك الترجمة والوكيل الذكي ================= -->
   <script>
-    // قاموس الترجمة الكامل لجميع نصوص الموقع والـ AI
     const I18N = {
       ar: {
         lblLang: "🌐 اللغة:",
@@ -785,7 +784,7 @@
         btnAddEdu: "➕ إضافة مؤهل تعليمي",
         candidateName: "سعدون محسن عزيز",
         candidateTitle: "مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير",
-        candidateContact: "<span>📍 بغداد، العراق</span><span>|</span><span>📞 +964 781 533 3321</span><span>|</span><span>✉️ sadoonzangana@gmail.com</span>",
+        candidateContact: "<span>📍 بغداد، العراق</span><span>|</span><span>📞 +964 770 000 0000</span><span>|</span><span>✉️ sadoon.email@example.com</span>",
         candidateSummary: "مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، واستخدام برامج الأوفيس وأتمتة لوحات التقارير لرفع كفاءة الأداء ورضا العملاء.",
         langArText: "<strong>العربية:</strong> اللغة الأم (Native)",
         langEnText: "<strong>الإنجليزية:</strong> مستوى مهني متقدم",
@@ -795,7 +794,7 @@
         aiTabSkills: "⚡ اقتراح المهارات",
         aiTabSummary: "✍️ صانع النبذة",
         aiParseDesc: "الصق أي نص عشوائي، سيرة قديمة، أو معلومات مبعثرة عنك وسيقوم الذكاء الاصطناعي بتنظيمها وتعبئة الـ CV فوراً:",
-        rawPlaceholder: "مثال:\nاسمي علي محمد، تلفوني 07701234567، ساكن في بغداد، وايميلي ali@gmail.com\nاشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان\nمهاراتي: القيادة، برامج الأوفيس، وورد، اكسل، خدمة العملاء...",
+        rawPlaceholder: "مثال:\nاسمي علي محمد، تلفوني 07700000000، ساكن في بغداد، وايميلي ali.example@email.com\nاشتغلت مدير عمليات في شركة التقنية من 2022 لغاية الان\nمهاراتي: القيادة، برامج الأوفيس، وورد، اكسل، خدمة العملاء...",
         btnAiParseAction: "🚀 تحليل وتعبئة السيرة الذاتية الآن",
         aiSkillsDesc: "اختر التصنيف ليقترح لك الوكيل أقوى المهارات العملية والمطلوبة في سوق العمل:",
         aiSkillsFooterNote: "اضغط على أي مهارة لإضافتها مباشرة إلى سيرتك الذاتية.",
@@ -832,7 +831,7 @@
         btnAddEdu: "➕ Add Education",
         candidateName: "SADOON MOHSOUN AZIZ",
         candidateTitle: "CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION",
-        candidateContact: "<span>📍 Baghdad, Iraq</span><span>|</span><span>📞 +964 781 533 3321</span><span>|</span><span>✉️ sadoonzangana@gmail.com</span>",
+        candidateContact: "<span>📍 Baghdad, Iraq</span><span>|</span><span>📞 +964 770 000 0000</span><span>|</span><span>✉️ sadoon.email@example.com</span>",
         candidateSummary: "Customer Care Supervisor with proven track record in leading front-line support teams, optimizing SLA adherence, utilizing advanced MS Office tools, and designing automated KPI reporting pipelines to elevate customer satisfaction and operational efficiency.",
         langArText: "<strong>Arabic:</strong> Native",
         langEnText: "<strong>English:</strong> Professional Working",
@@ -842,7 +841,7 @@
         aiTabSkills: "⚡ Skill Suggester",
         aiTabSummary: "✍️ Summary Builder",
         aiParseDesc: "Paste any raw notes, old resume, or details about yourself, and the AI agent will instantly structure and fill your CV:",
-        rawPlaceholder: "Example:\nMy name is Ali Mohammed, phone +964 7701234567, location Baghdad, email ali@gmail.com\nWorked as Operations Supervisor at Tech Corp from 2022 to present\nSkills: Leadership, MS Office, Advanced Excel, Word, Customer Care...",
+        rawPlaceholder: "Example:\nMy name is Ali Mohammed, phone +964 7700000000, location Baghdad, email ali.example@email.com\nWorked as Operations Supervisor at Tech Corp from 2022 to present\nSkills: Leadership, MS Office, Advanced Excel, Word, Customer Care...",
         btnAiParseAction: "🚀 Parse & Auto-Fill CV Now",
         aiSkillsDesc: "Select category to get high-impact in-demand industry skills:",
         aiSkillsFooterNote: "Click any skill to instantly add it to your CV.",
@@ -854,7 +853,6 @@
       }
     };
 
-    // تبديل اللغة مع عزل تام 100%
     function setLanguage(lang, btn) {
       document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -875,7 +873,6 @@
         document.getElementById('aiModalBox').setAttribute('dir', 'ltr');
       }
 
-      // ترجمة جميع عناصر الصفحة
       document.getElementById('lblLang').innerText = dict.lblLang;
       document.getElementById('lblDesign').innerText = dict.lblDesign;
       document.getElementById('btnDesign1').innerText = dict.btnDesign1;
@@ -904,7 +901,6 @@
       document.getElementById('txtCandidateContact').innerHTML = dict.candidateContact;
       document.getElementById('txtSummary').innerText = dict.candidateSummary;
 
-      // تحديث قائمة اللغات
       document.getElementById('languagesList').innerHTML = `
         <div class="editable-item">
           <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
@@ -916,7 +912,6 @@
         </div>
       `;
 
-      // ترجمة الـ AI Modal
       document.getElementById('aiModalTitle').innerText = dict.aiModalTitle;
       document.getElementById('aiModalSubtitle').innerText = dict.aiModalSubtitle;
       document.getElementById('aiTabParse').innerText = dict.aiTabParse;
@@ -936,7 +931,6 @@
       aiSuggestSkills();
     }
 
-    // تغيير التصميم
     function setDesign(themeName, btn) {
       document.body.classList.remove('theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark');
       document.body.classList.add(themeName);
@@ -944,7 +938,6 @@
       if (btn) btn.classList.add('active');
     }
 
-    // تغيير اللون
     function setColor(primaryColor, sidebarColor, el) {
       document.documentElement.style.setProperty('--primary', primaryColor);
       document.documentElement.style.setProperty('--primary-light', primaryColor + '15');
@@ -1047,7 +1040,7 @@
       updatePhoto();
     }
 
-    /* ================= بنك المهارات الضخم وقاعدة المعرفة للـ AI ================= */
+    /* بنك المهارات */
     const skillsDatabase = {
       office: {
         ar: [
@@ -1154,7 +1147,6 @@
       document.getElementById('tabSummary').style.display = tabName === 'summary' ? 'flex' : 'none';
     }
 
-    // 1. الاستيراد والملء السحري التلقائي
     function aiParseAndFill() {
       const text = document.getElementById('rawCvText').value;
       const isAr = document.body.classList.contains('lang-ar');
@@ -1189,7 +1181,6 @@
       closeAiAgent();
     }
 
-    // 2. مقترح المهارات الذكي مع بنك الأوفيس والمهارات الشاملة
     function aiSuggestSkills() {
       const domain = document.getElementById('jobDomainSelect').value;
       const isAr = document.body.classList.contains('lang-ar');
@@ -1212,7 +1203,6 @@
       });
     }
 
-    // 3. صانع النبذة التلقائي
     const summaryTemplates = {
       executive: {
         ar: "مشرف وقائد عمليات ذو خبرة استراتيجية في تحسين كفاءة الأداء، إدارة فرق العمل، وإتقان برامج الأوفيس وأتمتة لوحات التقارير لضمان أعلى معايير الجودة والالتزام باتفاقيات الخدمة (SLA).",
@@ -1247,7 +1237,6 @@
       closeAiAgent();
     }
 
-    // 4. تحسين الصياغة السريع
     function enhanceBullet(btn) {
       const item = btn.closest('.editable-item');
       const ul = item.querySelector('.bullet-points');
