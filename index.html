@@ -27,13 +27,13 @@
     }
 
     body {
-      font-family: 'Inter', 'Cairo', sans-serif;
+      font-family: 'Cairo', 'Inter', sans-serif;
       background-color: #f1f5f9;
       color: var(--text-main);
       padding: 20px 10px 60px 10px;
     }
 
-    /* الشريط العلوي للتحكم */
+    /* الشريط العلوي */
     .controls-container {
       max-width: 950px;
       margin: 0 auto 20px auto;
@@ -54,17 +54,17 @@
       gap: 12px;
     }
 
-    .design-selector {
+    .design-selector, .lang-selector {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
-    .btn-design {
+    .btn-design, .btn-lang {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      padding: 7px 14px;
+      padding: 7px 12px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 700;
@@ -72,7 +72,7 @@
       transition: all 0.2s;
     }
 
-    .btn-design.active, .btn-design:hover {
+    .btn-design.active, .btn-lang.active, .btn-design:hover, .btn-lang:hover {
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
@@ -107,7 +107,7 @@
       background: #0284c7;
       color: #fff;
       border: none;
-      padding: 9px 20px;
+      padding: 9px 18px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 800;
@@ -139,7 +139,7 @@
       cursor: pointer;
     }
 
-    /* ================= حاوية الـ CV ================= */
+    /* ================= صفحة الـ CV ================= */
     .cv-page {
       max-width: 920px;
       margin: 0 auto;
@@ -147,12 +147,22 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       border-radius: 4px;
       overflow: hidden;
-      direction: ltr;
-      text-align: left;
       display: grid;
       grid-template-columns: 280px 1fr;
       min-height: 1120px;
-      position: relative;
+    }
+
+    /* في حالة اللغة العربية: ينعكس الترتيب */
+    .lang-ar .cv-page {
+      direction: rtl;
+      text-align: right;
+      grid-template-columns: 280px 1fr;
+    }
+
+    .lang-en .cv-page {
+      direction: ltr;
+      text-align: left;
+      grid-template-columns: 280px 1fr;
     }
 
     /* القائمة الجانبية */
@@ -207,8 +217,10 @@
       background: var(--primary-light);
       padding: 18px 20px;
       border-radius: 8px;
-      border-left: 5px solid var(--primary);
     }
+
+    .lang-ar .header-banner { border-right: 5px solid var(--primary); }
+    .lang-en .header-banner { border-left: 5px solid var(--primary); }
 
     .candidate-name {
       font-size: 26px;
@@ -238,7 +250,6 @@
       outline: none;
     }
 
-    /* العناوين والأقسام */
     .section-title {
       font-size: 14.5px;
       font-weight: 800;
@@ -262,10 +273,8 @@
       padding-bottom: 5px;
       margin-bottom: 10px;
       outline: none;
-      letter-spacing: 0.5px;
     }
 
-    /* تعديل النصوص وتنسيق الـ Focus لمنع المشكلة البيضاء */
     .editable-block {
       outline: none;
       border-radius: 4px;
@@ -277,7 +286,6 @@
       color: #0f172a !important;
     }
 
-    /* حل مشكلة الشريط الجانبي: النص يبقى أبيض مع خلفية شفافة مميزة */
     .cv-sidebar .editable-block:focus {
       background: rgba(255, 255, 255, 0.2) !important;
       color: #ffffff !important;
@@ -308,11 +316,9 @@
       border-color: rgba(255, 255, 255, 0.15);
     }
 
-    /* أزرار الحذف والتكرار */
     .item-actions {
       position: absolute;
       top: 4px;
-      right: 4px;
       display: none;
       gap: 4px;
       background: #ffffff;
@@ -323,14 +329,15 @@
       z-index: 20;
     }
 
+    .lang-ar .item-actions { left: 4px; }
+    .lang-en .item-actions { right: 4px; }
+
     .cv-sidebar .item-actions {
       background: #1e293b;
       border-color: #475569;
     }
 
-    .editable-item:hover .item-actions {
-      display: flex;
-    }
+    .editable-item:hover .item-actions { display: flex; }
 
     .act-btn {
       background: none;
@@ -347,7 +354,6 @@
     .act-btn.clone { color: #0284c7; }
     .act-btn.clone:hover { background: #e0f2fe; }
 
-    /* زر إضافة عنصر جديد */
     .add-btn {
       display: inline-flex;
       align-items: center;
@@ -374,11 +380,6 @@
       border-color: rgba(255, 255, 255, 0.3);
       color: #cbd5e1;
     }
-    .cv-sidebar .add-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      border-color: #ffffff;
-    }
 
     .job-header {
       display: flex;
@@ -387,253 +388,147 @@
       font-size: 13px;
     }
 
-    .job-role {
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    .job-company {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .job-date {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
+    .job-role { font-weight: 700; color: #0f172a; }
+    .job-company { color: var(--primary); font-weight: 700; }
+    .job-date { font-size: 12px; color: var(--text-muted); }
 
     .bullet-points {
       margin-top: 5px;
-      padding-left: 18px;
       font-size: 12.5px;
       color: #334155;
       line-height: 1.5;
     }
+    .lang-ar .bullet-points { padding-right: 18px; }
+    .lang-en .bullet-points { padding-left: 18px; }
 
-    /* ================= التصاميم الأربعة الاحترافية ================= */
-
-    /* 1. Executive (افتراضي) */
-    .theme-executive .cv-page {
-      grid-template-columns: 280px 1fr;
-    }
-
-    /* 2. Silicon Tech */
-    .theme-tech .cv-page {
-      display: flex;
-      flex-direction: column;
-    }
-    .theme-tech .cv-sidebar {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 20px 30px;
-      gap: 20px;
-    }
+    /* ================= التصاميم ================= */
+    .theme-tech .cv-page { display: flex; flex-direction: column; }
+    .theme-tech .cv-sidebar { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 20px 30px; gap: 20px; }
     .theme-tech .photo-wrapper { width: 110px; height: 110px; border-radius: 50%; }
-    .theme-tech .skills-list { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
-    .theme-tech .skills-list .editable-item { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 4px 10px; }
 
-    /* 3. Modern Corporate Grid (التصميم الاحترافي الجديد كلياً) */
-    .theme-corporate .cv-page {
-      display: block;
-      padding: 0;
-      background: #f8fafc;
-    }
-    .theme-corporate .cv-sidebar {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      align-items: center;
-      background: var(--primary);
-      color: #ffffff;
-      padding: 25px 35px;
-      border-bottom: 4px solid rgba(0,0,0,0.15);
-      gap: 25px;
-    }
-    .theme-corporate .photo-wrapper {
-      width: 130px;
-      height: 130px;
-      border-radius: 12px;
-      border: 3px solid #ffffff;
-    }
-    .theme-corporate .cv-main {
-      padding: 30px 35px;
-      background: #ffffff;
-    }
-    .theme-corporate .header-banner {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-    .theme-corporate .candidate-name {
-      color: #ffffff;
-      font-size: 28px;
-    }
-    .theme-corporate .candidate-title {
-      color: #e2e8f0;
-      font-size: 14px;
-    }
-    .theme-corporate .contact-info {
-      color: #cbd5e1;
-    }
+    .theme-corporate .cv-page { display: block; background: #f8fafc; }
+    .theme-corporate .cv-sidebar { display: grid; grid-template-columns: 140px 1fr; align-items: center; background: var(--primary); padding: 25px 35px; gap: 25px; }
+    .theme-corporate .photo-wrapper { width: 130px; height: 130px; border-radius: 12px; border: 3px solid #fff; }
+    .theme-corporate .cv-main { padding: 30px 35px; background: #ffffff; }
+    .theme-corporate .header-banner { background: transparent; border: none; padding: 0; }
+    .theme-corporate .candidate-name { color: #ffffff; }
 
-    /* 4. Dark Mode */
     .theme-dark .cv-page { background: #0b1120; color: #cbd5e1; }
     .theme-dark .cv-main { background: #0b1120; }
-    .theme-dark .header-banner { background: #1e293b; border-left-color: var(--primary); }
+    .theme-dark .header-banner { background: #1e293b; }
     .theme-dark .candidate-name { color: #f8fafc; }
     .theme-dark .job-role { color: #f1f5f9; }
     .theme-dark .bullet-points { color: #94a3b8; }
-    .theme-dark .editable-item:hover { background: #1e293b; border-color: #334155; }
-    .theme-dark .section-title { border-bottom-color: #334155; }
 
-    /* ================= إعدادات الطباعة الدقيقة (PDF) ================= */
-    @page {
-      size: A4 portrait;
-      margin: 0mm;
-    }
-
+    /* إعدادات الطباعة */
+    @page { size: A4 portrait; margin: 0mm; }
     @media print {
-      body {
-        background: #ffffff !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      .controls-container, .item-actions, .add-btn {
-        display: none !important;
-      }
-      .cv-page {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-height: 100vh !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-      }
+      body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; }
+      .controls-container, .item-actions, .add-btn { display: none !important; }
+      .cv-page { width: 100% !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; }
     }
   </style>
 </head>
-<body class="theme-executive">
+<body class="theme-executive lang-ar">
 
-  <!-- شريط التحكم العلوي -->
   <div class="controls-container">
     <div class="top-toolbar">
+      <!-- اختيار اللغة -->
+      <div class="lang-selector">
+        <span style="font-size: 13px; font-weight: bold;">🌐 اللغة:</span>
+        <button class="btn-lang active" onclick="setLanguage('ar', this)">العربية</button>
+        <button class="btn-lang" onclick="setLanguage('en', this)">English</button>
+      </div>
+
       <!-- اختيار الدزاين -->
       <div class="design-selector">
         <span style="font-size: 13px; font-weight: bold;">اختر الدزاين:</span>
-        <button class="btn-design active" onclick="setDesign('theme-executive', this)">1. Executive (كلاسيكي)</button>
+        <button class="btn-design active" onclick="setDesign('theme-executive', this)">1. Executive</button>
         <button class="btn-design" onclick="setDesign('theme-tech', this)">2. Silicon Tech</button>
-        <button class="btn-design" onclick="setDesign('theme-corporate', this)">3. Modern Corporate (جديد ✨)</button>
+        <button class="btn-design" onclick="setDesign('theme-corporate', this)">3. Modern Corporate</button>
         <button class="btn-design" onclick="setDesign('theme-dark', this)">4. Dark Mode</button>
       </div>
 
-      <!-- باليتة الألوان المباشرة المتناسقة -->
+      <!-- باليتة الألوان -->
       <div class="color-bar">
-        <span style="font-size: 12px; font-weight: bold;">🎨 لون الثيم:</span>
+        <span style="font-size: 12px; font-weight: bold;">🎨 الثيم:</span>
         <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
         <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
-        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي ملكي"></div>
-        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي احترافي"></div>
-        <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي فاخر"></div>
-        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي ذهبي"></div>
+        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
+        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
+        <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
+        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
         <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
       </div>
 
-      <!-- زر الحفظ كـ PDF -->
       <button class="btn-action" onclick="window.print()">
         📄 Save as PDF / حفظ
       </button>
     </div>
 
-    <!-- شريط التحكم بالصورة -->
+    <!-- التحكم بالصورة -->
     <div class="photo-controls-bar">
-      <span>🖼️ <strong>التحكم بالصورة:</strong> اسحب الصورة أو استخدم المؤشرات:</span>
+      <span>🖼️ <strong>التحكم بالصورة:</strong></span>
       <label>🔍 التكبير: <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
-      <label>↔️ يمين/يسار: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <label>↕️ أعلى/أسفل: <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <label>↔️ أفقي: <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
+      <label>↕️ عمودي: <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
       <button onclick="resetPhoto()" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer;">إعادة ضبط</button>
       <input type="file" id="imageUploader" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
       <button onclick="document.getElementById('imageUploader').click()" style="padding:4px 10px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer;">تغيير صورتك 📷</button>
     </div>
   </div>
 
-  <!-- صفحة السيرة الذاتية (CV Page) -->
+  <!-- الـ CV -->
   <div class="cv-page" id="cvContainer">
-    
-    <!-- القائمة الجانبية -->
     <aside class="cv-sidebar" id="sidebarContainer">
-      <!-- الصورة الشخصية -->
-      <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()" title="اضغط لتحميل صورتك">
+      <div class="photo-wrapper" onclick="document.getElementById('imageUploader').click()">
         <img id="profileImg" src="" alt="Profile Photo" style="display:none;">
         <div class="photo-placeholder" id="photoPlaceholder">
           <span style="font-size:32px;">👤</span><br>
-          اضغط لتحميل صورتك
+          <span id="txtUploadPhoto">اضغط لتحميل صورتك</span>
         </div>
       </div>
 
-      <!-- المهارات (Skills) -->
       <div>
-        <h3 class="sidebar-section-title" contenteditable="true">⚙️ SKILLS</h3>
+        <h3 class="sidebar-section-title" id="titleSkills" contenteditable="true">⚙️ المهارات الأساسية</h3>
         <div class="skills-list" id="skillsList">
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true">• Customer Care Operations</div>
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true">• إدارة عمليات خدمة العملاء ودعم المستفيدين</div>
           </div>
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true">• Team Supervision & Coaching</div>
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true">• الإشراف على الفرق وتدريب الموظفين</div>
           </div>
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true">• KPI & Performance Monitoring</div>
-          </div>
-          <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true">• Escalation Management & Workload Analysis</div>
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true">• متابعة مؤشرات الأداء الرئيسية (KPIs & SLA)</div>
           </div>
         </div>
-        <button class="add-btn" onclick="addSkill()">➕ إضافة مهارة</button>
+        <button class="add-btn" onclick="addSkill()" id="btnAddSkill">➕ إضافة مهارة</button>
       </div>
 
-      <!-- اللغات -->
       <div>
-        <h3 class="sidebar-section-title" contenteditable="true">🌐 LANGUAGES</h3>
+        <h3 class="sidebar-section-title" id="titleLanguages" contenteditable="true">🌐 اللغات</h3>
         <div class="skills-list">
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true"><strong>Arabic:</strong> Native</div>
+            <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true"><strong>العربية:</strong> اللغة الأم (Native)</div>
           </div>
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
-            <div class="editable-block" contenteditable="true"><strong>English:</strong> Professional Working</div>
+            <div class="item-actions"><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+            <div class="editable-block" contenteditable="true"><strong>الإنجليزية:</strong> مستوى مهني متقدم</div>
           </div>
         </div>
       </div>
     </aside>
 
-    <!-- المحتوى الرئيسي -->
     <main class="cv-main">
-      <!-- الهيدر والاسم -->
       <div class="header-banner">
-        <h1 class="candidate-name editable-block" contenteditable="true">SADOON MOHSOUN AZIZ</h1>
-        <div class="candidate-title editable-block" contenteditable="true">CUSTOMER CARE SUPERVISOR | OPERATIONS & REPORTING AUTOMATION</div>
+        <h1 class="candidate-name editable-block" contenteditable="true" id="txtCandidateName">سعدون محسن عزيز</h1>
+        <div class="candidate-title editable-block" contenteditable="true" id="txtCandidateTitle">مشرف خدمة العملاء | إدارة العمليات وأتمتة التقارير</div>
         <div class="contact-info editable-block" contenteditable="true">
-          <span>📍 Baghdad, Iraq</span>
+          <span>📍 بغداد، العراق</span>
           <span>|</span>
           <span>📞 +964 781 533 3321</span>
           <span>|</span>
@@ -641,98 +536,83 @@
         </div>
       </div>
 
-      <!-- نبذة مهنية -->
       <div>
-        <h3 class="section-title"><span>👤</span> <span contenteditable="true">PROFESSIONAL SUMMARY</span></h3>
-        <div class="editable-block" contenteditable="true" style="font-size: 13px; line-height: 1.6; color: #334155;">
-          Customer Care Supervisor with proven track record in leading front-line support teams, optimizing SLA adherence, and designing automated reporting pipelines. Experienced in managing cross-functional operations and leveraging data analytics to elevate customer satisfaction and operational efficiency.
+        <h3 class="section-title"><span>👤</span> <span contenteditable="true" id="titleSummary">الملخص المهني</span></h3>
+        <div class="editable-block" contenteditable="true" id="txtSummary" style="font-size: 13.5px; line-height: 1.7; color: #334155;">
+          مشرف خدمة عملاء بخبرة واسعة في قيادة فرق الدعم وخدمات الزبائن، تحسين اتفاقيات مستوى الخدمة (SLA)، وتطوير لوحات تقارير تشغيلية مؤتمتة لتحليل ضغط العمل ورفع كفاءة الأداء ورضا العملاء.
         </div>
       </div>
 
-      <!-- الخبرات المهنية والمشاريع -->
       <div>
-        <h3 class="section-title"><span>💼</span> <span contenteditable="true">PROFESSIONAL EXPERIENCE & PROJECTS</span></h3>
-        
+        <h3 class="section-title"><span>💼</span> <span contenteditable="true" id="titleExp">الخبرات المهنية والمشاريع</span></h3>
         <div class="experience-list" id="experienceList">
-          <!-- عنصر خبرة / مشروع 1 -->
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋 نسخ</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️ حذف</button>
-            </div>
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋 نسخ</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️ حذف</button></div>
             <div class="job-header">
               <div>
-                <span class="job-role editable-block" contenteditable="true">Supervisor, Customer Care Inbound</span>
+                <span class="job-role editable-block" contenteditable="true">مشرف خدمة العملاء الواردة</span>
                 <span style="color:#94a3b8;"> — </span>
-                <span class="job-company editable-block" contenteditable="true">ZainCash</span>
+                <span class="job-company editable-block" contenteditable="true">زين كاش (ZainCash)</span>
               </div>
-              <div class="job-date editable-block" contenteditable="true">May 2024 – Present</div>
+              <div class="job-date editable-block" contenteditable="true">مايو 2024 – الحالي</div>
             </div>
             <ul class="bullet-points editable-block" contenteditable="true">
-              <li>Supervised 20+ agents handling inbound call/chat queues, consistently meeting CSAT & SLA goals.</li>
-              <li>Engineered custom operational dashboards to track real-time queue metrics and workforce distribution.</li>
-              <li>Handled high-priority VIP customer escalations and resolved cross-departmental incident tickets.</li>
-            </ul>
-          </div>
-
-          <!-- عنصر خبرة / مشروع 2 -->
-          <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋 نسخ</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️ حذف</button>
-            </div>
-            <div class="job-header">
-              <div>
-                <span class="job-role editable-block" contenteditable="true">Customer Care Senior Agent</span>
-                <span style="color:#94a3b8;"> — </span>
-                <span class="job-company editable-block" contenteditable="true">ZainCash</span>
-              </div>
-              <div class="job-date editable-block" contenteditable="true">Jan 2023 – Apr 2024</div>
-            </div>
-            <ul class="bullet-points editable-block" contenteditable="true">
-              <li>Delivered top-tier customer support across phone, chat, and email channels.</li>
-              <li>Trained and onboarded 15+ new customer care team members on internal CRM systems.</li>
+              <li>الإشراف المباشر على فريق يضم أكثر من 20 موظفاً وتوزيع المهام على قنوات الاتصال والدردشة.</li>
+              <li>بناء لوحات بيانات تشغيلية وتتبّع مؤشرات الأداء الحية لتوزيع ضغط العمل بكفاءة.</li>
+              <li>حل الشكاوى الحرجة وتنسيق الإجراءات مع الأقسام التقنية والمالية.</li>
             </ul>
           </div>
         </div>
-
-        <!-- زر إضافة مشروع أو وظيفة جديدة -->
-        <button class="add-btn" onclick="addExperience()">➕ إضافة خبرة أو مشروع جديد</button>
+        <button class="add-btn" onclick="addExperience()" id="btnAddExp">➕ إضافة خبرة أو مشروع جديد</button>
       </div>
 
-      <!-- التعليم والشهادات -->
       <div>
-        <h3 class="section-title"><span>🎓</span> <span contenteditable="true">EDUCATION & CERTIFICATIONS</span></h3>
+        <h3 class="section-title"><span>🎓</span> <span contenteditable="true" id="titleEdu">التعليم والمؤهلات</span></h3>
         <div class="experience-list" id="educationList">
           <div class="editable-item">
-            <div class="item-actions">
-              <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-              <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-            </div>
+            <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
             <div class="job-header">
-              <span class="job-role editable-block" contenteditable="true">Bachelor's Degree in Business Administration / IT</span>
+              <span class="job-role editable-block" contenteditable="true">بكالوريوس في إدارة الأعمال / تكنولوجيا المعلومات</span>
               <span class="job-date editable-block" contenteditable="true">2019 – 2023</span>
             </div>
             <div class="bullet-points editable-block" contenteditable="true">
-              University of Baghdad
+              جامعة بغداد
             </div>
           </div>
         </div>
-        <button class="add-btn" onclick="addEducation()">➕ إضافة مؤهل تعليمي</button>
+        <button class="add-btn" onclick="addEducation()" id="btnAddEdu">➕ إضافة مؤهل تعليمي</button>
       </div>
     </main>
-
   </div>
 
   <script>
-    // 1. تغيير التصميم
+    // تغيير التصميم
     function setDesign(themeName, btn) {
-      document.body.className = themeName;
+      document.body.classList.remove('theme-executive', 'theme-tech', 'theme-corporate', 'theme-dark');
+      document.body.classList.add(themeName);
       document.querySelectorAll('.btn-design').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
     }
 
-    // 2. تغيير اللون المباشر للشريط الجانبي والعناوين
+    // تبديل اللغة (عربي / English)
+    function setLanguage(lang, btn) {
+      document.querySelectorAll('.btn-lang').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (lang === 'ar') {
+        document.body.classList.remove('lang-en');
+        document.body.classList.add('lang-ar');
+        document.documentElement.setAttribute('dir', 'rtl');
+        document.documentElement.setAttribute('lang', 'ar');
+      } else {
+        document.body.classList.remove('lang-ar');
+        document.body.classList.add('lang-en');
+        document.documentElement.setAttribute('dir', 'ltr');
+        document.documentElement.setAttribute('lang', 'en');
+      }
+    }
+
+    // تغيير اللون
     function setColor(primaryColor, sidebarColor, el) {
       document.documentElement.style.setProperty('--primary', primaryColor);
       document.documentElement.style.setProperty('--primary-light', primaryColor + '15');
@@ -743,86 +623,66 @@
       if (el && el.classList.contains('color-dot')) el.classList.add('active');
     }
 
-    // 3. حذف عنصر
     function deleteItem(btn) {
       const item = btn.closest('.editable-item');
-      if (item && confirm('هل أنت متأكد من حذف هذا العنصر؟')) {
-        item.remove();
-      }
+      if (item && confirm('هل أنت متأكد من الحذف؟')) item.remove();
     }
 
-    // 4. نسخ وتكرار عنصر
     function cloneItem(btn) {
       const item = btn.closest('.editable-item');
-      if (item) {
-        const clone = item.cloneNode(true);
-        item.after(clone);
-      }
+      if (item) item.after(item.cloneNode(true));
     }
 
-    // 5. إضافة خبرة / مشروع جديد
     function addExperience() {
       const list = document.getElementById('experienceList');
+      const isAr = document.body.classList.contains('lang-ar');
       const div = document.createElement('div');
       div.className = 'editable-item';
       div.innerHTML = `
-        <div class="item-actions">
-          <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋 نسخ</button>
-          <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️ حذف</button>
-        </div>
+        <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
         <div class="job-header">
           <div>
-            <span class="job-role editable-block" contenteditable="true">Job Title / Project Name</span>
+            <span class="job-role editable-block" contenteditable="true">${isAr ? 'المسمى الوظيفي / اسم المشروع' : 'Job Title / Project Name'}</span>
             <span style="color:#94a3b8;"> — </span>
-            <span class="job-company editable-block" contenteditable="true">Company / Organization</span>
+            <span class="job-company editable-block" contenteditable="true">${isAr ? 'اسم الشركة' : 'Company Name'}</span>
           </div>
           <div class="job-date editable-block" contenteditable="true">2024 – Present</div>
         </div>
         <ul class="bullet-points editable-block" contenteditable="true">
-          <li>Key achievement or responsibility description...</li>
-          <li>Demonstrated strong leadership and delivered measurable impact.</li>
+          <li>${isAr ? 'اكتب أبرز الإنجازات والمهام هنا...' : 'Key achievement and responsibility...'}</li>
         </ul>
       `;
       list.appendChild(div);
     }
 
-    // 6. إضافة مهارة جديدة
     function addSkill() {
       const list = document.getElementById('skillsList');
+      const isAr = document.body.classList.contains('lang-ar');
       const div = document.createElement('div');
       div.className = 'editable-item';
       div.innerHTML = `
-        <div class="item-actions">
-          <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-          <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-        </div>
-        <div class="editable-block" contenteditable="true">• New Skill (Edit Here)</div>
+        <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
+        <div class="editable-block" contenteditable="true">• ${isAr ? 'مهارة جديدة (اكتب هنا)' : 'New Skill (Type here)'}</div>
       `;
       list.appendChild(div);
     }
 
-    // 7. إضافة تعليم
     function addEducation() {
       const list = document.getElementById('educationList');
+      const isAr = document.body.classList.contains('lang-ar');
       const div = document.createElement('div');
       div.className = 'editable-item';
       div.innerHTML = `
-        <div class="item-actions">
-          <button class="act-btn clone" onclick="cloneItem(this)" title="تكرار">📋</button>
-          <button class="act-btn delete" onclick="deleteItem(this)" title="حذف">🗑️</button>
-        </div>
+        <div class="item-actions"><button class="act-btn clone" onclick="cloneItem(this)">📋</button><button class="act-btn delete" onclick="deleteItem(this)">🗑️</button></div>
         <div class="job-header">
-          <span class="job-role editable-block" contenteditable="true">Degree / Certification Title</span>
-          <span class="job-date editable-block" contenteditable="true">Graduation Year</span>
+          <span class="job-role editable-block" contenteditable="true">${isAr ? 'اسم المؤهل أو الشهادة' : 'Degree / Certification'}</span>
+          <span class="job-date editable-block" contenteditable="true">2023</span>
         </div>
-        <div class="bullet-points editable-block" contenteditable="true">
-          Institution / University Name
-        </div>
+        <div class="bullet-points editable-block" contenteditable="true">${isAr ? 'الجامعة أو المؤسسة المانحة' : 'Institution / University'}</div>
       `;
       list.appendChild(div);
     }
 
-    // 8. التحكم بالصورة
     function handleImageUpload(e) {
       const file = e.target.files[0];
       if (file) {
