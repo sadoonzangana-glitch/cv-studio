@@ -26,50 +26,58 @@
       print-color-adjust: exact !important;
     }
 
+    html, body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Cairo', 'Inter', sans-serif;
       background-color: #f1f5f9;
       color: var(--text-main);
-      padding: 15px 8px 60px 8px;
+      padding: 12px 8px 60px 8px;
     }
 
     body.lang-en { font-family: 'Inter', 'Cairo', sans-serif; }
 
-    /* الشريط العلوي */
+    /* ================= شريط التحكم العلوي ================= */
     .controls-container {
-      max-width: 950px;
+      max-width: 920px;
       margin: 0 auto 15px auto;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
     }
 
     .top-toolbar {
       background: #ffffff;
-      padding: 12px 16px;
+      padding: 12px 14px;
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      width: 100%;
     }
 
     .toolbar-row {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
+      width: 100%;
+      flex-wrap: wrap;
     }
 
-    .design-selector, .lang-selector {
+    .lang-selector, .toolbar-actions {
       display: flex;
       align-items: center;
       gap: 6px;
-      flex-wrap: wrap;
     }
 
-    .btn-design, .btn-lang {
+    .btn-lang {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
       padding: 6px 12px;
@@ -80,7 +88,105 @@
       transition: all 0.2s;
     }
 
-    .btn-design.active, .btn-lang.active, .btn-design:hover, .btn-lang:hover {
+    .btn-lang.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .btn-ai {
+      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-action {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* صف الألوان */
+    .color-bar-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #f8fafc;
+      padding: 6px 12px;
+      border-radius: 25px;
+      border: 1px solid #e2e8f0;
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .color-dot {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      cursor: pointer;
+      box-shadow: 0 0 0 1px #cbd5e1;
+      transition: transform 0.2s;
+    }
+
+    .color-dot.active, .color-dot:hover {
+      transform: scale(1.25);
+      box-shadow: 0 0 0 2px #0f172a;
+    }
+
+    /* صف التصاميم (تمرير أفقي ناعم على الموبايل) */
+    .design-scroll-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+    }
+
+    .design-scroll-row::-webkit-scrollbar {
+      height: 4px;
+    }
+    .design-scroll-row::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .btn-design {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 11.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .btn-design.active {
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
@@ -95,69 +201,7 @@
       color: #fff;
     }
 
-    .color-bar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #f8fafc;
-      padding: 5px 10px;
-      border-radius: 20px;
-      border: 1px solid #e2e8f0;
-      overflow-x: auto;
-    }
-
-    .color-dot {
-      width: 20px;
-      height: 20px;
-      min-width: 20px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      cursor: pointer;
-      box-shadow: 0 0 0 1px #cbd5e1;
-      transition: transform 0.2s;
-    }
-
-    .color-dot.active, .color-dot:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 0 2px #0f172a;
-    }
-
-    .toolbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-ai {
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 12.5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.35);
-    }
-
-    .btn-action {
-      background: #0284c7;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
-    }
-
+    /* شريط أدوات الصورة */
     .photo-controls-bar {
       background: #ffffff;
       padding: 10px 14px;
@@ -166,13 +210,13 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 12.5px;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11.5px;
     }
 
     .photo-controls-bar input[type="range"] {
-      width: 80px;
+      width: 65px;
       cursor: pointer;
     }
 
@@ -184,8 +228,9 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       border-radius: 6px;
       overflow: hidden;
-      min-height: 1120px;
+      min-height: 1050px;
       position: relative;
+      width: 100%;
     }
 
     .lang-ar .cv-page { direction: rtl; text-align: right; }
@@ -200,7 +245,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
     }
 
     .photo-box img {
@@ -218,7 +262,7 @@
     }
 
     .candidate-name {
-      font-size: clamp(20px, 4vw, 26px);
+      font-size: clamp(18px, 4vw, 26px);
       font-weight: 900;
       color: #0f172a;
       text-transform: uppercase;
@@ -228,7 +272,7 @@
     }
 
     .candidate-title {
-      font-size: clamp(11.5px, 2.5vw, 13px);
+      font-size: clamp(11px, 2.5vw, 13px);
       font-weight: 700;
       color: var(--primary);
       margin-top: 4px;
@@ -239,7 +283,7 @@
     .contact-info {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 12px;
+      gap: 6px 12px;
       font-size: 11.5px;
       color: var(--text-muted);
       margin-top: 8px;
@@ -247,7 +291,7 @@
     }
 
     .section-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--primary);
       text-transform: uppercase;
@@ -255,7 +299,7 @@
       align-items: center;
       gap: 6px;
       border-bottom: 2px solid var(--border-color);
-      padding-bottom: 5px;
+      padding-bottom: 4px;
       margin-bottom: 10px;
       outline: none;
     }
@@ -266,7 +310,7 @@
       color: #ffffff;
       text-transform: uppercase;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 5px;
+      padding-bottom: 4px;
       margin-bottom: 10px;
       outline: none;
     }
@@ -341,7 +385,7 @@
       background: transparent;
       border: 1px dashed #cbd5e1;
       color: #64748b;
-      padding: 5px 10px;
+      padding: 4px 10px;
       border-radius: 6px;
       font-size: 11.5px;
       font-weight: 700;
@@ -370,9 +414,9 @@
     .lang-ar .bullet-points { padding-right: 16px; }
     .lang-en .bullet-points { padding-left: 16px; }
 
-    /* ================= التصاميم ================= */
+    /* ================= تنسيقات التصاميم ================= */
 
-    /* 1. EXECUTIVE */
+    /* 1. EXECUTIVE (Desktop: Grid, Mobile: Stack) */
     .theme-executive .top-header-section { display: none; }
     .theme-executive .cv-page { display: grid; grid-template-columns: 280px 1fr; }
     .theme-executive .cv-sidebar { background: var(--sidebar-bg); color: var(--sidebar-text); padding: 25px 20px; display: flex; flex-direction: column; gap: 20px; }
@@ -447,70 +491,41 @@
        ========================================================================= */
     @media (max-width: 768px) {
       body {
-        padding: 8px 4px 50px 4px;
+        padding: 6px 4px 60px 4px;
       }
 
       .controls-container {
-        gap: 8px;
-        margin-bottom: 10px;
+        gap: 6px;
+        margin-bottom: 8px;
       }
 
       .top-toolbar {
-        padding: 10px 12px;
-        gap: 10px;
-      }
-
-      .toolbar-row {
-        flex-direction: column;
-        align-items: stretch;
+        padding: 10px 10px;
         gap: 8px;
-      }
-
-      .lang-selector, .toolbar-actions {
-        justify-content: space-between;
-      }
-
-      .design-selector {
-        overflow-x: auto;
-        padding-bottom: 4px;
-        white-space: nowrap;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-design, .btn-lang {
-        padding: 5px 10px;
-        font-size: 11.5px;
       }
 
       .photo-controls-bar {
         padding: 8px 10px;
-        gap: 8px;
-        font-size: 11.5px;
-        justify-content: space-between;
+        gap: 6px;
       }
 
-      .photo-controls-bar input[type="range"] {
-        width: 60px;
-      }
-
-      /* تعديل هيكل السيرة على الموبايل ليصبح عمودياً أنيقاً بدون ضغط */
+      /* تحويل Executive و Dark Mode لعمود واحد منظم على الموبايل */
       .theme-executive .cv-page,
       .theme-dark .cv-page {
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
       }
 
       .theme-executive .cv-sidebar,
       .theme-dark .cv-sidebar {
-        padding: 18px 16px;
-        gap: 15px;
+        padding: 16px 14px;
+        gap: 12px;
       }
 
       .theme-executive .sidebar-photo-wrapper,
       .theme-dark .sidebar-photo-wrapper {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         margin: 0 auto;
         border-radius: 50%;
       }
@@ -519,15 +534,15 @@
       .theme-corporate .top-header-section {
         flex-direction: column;
         text-align: center;
-        padding: 18px 14px;
-        gap: 12px;
+        padding: 16px 12px;
+        gap: 10px;
       }
 
       .theme-tech .top-photo-wrapper,
       .theme-corporate .top-photo-wrapper {
-        width: 100px;
-        height: 100px;
-        min-width: 100px;
+        width: 95px;
+        height: 95px;
+        min-width: 95px;
         margin: 0 auto;
       }
 
@@ -537,18 +552,18 @@
       }
 
       .cv-main {
-        padding: 18px 14px !important;
-        gap: 15px !important;
+        padding: 16px 12px !important;
+        gap: 14px !important;
       }
 
       .theme-ats .cv-page,
       .theme-nordic .cv-page,
       .theme-harvard .cv-page {
-        padding: 18px 14px !important;
+        padding: 16px 12px !important;
       }
 
       .candidate-name {
-        font-size: 21px !important;
+        font-size: 20px !important;
       }
 
       .job-header {
@@ -556,17 +571,6 @@
         align-items: flex-start;
         gap: 2px;
       }
-
-      .job-date {
-        font-size: 11px;
-      }
-
-      .bullet-points {
-        font-size: 11.5px;
-      }
-
-      .lang-ar .bullet-points { padding-right: 14px; }
-      .lang-en .bullet-points { padding-left: 14px; }
     }
 
     /* ================= نافذة وكيل الذكاء الاصطناعي (AI Agent Modal) ================= */
@@ -600,7 +604,7 @@
     .ai-modal-header {
       background: linear-gradient(135deg, #6d28d9, #4338ca);
       color: #ffffff;
-      padding: 14px 18px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -635,7 +639,7 @@
     }
 
     .ai-modal-body {
-      padding: 16px;
+      padding: 14px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -649,7 +653,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       font-family: inherit;
-      font-size: 12.5px;
+      font-size: 12px;
       resize: vertical;
       outline: none;
     }
@@ -662,7 +666,7 @@
       padding: 10px 14px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -684,52 +688,81 @@
       border: 1px solid #cbd5e1;
       padding: 5px 10px;
       border-radius: 16px;
-      font-size: 11.5px;
+      font-size: 11px;
       cursor: pointer;
       font-weight: 600;
     }
     .ai-pill:hover { background: #ede9fe; color: #6d28d9; border-color: #a78bfa; }
 
-    /* الطباعة (PDF دائماً A4 مكتبي) */
-    @page { size: A4 portrait; margin: 0mm; }
+    /* ================= إعدادات الطباعة الدقيقة (A4 Desktop Standard) ================= */
+    @page {
+      size: A4 portrait;
+      margin: 0mm !important;
+    }
+
     @media print {
-      body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; }
-      .controls-container, .item-actions, .add-btn, .ai-modal-overlay { display: none !important; }
-      .cv-page { width: 100% !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; }
+      html, body {
+        width: 210mm !important;
+        min-width: 210mm !important;
+        max-width: 210mm !important;
+        height: 297mm !important;
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .controls-container, .item-actions, .add-btn, .ai-modal-overlay {
+        display: none !important;
+      }
+      .cv-page {
+        width: 210mm !important;
+        max-width: 210mm !important;
+        min-height: 297mm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
       
-      /* إعادة الهيكل لسطح المكتب عند الطباعة */
-      .theme-executive .cv-page, .theme-dark .cv-page { display: grid !important; grid-template-columns: 280px 1fr !important; }
-      .theme-executive .cv-sidebar, .theme-dark .cv-sidebar { display: flex !important; }
-      .theme-executive .sidebar-photo-wrapper, .theme-dark .sidebar-photo-wrapper { width: 100% !important; height: 210px !important; border-radius: 10px !important; }
+      /* إعادة الهيكل لسطح المكتب عند التصدير للـ PDF حتى لو كان من الموبايل */
+      .theme-executive .cv-page, .theme-dark .cv-page {
+        display: grid !important;
+        grid-template-columns: 280px 1fr !important;
+      }
+      .theme-executive .cv-sidebar, .theme-dark .cv-sidebar {
+        display: flex !important;
+        padding: 30px 22px !important;
+      }
+      .theme-executive .sidebar-photo-wrapper, .theme-dark .sidebar-photo-wrapper {
+        width: 100% !important;
+        height: 220px !important;
+        border-radius: 10px !important;
+      }
+      .theme-tech .top-header-section, .theme-corporate .top-header-section {
+        flex-direction: row !important;
+        text-align: inherit !important;
+      }
+      .theme-tech .top-photo-wrapper, .theme-corporate .top-photo-wrapper {
+        width: 110px !important;
+        height: 110px !important;
+        margin: 0 !important;
+      }
+      .cv-main {
+        padding: 30px 32px !important;
+      }
     }
   </style>
 </head>
 <body class="theme-executive lang-ar">
 
-  <!-- شريط التحكم العلوي -->
+  <!-- شريط التحكم العلوي المطور -->
   <div class="controls-container">
     <div class="top-toolbar">
+      <!-- الصف 1: اللغة + أزرار العمليات -->
       <div class="toolbar-row">
-        <!-- اللغة -->
         <div class="lang-selector">
-          <span style="font-size: 12.5px; font-weight: bold;" id="lblLang">🌐 اللغة:</span>
           <button class="btn-lang active" id="btnLangAr" onclick="setLanguage('ar', this)">العربية</button>
           <button class="btn-lang" id="btnLangEn" onclick="setLanguage('en', this)">English</button>
         </div>
 
-        <!-- باليتة الألوان -->
-        <div class="color-bar">
-          <span style="font-size: 11.5px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
-          <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
-          <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
-          <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
-          <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
-          <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
-          <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
-          <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:18px;height:18px;border:none;cursor:pointer;border-radius:50%;">
-        </div>
-
-        <!-- أزرار الإجراءات -->
         <div class="toolbar-actions">
           <button class="btn-ai" id="btnAiOpen" onclick="openAiAgent()">
             🤖 AI Agent
@@ -740,32 +773,42 @@
         </div>
       </div>
 
-      <!-- اختيار الدزاين (مع تمرير أفقي على الموبايل) -->
-      <div class="toolbar-row" style="border-top: 1px solid #f1f5f9; padding-top: 6px;">
-        <div class="design-selector">
-          <span style="font-size: 11.5px; font-weight: bold;" id="lblDesign">📷 صور:</span>
-          <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this, true)">1. Executive</button>
-          <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this, true)">2. Silicon Tech</button>
-          <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this, true)">3. Modern Corporate</button>
-          <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this, true)">4. Dark Mode</button>
-          
-          <span style="font-size: 11.5px; font-weight: bold; color: #0284c7; margin-right:4px;" id="lblNoPhotoDesign">📄 بدون صورة:</span>
-          <button class="btn-design nophoto-badge" id="btnDesign5" onclick="setDesign('theme-ats', this, false)">5. ATS Clean ⭐</button>
-          <button class="btn-design nophoto-badge" id="btnDesign6" onclick="setDesign('theme-nordic', this, false)">6. Nordic Minimal</button>
-          <button class="btn-design nophoto-badge" id="btnDesign7" onclick="setDesign('theme-harvard', this, false)">7. Harvard Classic</button>
-        </div>
+      <!-- الصف 2: باليتة الألوان المباشرة -->
+      <div class="color-bar-wrapper">
+        <span style="font-size: 11.5px; font-weight: bold;" id="lblTheme">🎨 الثيم:</span>
+        <div class="color-dot active" style="background:#1e3a8a;" onclick="setColor('#1e3a8a', '#0f172a', this)" title="أزرق ملكي"></div>
+        <div class="color-dot" style="background:#0f766e;" onclick="setColor('#0f766e', '#042f2e', this)" title="أخضر زمردي"></div>
+        <div class="color-dot" style="background:#831843;" onclick="setColor('#831843', '#3b071a', this)" title="عنابي"></div>
+        <div class="color-dot" style="background:#334155;" onclick="setColor('#334155', '#0f172a', this)" title="رمادي"></div>
+        <div class="color-dot" style="background:#581c87;" onclick="setColor('#581c87', '#2e0854', this)" title="بنفسجي"></div>
+        <div class="color-dot" style="background:#b45309;" onclick="setColor('#b45309', '#451a03', this)" title="برونزي"></div>
+        <input type="color" id="customColor" onchange="setColor(this.value, this.value, this)" title="لون مخصص" style="width:20px;height:20px;border:none;cursor:pointer;border-radius:50%;">
+      </div>
+
+      <!-- الصف 3: شريط التصاميم المطور (تمرير أفقي ناعم بدون كسر نصوص) -->
+      <div class="design-scroll-row">
+        <span style="font-size: 11.5px; font-weight: bold; margin-left:4px;" id="lblDesign">📷 صور:</span>
+        <button class="btn-design active" id="btnDesign1" onclick="setDesign('theme-executive', this, true)">Executive</button>
+        <button class="btn-design" id="btnDesign2" onclick="setDesign('theme-tech', this, true)">Silicon Tech</button>
+        <button class="btn-design" id="btnDesign3" onclick="setDesign('theme-corporate', this, true)">Corporate</button>
+        <button class="btn-design" id="btnDesign4" onclick="setDesign('theme-dark', this, true)">Dark Mode</button>
+        
+        <span style="font-size: 11.5px; font-weight: bold; color: #0284c7; margin:0 4px;" id="lblNoPhotoDesign">📄 بدون صورة:</span>
+        <button class="btn-design nophoto-badge" id="btnDesign5" onclick="setDesign('theme-ats', this, false)">ATS Clean ⭐</button>
+        <button class="btn-design nophoto-badge" id="btnDesign6" onclick="setDesign('theme-nordic', this, false)">Nordic Minimal</button>
+        <button class="btn-design nophoto-badge" id="btnDesign7" onclick="setDesign('theme-harvard', this, false)">Harvard Classic</button>
       </div>
     </div>
 
-    <!-- التحكم بالصورة -->
+    <!-- شريط أدوات الصورة -->
     <div class="photo-controls-bar" id="photoControlsBar">
       <span id="txtPhotoLabel">🖼️ <strong>الصورة:</strong></span>
       <label id="lblZoom">🔍 <input type="range" id="zoomRange" min="0.5" max="2.5" step="0.05" value="1" oninput="updatePhoto()"></label>
       <label id="lblPanX">↔️ <input type="range" id="xRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
       <label id="lblPanY">↕️ <input type="range" id="yRange" min="-100" max="100" value="0" oninput="updatePhoto()"></label>
-      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:3px 7px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer; font-size:11px;">إعادة ضبط</button>
+      <button onclick="resetPhoto()" id="btnResetPhoto" style="padding:4px 8px; border-radius:4px; border:1px solid #cbd5e1; cursor:pointer; font-size:11px;">إعادة ضبط</button>
       <input type="file" id="imageUploader" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
-      <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:3px 8px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:11px;">تغيير 📷</button>
+      <button onclick="document.getElementById('imageUploader').click()" id="btnChangePhoto" style="padding:4px 9px; background:#0284c7; color:#fff; border:none; border-radius:4px; cursor:pointer; font-size:11px;">تغيير 📷</button>
     </div>
   </div>
 
@@ -984,20 +1027,13 @@
     </div>
   </div>
 
-  <!-- ================= محرك الترجمة والتصاميم والوكيل الذكي ================= -->
+  <!-- ================= سكريبت النظام والترجمة ================= -->
   <script>
     const I18N = {
       ar: {
         lblLang: "🌐 اللغة:",
         lblDesign: "📷 صور:",
         lblNoPhotoDesign: "📄 بدون صورة:",
-        btnDesign1: "1. Executive",
-        btnDesign2: "2. Silicon Tech",
-        btnDesign3: "3. Modern Corporate",
-        btnDesign4: "4. Dark Mode",
-        btnDesign5: "5. ATS Clean ⭐",
-        btnDesign6: "6. Nordic Minimal",
-        btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 الثيم:",
         btnAiOpen: "🤖 AI Agent",
         btnSavePdf: "📄 Save PDF",
@@ -1044,13 +1080,6 @@
         lblLang: "🌐 Lang:",
         lblDesign: "📷 Photo:",
         lblNoPhotoDesign: "📄 No-Photo:",
-        btnDesign1: "1. Executive",
-        btnDesign2: "2. Silicon Tech",
-        btnDesign3: "3. Modern Corporate",
-        btnDesign4: "4. Dark Mode",
-        btnDesign5: "5. ATS Clean ⭐",
-        btnDesign6: "6. Nordic Minimal",
-        btnDesign7: "7. Harvard Classic",
         lblTheme: "🎨 Theme:",
         btnAiOpen: "🤖 AI Agent",
         btnSavePdf: "📄 Save PDF",
@@ -1115,17 +1144,8 @@
         document.getElementById('aiModalBox').setAttribute('dir', 'ltr');
       }
 
-      document.getElementById('lblLang').innerText = dict.lblLang;
       document.getElementById('lblDesign').innerText = dict.lblDesign;
       document.getElementById('lblNoPhotoDesign').innerText = dict.lblNoPhotoDesign;
-      document.getElementById('btnDesign1').innerText = dict.btnDesign1;
-      document.getElementById('btnDesign2').innerText = dict.btnDesign2;
-      document.getElementById('btnDesign3').innerText = dict.btnDesign3;
-      document.getElementById('btnDesign4').innerText = dict.btnDesign4;
-      document.getElementById('btnDesign5').innerText = dict.btnDesign5;
-      document.getElementById('btnDesign6').innerText = dict.btnDesign6;
-      document.getElementById('btnDesign7').innerText = dict.btnDesign7;
-
       document.getElementById('lblTheme').innerText = dict.lblTheme;
       document.getElementById('btnAiOpen').innerText = dict.btnAiOpen;
       document.getElementById('btnSavePdf').innerText = dict.btnSavePdf;
@@ -1310,7 +1330,7 @@
       updatePhoto();
     }
 
-    /* بنك المهارات الشامل */
+    /* بنك المهارات */
     const skillsDatabase = {
       office: {
         ar: [
